@@ -51,4 +51,13 @@ class User extends Authenticatable
     public function comments(){
         return $this->hasMany(Comments::class);
     }
+    public function status_reclamations(){
+        return $this->hasMany(Status_reclamations::class);
+    }
+    public function formation(){
+        return $this->hasMany(Formation::class);
+    }
+    public function inscription(){
+        return $this->hasMany(Inscription::class);
+    }
 }
