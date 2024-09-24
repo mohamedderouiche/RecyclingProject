@@ -46,7 +46,7 @@ class TypeEventController extends Controller
             'description' => 'required|string',
             'image' => 'nullable|string', // Si vous stockez l'URL de l'image
         ]);
-
+        $validated['users_id'] = auth()->id(); 
         // Créer un nouveau TypeEvent avec les données validées
         TypeEvent::create($validated);
 

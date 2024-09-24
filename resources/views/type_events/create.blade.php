@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('type_events.layout')
 @section('content')
     <h1>Create New Type Event</h1>
 
