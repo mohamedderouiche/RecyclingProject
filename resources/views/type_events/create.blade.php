@@ -14,7 +14,7 @@
     @endif
 
     {{-- Formulaire pour créer un nouveau TypeEvent --}}
-    <form action="{{ route('type_events.store') }}" method="POST">
+    <form action="{{ route('type_events.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div>
@@ -27,10 +27,11 @@
             <textarea id="description" name="description" required>{{ old('description') }}</textarea>
         </div>
 
-        <div>
-            <label for="image">Image URL</label>
-            <input type="text" id="image" name="image" value="{{ old('image') }}">
-        </div>
+       
+        <div class="form-group">
+            <label for="picture">Image </label>
+       
+            <input type="file" id="image" name="image" class="form-control" accept="image/*" required  />
 
         <div>
             <button type="submit">Create</button>

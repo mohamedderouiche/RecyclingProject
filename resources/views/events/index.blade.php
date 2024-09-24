@@ -1,14 +1,11 @@
 
     <h1>Events</h1>
-
     @if (session('success'))
         <div>
             {{ session('success') }}
         </div>
     @endif
-
     <a href="{{ route('events.create') }}">Create New Event</a>
-
     <table>
         <thead>
             <tr>

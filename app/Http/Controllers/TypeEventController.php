@@ -44,15 +44,29 @@ class TypeEventController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'image' => 'nullable|string', // Si vous stockez l'URL de l'image
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
         ]);
+    
+        // Vérifier si un fichier image a été téléchargé
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('typeevent_image', $filename, 'public');
+            
+            // Ajouter le chemin de l'image dans les données validées
+            $validated['image'] = $path;
+        }
+    
+        // Assigner l'ID de l'utilisateur connecté
         $validated['users_id'] = auth()->id(); 
+    
         // Créer un nouveau TypeEvent avec les données validées
         TypeEvent::create($validated);
-
+    
         // Rediriger vers l'index avec un message de succès
         return redirect()->route('type_events.index')->with('success', 'TypeEvent created successfully');
     }
+    
 
     /**
      * Display the specified resource.
