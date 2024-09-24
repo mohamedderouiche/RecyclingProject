@@ -3,7 +3,7 @@
 @section('content')
     <h1>Create New Event</h1>
 
-    <form action="{{ route('events.store') }}" method="POST">
+    <form action="{{ route('events.store') }}" method="POST"  enctype="multipart/form-data">
         @csrf
 
         <div>
@@ -16,10 +16,13 @@
             <textarea id="description" name="description" required>{{ old('description') }}</textarea>
         </div>
 
+    
+        <div >
+            <label for="image">Image </label>
+       
+            <input type="file" id="image" name="image" class="form-control" accept="image/*" required  />
+
         <div>
-            <label for="image">Image URL</label>
-            <input type="text" id="image" name="image" value="{{ old('image') }}">
-        </div>
 
         <div>
             <label for="type_events_id">Type Event</label>

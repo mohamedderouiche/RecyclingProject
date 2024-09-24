@@ -28,8 +28,8 @@
         </div>
 
        
-        <div class="form-group">
-            <label for="picture">Image </label>
+        <div >
+            <label for="image">Image </label>
        
             <input type="file" id="image" name="image" class="form-control" accept="image/*" required  />
 

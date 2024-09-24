@@ -21,7 +21,13 @@
                 <tr>
                     <td>{{ $event->title }}</td>
                     <td>{{ $event->description }}</td>
-                    <td>{{ $event->image }}</td>
+                    <td>
+                        @if($event->image)
+                        <img src="{{ asset('storage/' . $event->image) }}"alt="Event Image" style="width:100px;height:100px;">
+                    @else
+                        No image
+                    @endif
+                    </td>
                     <td>{{ $event->typeEvent->title ?? 'N/A' }}</td>
                     <td>
                         <a href="{{ route('events.edit', $event->id) }}">Edit</a>

@@ -3,7 +3,7 @@
 @section('content')
     <h1>Edit Event</h1>
 
-    <form action="{{ route('events.update', $event->id) }}" method="POST">
+    <form action="{{ route('events.update', $event->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -17,11 +17,12 @@
             <textarea id="description" name="description" required>{{ old('description', $event->description) }}</textarea>
         </div>
 
-        <div>
-            <label for="image">Image URL</label>
-            <input type="text" id="image" name="image" value="{{ old('image', $event->image) }}">
-        </div>
+        <div >
+            <label for="image">Image </label>
+       
+            <input type="file" id="image" name="image" class="form-control" accept="image/*"   />
 
+        <div>
         <div>
             <label for="type_events_id">Type Event</label>
             <select id="type_events_id" name="type_events_id" required>

@@ -107,12 +107,22 @@ class TypeEventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Valider les données
-        $validated = $request->validate([
+         // Valider les données
+         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'image' => 'nullable|string',
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
         ]);
+    
+        // Vérifier si un fichier image a été téléchargé
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('typeevent_image', $filename, 'public');
+            
+            // Ajouter le chemin de l'image dans les données validées
+            $validated['image'] = $path;
+        }
 
         // Trouver le TypeEvent et mettre à jour avec les nouvelles données
         $typeEvent = TypeEvent::findOrFail($id);

@@ -29,9 +29,18 @@ class EventController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'image' => 'nullable|string',
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
             'type_events_id' => 'required|exists:type_events,id',
         ]);
+         // Vérifier si un fichier image a été téléchargé
+         if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('events_image', $filename, 'public');
+            
+            // Ajouter le chemin de l'image dans les données validées
+            $validated['image'] = $path;
+        }
 
         // Create a new event
         Event::create($validated);
@@ -60,9 +69,18 @@ class EventController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'image' => 'nullable|string',
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
             'type_events_id' => 'required|exists:type_events,id',
         ]);
+         // Vérifier si un fichier image a été téléchargé
+         if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('events_image', $filename, 'public');
+            
+            // Ajouter le chemin de l'image dans les données validées
+            $validated['image'] = $path;
+        }
 
         // Find the event and update it
         $event = Event::findOrFail($id);
