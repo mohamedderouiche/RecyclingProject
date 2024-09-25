@@ -16,14 +16,13 @@ class status_reclamations extends Model
         'updated_at',
     ];
 
-    public function reclamation()
+    public function reclamations()
     {
-        return $this->hasMany(Reclamation::class);
+        return $this->hasMany(Reclamation::class, 'status_reclamations_id');
     }
 
-   
-    public function user()
+    public function user() // Define the relationship to the User model
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'users_id');
     }
 }
