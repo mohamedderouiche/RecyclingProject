@@ -13,13 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('type_events', function (Blueprint $table) {
+        Schema::create('type_reclamations', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('description');
-            $table->string('image')->nullable();
-            $table->unsignedBigInteger('users_id')->nullable();
-            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_events');
+        Schema::dropIfExists('type_reclamations');
     }
 };

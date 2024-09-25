@@ -35,79 +35,49 @@
 
 
 
-
-
 <body>
-    <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+
+
+
+        @include('topbar')
+        <!-- Topbar End -->
+
+
+        <!-- Navbar Start -->
+        @include('navbar')
+    <div class="container mt-5">
+        <h1>My Reclamations</h1>
+
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Created At</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($reclamations as $reclamation)
+                    <tr>
+                        <td>{{ $reclamation->typeReclamation->name ?? 'N/A' }}</td>
+                        <td>{{ $reclamation->description }}</td>
+                        <td>{{ optional($reclamation->statusReclamation)->status_reclamation ?? 'En Attente' }}</td>
+                        <td>{{ $reclamation->created_at->format('Y-m-d H:i') }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+
     </div>
-    <!-- Spinner End -->
-
-
-    <!-- Topbar Start -->
-   @include('topbar')
-    <!-- Topbar End -->
-
-
-    <!-- Navbar Start -->
-    @include('navbar')
-    <!-- Navbar End -->
-
-
-    <!-- Carousel Start -->
-   @include('Carousel')
-    <!-- Carousel End -->
-
-
-    <!-- Top Feature Start -->
-      @include('topfeautures')
-    <!-- Top Feature End -->
-
-
-    <!-- About Start -->
-   @include('about')
-    <!-- About End -->
-
-
-    <!-- Facts Start -->
-     @include('facts')
-    <!-- Facts End -->
-
-
-    <!-- Features Start -->
-    @include('features')
-    <!-- Features End -->
-
-
-    <!-- Service Start -->
-    @include('service')
-    <!-- Service End -->
-
-
-    <!-- Quote Start -->
-
-   <!-- resources/views/home.blade.php -->
-@include('reclamations.create', ['typeReclamations' => $typeReclamations])
-
-
-    <!-- Quote End -->
-
-
-    <!-- Projects Start -->
-  @include('projects')
-    <!-- Projects End -->
-
-
-    <!-- Team Start -->
-   @include('team')
-    <!-- Team End -->
-
-
-    <!-- Testimonial Start -->
-      @include('testimonial')
-    <!-- Testimonial End -->
-
+    
 
     <!-- Footer Start -->
     @include('footer')
