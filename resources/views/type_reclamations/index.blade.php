@@ -49,7 +49,8 @@
                     <!-- Topbar Search -->
                    @include('admin.topbar')
                 <!-- End of Topbar -->
- <div class="container-fluid">
+
+                <div class="container-fluid">
             <div class="container mt-5">
                 <h2 class="text-center mb-4">Type Reclamations</h2>
 
@@ -57,9 +58,34 @@
                     <div class="alert alert-success">{{ session('success') }}</div>
                 @endif
 
-                <div class="mb-3 text-end">
-                    <a href="{{ route('type_reclamations.create') }}" class="btn btn-primary">Create New Type Reclamation</a>
+                <a href="#" class="btn btn-primary mb-3" data-toggle="modal" data-target="#createTypeModal">Add Type Reclamation</a>
+
+                <!-- Modal for Creating Reclamation Type -->
+                <div class="modal fade" id="createTypeModal" tabindex="-1" role="dialog" aria-labelledby="createTypeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="createTypeModalLabel">Create Type Reclamation</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Form to Create Reclamation Type -->
+                                <form action="{{ route('type_reclamations.store') }}" method="POST">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="name">Reclamation Type Name</label>
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Reclamation Type" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-block">Create</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+           
 
                 <table class="table table-bordered table-hover">
                     <thead class="table-light">
