@@ -71,7 +71,7 @@
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Event Management:</h6>
-                <a class="collapse-item" href="{{ url ('/type-events/index')}}">Type Events</a>
+                <a class="collapse-item" href="{{ url ('/type-events')}}">View Type Events</a>
                 <a class="collapse-item" href="{{ url ('/events')}}">View  Events</a>
             </div>
         </div>

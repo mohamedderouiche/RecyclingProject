@@ -27,26 +27,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/login', function () {
+    return view('login');
+})->middleware(['auth', 'verified'])->name('login');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-require __DIR__.'/auth.php';
-
-
-Route::get('/home', [HomeController::class,"index"]);
-
-Route::get('/index', [AdminController::class,"index"]);
-
-Route::resource('/type_events', TypeEventController::class);
+    // ******************************
+    Route::resource('/type_events', TypeEventController::class);
 Route::get('/type-events/create', [TypeEventController::class, 'create'])->name('type_events.create');
-
+// home admin
+Route::get('/index', [AdminController::class,"index"]);
 //Category
 Route::resource('/categories', CategoryController::class);
 Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
@@ -56,19 +49,8 @@ Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('categ
 Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
 Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
 Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
-
-Route::get('/reclamations', [ReclamationController::class, 'index'])->name('reclamations.index');
-Route::get('/reclamationsadmin', [ReclamationController::class, 'adminIndex'])->name('reclamations.admin_index');
-Route::get('/reclamations/create', [ReclamationController::class, 'create'])->name('reclamations.create');
-Route::post('/reclamations', [ReclamationController::class, 'store'])->name('reclamations.store');
-Route::put('/reclamations/{id}', [ReclamationController::class, 'update'])->name('reclamations.update');
-Route::delete('/reclamations/{id}', [ReclamationController::class, 'destroy'])->name('reclamations.destroy');
-Route::get('/typeR', [Type_ReclamationController::class, 'index'])->name('type_reclamations.index');
-Route::get('/typeR/create', [Type_ReclamationController::class, 'create'])->name('type_reclamations.create');
-Route::delete('/typeR/{id}', [Type_ReclamationController::class, 'destroy'])->name('type_reclamations.destroy');
-Route::post('/typeR/create', [Type_ReclamationController::class, 'store'])->name('type_reclamations.store');
-Route::put('/typeR/{id}', [Type_ReclamationController::class, 'update'])->name('type_reclamations.update');
-Route::get('/type-events/index', [TypeEventController::class, 'index'])->name('type_events.index');
+// Event
+Route::get('/type-events', [TypeEventController::class, 'index'])->name('type_events.index');
 // Store the newly created TypeEvent
 Route::post('/type_events', [TypeEventController::class, 'store'])->name('type_events.store');
 
@@ -99,5 +81,29 @@ Route::resource('/events', EventController::class);
 // Route::put('/events/{id}', [EventController::class, 'update'])->name('events.update');
 // // Delete a specific Event by ID
 // Route::delete('/events/{id}', [EventController::class, 'destroy'])->name('events.destroy');
+
+// reclamation
+Route::get('/reclamationsadmin', [ReclamationController::class, 'adminIndex'])->name('reclamations.admin_index');
+Route::get('/reclamations', [ReclamationController::class, 'index'])->name('reclamations.index');
+Route::get('/reclamations/create', [ReclamationController::class, 'create'])->name('reclamations.create');
+Route::post('/reclamations', [ReclamationController::class, 'store'])->name('reclamations.store');
+Route::put('/reclamations/{id}', [ReclamationController::class, 'update'])->name('reclamations.update');
+Route::delete('/reclamations/{id}', [ReclamationController::class, 'destroy'])->name('reclamations.destroy');
+Route::get('/typeR', [Type_ReclamationController::class, 'index'])->name('type_reclamations.index');
+Route::get('/typeR/create', [Type_ReclamationController::class, 'create'])->name('type_reclamations.create');
+Route::delete('/typeR/{id}', [Type_ReclamationController::class, 'destroy'])->name('type_reclamations.destroy');
+Route::post('/typeR/create', [Type_ReclamationController::class, 'store'])->name('type_reclamations.store');
+Route::put('/typeR/{id}', [Type_ReclamationController::class, 'update'])->name('type_reclamations.update');
+
+
+});
+
+require __DIR__.'/auth.php';
+
+
+Route::get('/home', [HomeController::class,"index"]);
+
+
+
 
 
