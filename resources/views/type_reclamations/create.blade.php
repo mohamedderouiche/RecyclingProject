@@ -8,8 +8,8 @@
     <meta name="description" content="Dashboard for managing reclamations">
     <meta name="author" content="BETTER CALL US">
 
-    <title>BETTER CALL US - Dashboard</title>
-
+    <title>Green Recycle</title>
+    <link rel="icon" href="{{ asset('img/logo/recycling.ico') }}" type="image/x-icon">
     <!-- Custom fonts for this template-->
     <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900" rel="stylesheet">
