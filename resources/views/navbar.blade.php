@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
     <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-        <h1 class="m-0">Gardener</h1>
+        <h1 class="m-0">GreenRecycle</h1>
     </a>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
@@ -23,6 +23,6 @@
             </div>
             <a href="contact.html" class="nav-item nav-link">Contact</a>
         </div>
-        <a href="" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">go to reclamations<i class="fa fa-arrow-right ms-3"></i></a>
+        <a href="{{ url ('/login')}}" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Login<i class="fa fa-arrow-right ms-3"></i></a>
     </div>
 </nav>
