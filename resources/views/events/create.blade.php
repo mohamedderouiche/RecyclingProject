@@ -11,7 +11,7 @@
     <meta name="author" content="">
 
     <title>Green Recycle</title>
-
+    <link rel="icon" href="{{ asset('img/logo/recycling.ico') }}" type="image/x-icon">
     <!-- Custom fonts for this template-->
     <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template-->
