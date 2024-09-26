@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\FormationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TypeEventController;
@@ -71,3 +72,17 @@ Route::resource('/events', EventController::class);
 // Route::put('/events/{id}', [EventController::class, 'update'])->name('events.update');
 // // Delete a specific Event by ID
 // Route::delete('/events/{id}', [EventController::class, 'destroy'])->name('events.destroy');
+
+
+/////////////////////////////  Formations routes
+
+Route::resource('/formations', FormationController::class);
+Route::middleware(['auth'])->group(function () {
+    Route::post('/formations/store', [FormationController::class, 'store'])->name('formations.store');
+});
+Route::get('/formations', [FormationController::class, 'index'])->name('formations.index');
+Route::post('/formations', [FormationController::class, 'store'])->name('formations.store');
+Route::get('/formations/{id}', [FormationController::class, 'show'])->name('formations.show');
+Route::get('/formations/{id}/edit', [FormationController::class, 'edit'])->name('formations.edit');
+Route::put('/formations/{id}', [FormationController::class, 'update'])->name('formations.update');
+Route::delete('/formations/{id}', [FormationController::class, 'destroy'])->name('formations.destroy');

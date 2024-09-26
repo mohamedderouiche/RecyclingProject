@@ -2,83 +2,61 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Inscription;
+use App\Models\Formation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class InscriptionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    // Front Office: User registers for a formation
+    public function store(Request $request, $formation_id)
     {
-        //
+        $validated = $request->validate([
+            'users_id' => 'required|exists:users,id',
+        ]);
+
+        Inscription::create([
+            'formations_id' => $formation_id,
+            'users_id' => $validated['users_id'],
+            'date_inscription' => now(),
+            'statut' => 'en attente',
+        ]);
+
+        return redirect()->route('formations.index')->with('success', 'Registered successfully for the formation!');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    // Back Office: Show all inscriptions for a specific formation
+    public function index($formation_id)
     {
-        //
+        $inscriptions = Inscription::where('formations_id', $formation_id)->get();
+        return view('admin.inscriptions.index', compact('inscriptions', 'formation_id'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // Back Office: Accept or reject inscription
     public function update(Request $request, $id)
     {
-        //
+        $inscription = Inscription::findOrFail($id);
+        $validated = $request->validate([
+            'statut' => 'required|in:accepté,rejeté',
+        ]);
+
+        $inscription->update(['statut' => $validated['statut']]);
+
+        // Send email notification to the user
+        Mail::to($inscription->user->email)->send(new \App\Mail\InscriptionStatusUpdated($inscription));
+
+        return redirect()->route('admin.inscriptions.index', $inscription->formations_id)
+            ->with('success', 'Inscription status updated successfully!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // Back Office: Delete inscription
     public function destroy($id)
     {
-        //
+        $inscription = Inscription::findOrFail($id);
+        $inscription->delete();
+
+        return redirect()->route('admin.inscriptions.index', $inscription->formations_id)
+            ->with('success', 'Inscription deleted successfully!');
     }
 }
