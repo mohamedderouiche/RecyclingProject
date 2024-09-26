@@ -1,8 +1,5 @@
 
 
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>BETTER CALL US - Dashboard</title>
+    <title>BETTER CALL US </title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -48,54 +45,54 @@
                 <nav class="navbar navbar-expand navbar-dark bg-dark topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    {{-- <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars">zaazaz</i>
-                    </button>
+                    </button> --}}
 
                     <!-- Topbar Search -->
                    @include('admin.topbar')
                 <!-- End of Topbar -->
 
-           <div>
-    <h1>Create New Type Event</h1>
+           <div> 
+    <h1>Edit Event</h1>
 
-    {{-- Affichage des erreurs de validation --}}
-    @if ($errors->any())
-        <div>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-    {{-- Formulaire pour créer un nouveau TypeEvent --}}
-    <form action="{{ route('type_events.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('events.update', $event->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
+        @method('PUT')
 
         <div>
             <label for="title">Title</label>
-            <input type="text" id="title" name="title" value="{{ old('title') }}" required>
+            <input type="text" id="title" name="title" value="{{ old('title', $event->title) }}" required>
         </div>
 
         <div>
             <label for="description">Description</label>
-            <textarea id="description" name="description" required>{{ old('description') }}</textarea>
+            <textarea id="description" name="description" required>{{ old('description', $event->description) }}</textarea>
         </div>
 
-       
         <div >
             <label for="image">Image </label>
        
-            <input type="file" id="image" name="image" class="form-control" accept="image/*" required  />
+            <input type="file" id="image" name="image" class="form-control" accept="image/*"   />
 
         <div>
-            <button type="submit">Create</button>
+        <div>
+            <label for="type_events_id">Type Event</label>
+            <select id="type_events_id" name="type_events_id" required>
+                @foreach ($typeEvents as $typeEvent)
+                    <option value="{{ $typeEvent->id }}" {{ $event->type_events_id == $typeEvent->id ? 'selected' : '' }}>
+                        {{ $typeEvent->title }}
+                    </option>
+                @endforeach
+            </select>
         </div>
+
+        <button type="submit">Update</button>
     </form>
 
-    <a href="{{ route('type_events.index') }}">Back to List</a>
+    <a href="{{ route('events.index') }}">Back to List</a>
+
+
 </div>
                
 <!-- Footer -->

@@ -57,45 +57,69 @@
                 <!-- End of Topbar -->
 
            <div>
-    <h1>Create New Type Event</h1>
+    <h1>Type Events List</h1>
 
-    {{-- Affichage des erreurs de validation --}}
-    @if ($errors->any())
+    {{-- Success message --}}
+    @if(session('success'))
         <div>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+            <p>{{ session('success') }}</p>
         </div>
     @endif
 
-    {{-- Formulaire pour créer un nouveau TypeEvent --}}
-    <form action="{{ route('type_events.store') }}" method="POST" enctype="multipart/form-data">
-        @csrf
+    {{-- Button to create a new Type Event --}}
+    <div>
+        <a href="{{ route('type_events.create') }}">Create New Type Event</a>
+    </div>
 
-        <div>
-            <label for="title">Title</label>
-            <input type="text" id="title" name="title" value="{{ old('title') }}" required>
-        </div>
+    {{-- Display the list of TypeEvents --}}
+    <table border="1" cellpadding="10" cellspacing="0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($typeEvents as $typeEvent)
+                <tr>
+                    <td>{{ $typeEvent->id }}</td>
+                    <td>{{ $typeEvent->title }}</td>
+                    <td>{{ $typeEvent->description }}</td>
+                    <td>
+                        @if($typeEvent->image)
+                            <img src="{{ asset('storage/' . $typeEvent->image) }}"alt="Event Image" style="width:100px;height:100px;">
+                        @else
+                            No image
+                        @endif
+                    </td>
+                    <td>
+                        {{-- Get by ID (View) Button --}}
+                        <a href="{{ route('type_events.show', $typeEvent->id) }}">
+                            <button>detail</button>
+                        </a>
 
-        <div>
-            <label for="description">Description</label>
-            <textarea id="description" name="description" required>{{ old('description') }}</textarea>
-        </div>
+                        {{-- Update (Edit) Button --}}
+                        <a href="{{ route('type_events.edit', $typeEvent->id) }}">
+                            <button>Update</button>
+                        </a>
 
-       
-        <div >
-            <label for="image">Image </label>
-       
-            <input type="file" id="image" name="image" class="form-control" accept="image/*" required  />
+                        {{-- Delete Form --}}
+                        <form action="{{ route('type_events.destroy', $typeEvent->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" onclick="return confirm('Are you sure you want to delete this event?')">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 
-        <div>
-            <button type="submit">Create</button>
-        </div>
-    </form>
+    <a href="/">Back to Home</a>
 
-    <a href="{{ route('type_events.index') }}">Back to List</a>
 </div>
                
 <!-- Footer -->
@@ -134,5 +158,4 @@
 
 </body>
 </html>
-
 
