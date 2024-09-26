@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/type-events/create', [TypeEventController::class, 'create'])->name('type_events.create');
 // home admin
 Route::get('/index', [AdminController::class,"index"]);
+Route::get('', [AdminController::class,"index"]);
 //Category
 Route::resource('/categories', CategoryController::class);
 Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
