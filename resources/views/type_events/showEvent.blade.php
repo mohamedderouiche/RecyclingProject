@@ -1,3 +1,7 @@
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,54 +55,32 @@
                    @include('admin.topbar')
                 <!-- End of Topbar -->
 
-           <div>
-    <h1>Edit Type Event</h1>
-
-    {{-- Display validation errors --}}
-    @if ($errors->any())
-        <div>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+           
+<div class="container">
+    <h1>Events for the Selected Type</h1>
+    
+    @if($events->isEmpty())
+        <p>No events found for this type.</p>
+    @else
+        <div class="row">
+            @foreach($events as $event)
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $event->title }}</h5>
+                            <p class="card-text">{{ $event->description }}</p>
+                            <img src="{{ asset('storage/' . $event->image) }}"alt="Event Image" style="width:100px;height:100px;">
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </div>
     @endif
-
-    {{-- Form for editing a TypeEvent --}}
-    <form action="{{ route('type_events.update', $typeEvent->id) }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        @method('PUT') {{-- Use PUT or PATCH for updating resources --}}
-
-        <div>
-            <label for="title">Title</label>
-            <input type="text" id="title" name="title" value="{{ old('title', $typeEvent->title) }}" required>
-        </div>
-
-        <div>
-            <label for="description">Description</label>
-            <textarea id="description" name="description" required>{{ old('description', $typeEvent->description) }}</textarea>
-        </div>
-
-      
-        <div >
-            <label for="image">Image </label>
-       
-            <input type="file" id="image" name="image" class="form-control" accept="image/*"   />
-
-        <div>
-
-        <div>
-            <button type="submit">Update</button>
-        </div>
-    </form>
-
-    <a href="{{ route('type_events.index') }}">Back to List</a>
 </div>
-               
-<!-- Footer -->
-@include('admin.footer')
-<!-- End of Footer -->
+
+  <!-- Footer -->
+  @include('admin.footer')
+  <!-- End of Footer -->
 
 </div>
 <!-- End of Content Wrapper -->
@@ -132,5 +114,3 @@
 
 </body>
 </html>
-
-

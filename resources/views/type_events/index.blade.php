@@ -15,7 +15,7 @@
     <meta name="author" content="">
 
     <title>Green Recycle</title>
-
+    <link rel="icon" href="{{ asset('img/logo/recycling.ico') }}" type="image/x-icon">
     <!-- Custom fonts for this template-->
     <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template-->
@@ -96,10 +96,11 @@
                         @endif
                     </td>
                     <td>
-                        {{-- Get by ID (View) Button --}}
-                        <a href="{{ route('type_events.show', $typeEvent->id) }}">
-                            <button>detail</button>
-                        </a>
+                       {{-- Get by ID (View) Button --}}
+<a href="{{ route('type_events.events', $typeEvent->id) }}">
+    <button>Detail</button>
+</a>
+
 
                         {{-- Update (Edit) Button --}}
                         <a href="{{ route('type_events.edit', $typeEvent->id) }}">

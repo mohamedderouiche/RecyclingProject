@@ -97,4 +97,10 @@ class EventController extends Controller
 
         return redirect()->route('events.index')->with('success', 'Event deleted successfully');
     }
+
+    public function displayEventByTypeEventId($id){
+        // Find all events of a specific type by its ID
+        $events = Event::where('type_events_id', $id)->get();
+        return view('type_events.showEvent', compact('events'));
+    }
 }
