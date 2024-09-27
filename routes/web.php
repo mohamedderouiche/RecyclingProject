@@ -73,6 +73,8 @@ Route::delete('/type_events/{id}', [TypeEventController::class, 'destroy'])->nam
 Route::resource('/events', EventController::class);
 Route::get('/type_events/{id}/events', [EventController::class, 'displayEventByTypeEventId'])
     ->name('type_events.events');
+    Route::get('/events/{id}/events', [EventController::class, 'displayEventsByTypeEventId'])
+    ->name('events.events');
 // // Show the form for creating a new Event
 // Route::get('/events/create', [EventController::class, 'create'])->name('events.create'); 
 // Route::get('/events/index', [EventController::class, 'index'])->name('events.index');
