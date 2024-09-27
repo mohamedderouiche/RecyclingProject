@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    // ******************************
+  //**********
     Route::resource('/type_events', TypeEventController::class);
 Route::get('/type-events/create', [TypeEventController::class, 'create'])->name('type_events.create');
 // home admin
@@ -53,6 +53,7 @@ Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name(
 Route::get('/type-events', [TypeEventController::class, 'index'])->name('type_events.index');
 // Store the newly created TypeEvent
 Route::post('/type_events', [TypeEventController::class, 'store'])->name('type_events.store');
+
 
 // Display a specific TypeEvent by ID
 Route::get('/type_events/{id}', [TypeEventController::class, 'show'])->name('type_events.show');
@@ -86,8 +87,12 @@ Route::get('/type_events/{id}/events', [EventController::class, 'displayEventByT
 
 // reclamation
 Route::get('/reclamationsadmin', [ReclamationController::class, 'adminIndex'])->name('reclamations.admin_index');
+
+Route::get('/reclamations/create', [ReclamationController::class, 'create'])->name('reclamations.createReclamation');
+
 Route::get('/reclamations', [ReclamationController::class, 'index'])->name('reclamations.index');
-Route::get('/reclamations/create', [ReclamationController::class, 'create'])->name('reclamations.create');
+
+
 Route::post('/reclamations', [ReclamationController::class, 'store'])->name('reclamations.store');
 Route::put('/reclamations/{id}', [ReclamationController::class, 'update'])->name('reclamations.update');
 Route::delete('/reclamations/{id}', [ReclamationController::class, 'destroy'])->name('reclamations.destroy');
