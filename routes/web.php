@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/type-events/create', [TypeEventController::class, 'create'])->name('type_events.create');
 // home admin
 Route::get('/index', [AdminController::class,"index"]);
+Route::get('', [AdminController::class,"index"]);
 //Category
 Route::resource('/categories', CategoryController::class);
 Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
@@ -51,6 +52,7 @@ Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('cat
 Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 // Event
 Route::get('/type-events', [TypeEventController::class, 'index'])->name('type_events.index');
+Route::get('/type-events/card', [TypeEventController::class, 'homeDisplay'])->name('type_events.home');
 // Store the newly created TypeEvent
 Route::post('/type_events', [TypeEventController::class, 'store'])->name('type_events.store');
 
