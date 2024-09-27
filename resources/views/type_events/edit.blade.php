@@ -1,8 +1,3 @@
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,9 +52,9 @@
                 <!-- End of Topbar -->
 
            <div>
-    <h1>Create New Type Event</h1>
+    <h1>Edit Type Event</h1>
 
-    {{-- Affichage des erreurs de validation --}}
+    {{-- Display validation errors --}}
     @if ($errors->any())
         <div>
             <ul>
@@ -70,28 +65,31 @@
         </div>
     @endif
 
-    {{-- Formulaire pour créer un nouveau TypeEvent --}}
-    <form action="{{ route('type_events.store') }}" method="POST" enctype="multipart/form-data">
+    {{-- Form for editing a TypeEvent --}}
+    <form action="{{ route('type_events.update', $typeEvent->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
+        @method('PUT') {{-- Use PUT or PATCH for updating resources --}}
 
         <div>
             <label for="title">Title</label>
-            <input type="text" id="title" name="title" value="{{ old('title') }}" required>
+            <input type="text" id="title" name="title" value="{{ old('title', $typeEvent->title) }}" required>
         </div>
 
         <div>
             <label for="description">Description</label>
-            <textarea id="description" name="description" required>{{ old('description') }}</textarea>
+            <textarea id="description" name="description" required>{{ old('description', $typeEvent->description) }}</textarea>
         </div>
 
-       
+      
         <div >
             <label for="image">Image </label>
        
-            <input type="file" id="image" name="image" class="form-control" accept="image/*" required  />
+            <input type="file" id="image" name="image" class="form-control" accept="image/*"   />
 
         <div>
-            <button type="submit">Create</button>
+
+        <div>
+            <button type="submit">Update</button>
         </div>
     </form>
 
