@@ -52,6 +52,7 @@ Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('cat
 Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 // Event
 Route::get('/type-events', [TypeEventController::class, 'index'])->name('type_events.index');
+Route::get('/type-events/card', [TypeEventController::class, 'homeDisplay'])->name('type_events.home');
 // Store the newly created TypeEvent
 Route::post('/type_events', [TypeEventController::class, 'store'])->name('type_events.store');
 
