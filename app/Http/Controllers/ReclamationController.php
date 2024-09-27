@@ -22,6 +22,8 @@ class ReclamationController extends Controller
             ->get();
 
         return view('reclamations.index', compact('reclamations'));
+
+
     }
 
 
@@ -41,7 +43,7 @@ class ReclamationController extends Controller
     public function create()
     {       $typeReclamations = type_reclamations::all();
          // Show the form for creating a new reclamation
-         return view('reclamations.create', compact('typeReclamations'));
+         return view('reclamations.createReclamation', compact('typeReclamations'));
     }
 
     /**
