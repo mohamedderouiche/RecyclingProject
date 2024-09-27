@@ -83,6 +83,8 @@
 
     <!-- Service Start -->
     @include('service')
+    @include('type_events.home')
+
     <!-- Service End -->
 
 
