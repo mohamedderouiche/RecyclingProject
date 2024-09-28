@@ -82,7 +82,7 @@
 
 
     <!-- Service Start -->
-    @include('service')
+    {{-- @include('service') --}}
     @include('type_events.home')
 
     <!-- Service End -->
