@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CentreController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -36,6 +37,14 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+require __DIR__.'/auth.php';
+
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('/index', [AdminController::class,"index"]);
+
+Route::resource('/type_events', TypeEventController::class);
   //**********
     Route::resource('/type_events', TypeEventController::class);
 Route::get('/type-events/create', [TypeEventController::class, 'create'])->name('type_events.create');
@@ -124,6 +133,21 @@ Route::get('/teams', function () {
 })->name('teams');
 
 
+
+
+
+
+
+//Centre 
+
+Route::get('centres',[CentreController::class,'centres'])->name('centres.index'); 
+
+Route::get('addCentre', [CentreController::class,'create'])->name('addCentre');
+Route::post('upload', [CentreController::class,'uploadCentre'])->name('centres.upload'); 
+Route::delete('/centres/{id}', [CentreController::class, "delete"])->name('centres.destroy');
+Route::get('/updatecentre/{id}', [CentreController::class, 'edit']);
+Route::post('/update/{id}', [CentreController::class, 'updatecentre']);
+Route::get('/centres/{id}', [CentreController::class, 'show'])->name('centres.show');
 
 
 
