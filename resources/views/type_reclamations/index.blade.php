@@ -9,8 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>BETTER CALL US - Dashboard</title>
-
+    <title>Green Recycle</title>
+    <link rel="icon" href="{{ asset('img/logo/recycling.ico') }}" type="image/x-icon">
     <!-- Custom fonts for this template-->
     <link href="admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -39,7 +39,7 @@
 
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-dark bg-dark topbar mb-4 static-top shadow">
+                <nav class="navbar navbar-expand navbar-dark bg-light topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -85,7 +85,7 @@
                     </div>
                 </div>
 
-           
+
 
                 <table class="table table-bordered table-hover">
                     <thead class="table-light">
@@ -108,16 +108,20 @@
                                     <td>
                                         <div class="d-flex">
                                             <!-- Edit Button -->
-                                            <button type="button" class="btn btn-warning btn-sm me-2" data-toggle="modal" data-target="#editModal-{{ $type->id }}">
-                                                Edit
-                                            </button>
+                                         <!-- Edit Button -->
+<button type="button" class="btn btn-warning btn-sm me-2" data-toggle="modal" data-target="#editModal-{{ $type->id }}">
+    <i class="fas fa-edit"></i> <!-- Font Awesome Edit Icon -->
+</button>
 
-                                            <!-- Delete Button -->
-                                            <form action="{{ route('type_reclamations.destroy', $type->id) }}" method="POST" class="ms-1">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this type reclamation?');">Delete</button>
-                                            </form>
+<!-- Delete Button -->
+<form action="{{ route('type_reclamations.destroy', $type->id) }}" method="POST" class="ms-1" style="display: inline;">
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this type reclamation?');">
+        <i class="fas fa-trash-alt"></i> <!-- Font Awesome Trash Icon -->
+    </button>
+</form>
+
                                         </div>
                                     </td>
                                 </tr>

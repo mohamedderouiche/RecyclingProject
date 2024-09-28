@@ -1,3 +1,7 @@
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,26 +55,32 @@
                    @include('admin.topbar')
                 <!-- End of Topbar -->
 
-           <div>
+           
 <div class="container">
-    <h1 class="my-4">Create Category</h1>
-
-    <form action="{{ route('categories.store') }}" method="POST">
-        @csrf
-        <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" name="name" id="name" class="form-control" required>
+    <h1>Events for the Selected Type</h1>
+    
+    @if($events->isEmpty())
+        <p>No events found for this type.</p>
+    @else
+        <div class="row">
+            @foreach($events as $event)
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $event->title }}</h5>
+                            <p class="card-text">{{ $event->description }}</p>
+                            <img src="{{ asset('storage/' . $event->image) }}"alt="Event Image" style="width:100px;height:100px;">
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </div>
-        <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
-            <textarea name="description" id="description" class="form-control" rows="3" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Create</button>
-    </form>
+    @endif
 </div>
-</div>
-               
 
+  <!-- Footer -->
+  @include('admin.footer')
+  <!-- End of Footer -->
 
 </div>
 <!-- End of Content Wrapper -->

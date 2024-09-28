@@ -47,26 +47,32 @@
 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+                <x-app-layout>
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800 text-center">Create Type Reclamation</h1>
 
-                    <!-- Form to Create Reclamation Type -->
-                    <div class="row justify-content-center">
-                        <div class="col-lg-6">
-                            <form action="{{ route('type_reclamations.store') }}" method="POST">
-                                @csrf
-                                <div class="form-group">
-                                    <label for="name">Reclamation Type Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Reclamation Type" required>
+                    <div class="py-12">
+                        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+                            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                                <div class="max-w-xl">
+                                    @include('profile.partials.update-profile-information-form')
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-block">Create</button>
-                            </form>
+                            </div>
+
+                            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                                <div class="max-w-xl">
+                                    @include('profile.partials.update-password-form')
+                                </div>
+                            </div>
+
+                            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                                <div class="max-w-xl">
+                                    @include('profile.partials.delete-user-form')
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </x-app-layout>
 
-                </div>
                 <!-- End of Page Content -->
 
             </div>
