@@ -18,7 +18,7 @@ class EventController extends Controller
     public function indexUser()
     {
         // Retrieve all events (you can add any specific conditions for users here if needed)
-        $events = Event::all();
+        $events = TypeEvent::all();
         return view('events.indexUser', compact('events'));
     }
     public function create()
