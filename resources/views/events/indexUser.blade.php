@@ -50,32 +50,27 @@
             </div>
         @endif
 
-        {{-- Display the list of TypeEvents --}}
+        {{-- Display the list of events --}}
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
                     <p class="fs-5 fw-bold text-primary">Our Events</p>
-                    <h1 class="display-5 mb-5"></h1>
+                    <h1 class="display-5 mb-5">Upcoming Events</h1> <!-- Added title for clarity -->
                 </div>
-                <!-- Add a row to align cards horizontally -->
                 <div class="row">
                     @foreach ($events as $event)
                         <div class="col-lg-4 col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.3s">
                             <div class="team-item rounded">
                                 @if($event->image)
-                                    <img class="img-fluid" src="{{ asset('storage/' . $event->image) }}" alt="Event Image">
+                                    <img class="img-fluid" src="{{ asset('storage/' . $event->image) }}" alt="{{ $event->title }}">
                                 @else
-                                    <img class="img-fluid" src="img/no-image.jpg" alt="No Image Available">
+                                    <img class="img-fluid" src="{{ asset('img/no-image.jpg') }}" alt="No Image Available">
                                 @endif
                                 <div class="team-text">
                                     <h4 class="mb-0">{{ $event->title }}</h4>
                                     <p class="text-primary">{{ $event->description }}</p>
-                                    <p class="text-secondary">{{ $event->typeEvent->title ?? 'N/A' }}</p>
-                                    <div class="team-social d-flex">
-                                        <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-facebook-f"></i></a>
-                                        <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-twitter"></i></a>
-                                        <a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-instagram"></i></a>
-                                    </div>
+                                    
+                                    <a href="{{ route('events.events', $event->id) }}" class="btn btn-primary">Go To Event</a> <!-- Made button more visually appealing -->
                                 </div>
                             </div>
                         </div>
