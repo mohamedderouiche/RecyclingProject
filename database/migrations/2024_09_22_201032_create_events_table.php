@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->unsignedBigInteger('type_events_id'); 
             $table->foreign('type_events_id')->references('id')->on('type_events')->onDelete('cascade');
             $table->timestamps();

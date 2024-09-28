@@ -1,6 +1,8 @@
 
 
+
 @extends('reclamations.layout')
+
 
 
 @section('content')

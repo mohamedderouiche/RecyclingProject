@@ -1,8 +1,4 @@
 
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,50 +53,56 @@
                 <!-- End of Topbar -->
 
            <div>
-    <h1>Create New Type Event</h1>
-
-    {{-- Affichage des erreurs de validation --}}
-    @if ($errors->any())
-        <div>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+   
+<div class="container">
+    <h1 class="my-4">Categories</h1>
+    <a href="{{ route('categories.create') }}" class="btn btn-primary mb-3 btn-sm">Create New Category</a>
+    
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
         </div>
     @endif
+    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($categories as $category)
+                <tr>
+                    <td>{{ $category->name }}</td>
+                    <td>{{ $category->description }}</td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Actions">
+                            <a href="{{ route('categories.show', $category->id) }}" class="btn btn-info btn-sm action-btn">
+                                <i class="fas fa-eye fa-xs icon-spacing"></i> 
+                            </a>
+                            <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-warning btn-sm action-btn">
+                                <i class="fas fa-edit fa-xs icon-spacing"></i> 
+                            </a>
+                            <form action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm action-btn">
+                                    <i class="fas fa-trash fa-xs icon-spacing"></i> 
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 
-    {{-- Formulaire pour créer un nouveau TypeEvent --}}
-    <form action="{{ route('type_events.store') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-
-        <div>
-            <label for="title">Title</label>
-            <input type="text" id="title" name="title" value="{{ old('title') }}" required>
-        </div>
-
-        <div>
-            <label for="description">Description</label>
-            <textarea id="description" name="description" required>{{ old('description') }}</textarea>
-        </div>
-
-       
-        <div >
-            <label for="image">Image </label>
-       
-            <input type="file" id="image" name="image" class="form-control" accept="image/*" required  />
-
-        <div>
-            <button type="submit">Create</button>
-        </div>
-    </form>
-
-    <a href="{{ route('type_events.index') }}">Back to List</a>
 </div>
                
-<!-- Footer -->
-@include('admin.footer')
-<!-- End of Footer -->
+
 
 </div>
 <!-- End of Content Wrapper -->
@@ -134,5 +136,6 @@
 
 </body>
 </html>
+
 
 
