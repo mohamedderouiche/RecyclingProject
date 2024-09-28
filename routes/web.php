@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
   //**********
     Route::resource('/type_events', TypeEventController::class);
 Route::get('/type-events/create', [TypeEventController::class, 'create'])->name('type_events.create');
@@ -55,6 +56,7 @@ Route::get('/type-events', [TypeEventController::class, 'index'])->name('type_ev
 Route::get('/type-events/card', [TypeEventController::class, 'homeDisplay'])->name('type_events.home');
 // Store the newly created TypeEvent
 Route::post('/type_events', [TypeEventController::class, 'store'])->name('type_events.store');
+
 
 
 // Display a specific TypeEvent by ID
@@ -106,6 +108,9 @@ Route::delete('/typeR/{id}', [Type_ReclamationController::class, 'destroy'])->na
 Route::post('/typeR/create', [Type_ReclamationController::class, 'store'])->name('type_reclamations.store');
 Route::put('/typeR/{id}', [Type_ReclamationController::class, 'update'])->name('type_reclamations.update');
 
+Route::get('/reclamations/{id}', [ReclamationController::class, 'show'])->name('reclamations.show');
+
+
 
 });
 
@@ -113,6 +118,7 @@ require __DIR__.'/auth.php';
 
 
 Route::get('/home', [HomeController::class,"index"]);
+
 
 
 
