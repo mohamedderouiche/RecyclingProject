@@ -7,7 +7,7 @@
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
-                                <h1 class="display-1 text-white mb-5 animated slideInDown">Make Your Home Like Garden</h1>
+                                <h1 class="display-1 text-white mb-5 animated slideInDown">Recycle Today for a Greener Tomorrow</h1>
                                 <a href="" class="btn btn-primary py-sm-3 px-sm-4">Explore More</a>
                             </div>
                         </div>

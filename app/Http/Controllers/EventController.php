@@ -15,7 +15,12 @@ class EventController extends Controller
         $events = Event::all();
         return view('events.index', compact('events'));
     }
-
+    public function indexUser()
+    {
+        // Retrieve all events (you can add any specific conditions for users here if needed)
+        $events = Event::all();
+        return view('events.indexUser', compact('events'));
+    }
     public function create()
     {
         // Retrieve all type events for the dropdown

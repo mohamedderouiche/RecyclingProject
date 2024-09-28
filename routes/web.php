@@ -52,6 +52,7 @@ Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('
 Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
 Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 // Event
+Route::get('/events/user', [EventController::class, 'indexUser'])->name('events.indexUser');
 Route::get('/type-events', [TypeEventController::class, 'index'])->name('type_events.index');
 Route::get('/type-events/card', [TypeEventController::class, 'homeDisplay'])->name('type_events.home');
 // Store the newly created TypeEvent
@@ -118,6 +119,10 @@ require __DIR__.'/auth.php';
 
 
 Route::get('/home', [HomeController::class,"index"]);
+Route::get('/teams', function () {
+    return view('team'); 
+})->name('teams');
+
 
 
 
