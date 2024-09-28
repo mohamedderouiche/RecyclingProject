@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CentreController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -40,7 +41,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
-Route::get('/home', [HomeController::class,"index"]);
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/index', [AdminController::class,"index"]);
 
@@ -99,5 +100,20 @@ Route::resource('/events', EventController::class);
 // Route::put('/events/{id}', [EventController::class, 'update'])->name('events.update');
 // // Delete a specific Event by ID
 // Route::delete('/events/{id}', [EventController::class, 'destroy'])->name('events.destroy');
+
+
+//Centre 
+
+Route::get('centres',[CentreController::class,'centres'])->name('centres.index'); 
+
+Route::get('addCentre', [CentreController::class,'create'])->name('addCentre');
+Route::post('upload', [CentreController::class,'uploadCentre'])->name('centres.upload'); 
+Route::delete('/centres/{id}', [CentreController::class, "delete"])->name('centres.destroy');
+Route::get('/updatecentre/{id}', [CentreController::class, 'edit']);
+Route::post('/update/{id}', [CentreController::class, 'updatecentre']);
+Route::get('/centres/{id}', [CentreController::class, 'show'])->name('centres.show');
+
+
+
 
 
