@@ -86,8 +86,14 @@ class ReclamationController extends Controller
      */
     public function show($id)
     {
-        //
+        // Retrieve the reclamation by ID with related user, status, and type of reclamation
+        $reclamation = reclamation::with(['statusReclamation', 'user', 'typeReclamation'])
+            ->findOrFail($id);
+
+        // Pass the reclamation details to the view
+        return view('reclamations.show', compact('reclamation'));
     }
+
 
     /**
      * Show the form for editing the specified resource.

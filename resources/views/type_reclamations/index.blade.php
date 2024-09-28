@@ -108,16 +108,20 @@
                                     <td>
                                         <div class="d-flex">
                                             <!-- Edit Button -->
-                                            <button type="button" class="btn btn-warning btn-sm me-2" data-toggle="modal" data-target="#editModal-{{ $type->id }}">
-                                                Edit
-                                            </button>
+                                         <!-- Edit Button -->
+<button type="button" class="btn btn-warning btn-sm me-2" data-toggle="modal" data-target="#editModal-{{ $type->id }}">
+    <i class="fas fa-edit"></i> <!-- Font Awesome Edit Icon -->
+</button>
 
-                                            <!-- Delete Button -->
-                                            <form action="{{ route('type_reclamations.destroy', $type->id) }}" method="POST" class="ms-1">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this type reclamation?');">Delete</button>
-                                            </form>
+<!-- Delete Button -->
+<form action="{{ route('type_reclamations.destroy', $type->id) }}" method="POST" class="ms-1" style="display: inline;">
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this type reclamation?');">
+        <i class="fas fa-trash-alt"></i> <!-- Font Awesome Trash Icon -->
+    </button>
+</form>
+
                                         </div>
                                     </td>
                                 </tr>

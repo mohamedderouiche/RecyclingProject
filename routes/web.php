@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
+
 });
 
 require __DIR__.'/auth.php';
@@ -53,3 +53,4 @@ Route::get('/typeR/create', [Type_ReclamationController::class, 'create'])->name
 Route::delete('/typeR/{id}', [Type_ReclamationController::class, 'destroy'])->name('type_reclamations.destroy');
 Route::post('/typeR/create', [Type_ReclamationController::class, 'store'])->name('type_reclamations.store');
 Route::put('/typeR/{id}', [Type_ReclamationController::class, 'update'])->name('type_reclamations.update');
+Route::get('/reclamations/{id}', [ReclamationController::class, 'show'])->name('reclamations.show');
