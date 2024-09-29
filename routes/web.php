@@ -81,6 +81,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/formations/store', [FormationController::class, 'store'])->name('formations.store');
 });
 Route::get('/formations', [FormationController::class, 'index'])->name('formations.index');
+Route::get('/Nosformations', [FormationController::class, 'frontindex'])->name('formations.frontindex');
 Route::post('/formations', [FormationController::class, 'store'])->name('formations.store');
 Route::get('/formations/{id}', [FormationController::class, 'show'])->name('formations.show');
 Route::get('/formations/{id}/edit', [FormationController::class, 'edit'])->name('formations.edit');

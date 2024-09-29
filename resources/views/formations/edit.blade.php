@@ -73,7 +73,6 @@
         </div>
     @endif
     <div class="container">
-    <h1 class="h4 mb-4 text-gray-800">Create a New Formation</h1>
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -139,9 +138,14 @@
                 </div>
             @endif
         </div>
-
+        <div class="text-center">
         <button type="submit" class="btn btn-primary btn-sm">Update Formation</button>
-        <a href="{{ route('formations.index') }}" class="btn btn-secondary btn-sm">Cancel</a>
+ 
+</div>
+<div class="text-center">
+
+<a href="{{ route('formations.index') }}" class="btn btn-secondary btn-sm">Cancel</a>
+</div>
     </form>
 </div>
 </div>

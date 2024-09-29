@@ -60,7 +60,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Create Formation</title>
+    <title>Create Training</title>
 </head>
 <body>
 
@@ -75,7 +75,7 @@
         </div>
     @endif
     <div class="container">
-    <h1 class="h4 mb-4 text-gray-800">Create a New Formation</h1>
+    <h1 class="h4 mb-4 text-gray-800">Create a New Training</h1>
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -117,12 +117,20 @@
         </div>
 
         <div class="form-group">
-            <label for="image">Image:</label>
-            <input type="file" class="form-control-file" name="image" id="image">
-        </div>
+    <label for="image" class="btn btn-primary">Choisir une image</label>
+    <input type="file" class="form-control-file" name="image" id="image" accept="image/*" style="display: none;" onchange="updateFileName()">
+    <span id="file-name" style="margin-left: 10px;">Aucune image choisie</span>
+</div>
 
-        <button type="submit" class="btn btn-primary btn-sm">Create Formation</button>
-        <a href="{{ route('formations.index') }}" class="btn btn-secondary btn-sm">Cancel</a>
+<div class="text-center">
+    <button type="submit" class="btn btn-primary btn-sm">Create Formation</button>
+ 
+</div>
+<div class="text-center">
+
+<a href="{{ route('formations.index') }}" class="btn btn-secondary btn-sm">Cancel</a>
+</div>
+
     </form>
 </div>
 </body>
