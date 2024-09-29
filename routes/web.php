@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TypeEventController;
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ArticleController;
 
 use App\Http\Controllers\ReclamationController;
 use App\Http\Controllers\Type_ReclamationController;
@@ -71,7 +72,7 @@ Route::resource('/events', EventController::class);
 Route::get('/type_events/{id}/events', [EventController::class, 'displayEventByTypeEventId'])
     ->name('type_events.events');
 // // Show the form for creating a new Event
-// Route::get('/events/create', [EventController::class, 'create'])->name('events.create'); 
+// Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
 // Route::get('/events/index', [EventController::class, 'index'])->name('events.index');
 // // Store the newly created Event
 // Route::post('/events', [EventController::class, 'store'])->name('events.store');
@@ -96,6 +97,10 @@ Route::get('/typeR/create', [Type_ReclamationController::class, 'create'])->name
 Route::delete('/typeR/{id}', [Type_ReclamationController::class, 'destroy'])->name('type_reclamations.destroy');
 Route::post('/typeR/create', [Type_ReclamationController::class, 'store'])->name('type_reclamations.store');
 Route::put('/typeR/{id}', [Type_ReclamationController::class, 'update'])->name('type_reclamations.update');
+// Article
+Route::resource('articles', ArticleController::class);
+Route::get('/article', [ArticleController::class, 'indexarticle'])->name('articles.article');
+
 
 
 });
