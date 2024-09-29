@@ -74,7 +74,6 @@ Route::resource('/events', EventController::class);
 // Route::delete('/events/{id}', [EventController::class, 'destroy'])->name('events.destroy');
 
 
-/////////////////////////////  Formations routes *
 
 Route::resource('/formations', FormationController::class);
 Route::post('/formations/store', [FormationController::class, 'store'])->name('formations.store');
