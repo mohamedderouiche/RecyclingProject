@@ -1,0 +1,13 @@
+.action-btn {
+    padding: 2px 8px; /* Réduire la taille des boutons */
+    font-size: 0.85rem; /* Diminuer la taille du texte */
+}
+
+.icon-spacing {
+    margin-right: 3px; /* Réduire l'espacement entre l'icône et le texte */
+    font-size: 0.75rem; /* Diminuer la taille des icônes */
+}
+
+.btn-group .btn {
+    margin-right: 4px; /* Ajouter un petit espace entre les boutons */
+}
