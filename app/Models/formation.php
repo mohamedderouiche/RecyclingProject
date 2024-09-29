@@ -16,6 +16,7 @@ class formation extends Model
         'duree',
         'lieu',
         'users_id',
+        'image',
         'created_at',
         'updated_at',
     ];
@@ -26,6 +27,6 @@ class formation extends Model
    
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'users_id');
     }
 }
