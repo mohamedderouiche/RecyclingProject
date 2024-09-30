@@ -1,0 +1,33 @@
+html, body {
+    height: 100%;
+}
+
+#content-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#content {
+    flex-grow: 1;
+}
+
+/* Table Styling */
+.table th, .table td {
+    vertical-align: middle;
+}
+
+.table img {
+    width: 100px; /* Set image size */
+    height: auto;
+}
+.table td {
+    color: black; /* Black text for readability */
+    font-weight: 500; /* Slightly bold for clarity */
+    font-size: 14px; /* Adjust font size for readability */
+    text-align: left; /* Left-align the text */
+}
+
+.button{
+    border: none;
+}
