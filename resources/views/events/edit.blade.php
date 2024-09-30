@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,123 +11,149 @@
 
     <title>Green Recycle</title>
     <link rel="icon" href="{{ asset('img/logo/recycling.ico') }}" type="image/x-icon">
-    <!-- Custom fonts for this template-->
+    <!-- Custom fonts and styles -->
     <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <!-- Custom styles for this template-->
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
-    
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-    
-   
+    <style>
+        /* Styles for image upload section */
+        .image-upload-wrapper {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            cursor: pointer;
+        }
 
+        .image-upload-wrapper:hover {
+            background-color: #e0e0e0;
+        }
+
+        .image-upload-preview {
+            max-width: 100%;
+            margin-top: 10px;
+        }
+
+        .image-upload-icon {
+            font-size: 3rem;
+            color: #4e73df;
+        }
+
+        .custom-file-label::after {
+            content: "Browse";
+        }
+    </style>
 </head>
-
 
 <body id="page-top">
 
-    <!-- Page Wrapper -->
     <div id="wrapper">
-
-        <!-- Sidebar -->
         @include('admin.sidebar')
-        <!-- End of Sidebar -->
-
-        <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-
             <div id="content">
+                @include('admin.topbar')
 
+                <div class="container mt-5">
+                    <h1 class="mb-4 text-center">Edit Event</h1>
 
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-dark bg-light topbar mb-4 static-top shadow">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            {{-- Display validation errors --}}
+                            @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
 
-                    <!-- Sidebar Toggle (Topbar) -->
-                    {{-- <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars">zaazaz</i>
-                    </button> --}}
+                            {{-- Form for editing the Event --}}
+                            <form action="{{ route('events.update', $event->id) }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
 
-                    <!-- Topbar Search -->
-                   @include('admin.topbar')
-                <!-- End of Topbar -->
+                                <div class="form-group">
+                                    <label for="title">Title</label>
+                                    <input type="text" id="title" name="title" value="{{ old('title', $event->title) }}" class="form-control" required>
+                                </div>
 
-           <div> 
-    <h1>Edit Event</h1>
+                                <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <textarea id="description" name="description" class="form-control" required>{{ old('description', $event->description) }}</textarea>
+                                </div>
 
-    <form action="{{ route('events.update', $event->id) }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        @method('PUT')
+                                <!-- Design section for uploading image -->
+                                <div class="form-group">
+                                    <label for="image">Image</label>
+                                    <div class="image-upload-wrapper" onclick="document.getElementById('image').click();">
+                                        <i class="fas fa-cloud-upload-alt image-upload-icon"></i>
+                                        <p>Click to upload a new image</p>
+                                        <input type="file" id="image" name="image" class="form-control-file d-none" accept="image/*" onchange="previewImage(event)" />
+                                        <img id="image-preview" class="image-upload-preview d-none" alt="Image Preview">
+                                    </div>
+                                    @if ($event->image)
+                                    <p class="mt-2">Current Image: <img src="{{ asset('storage/' . $event->image) }}" alt="Event Image" width="100"></p>
+                                    @endif
+                                </div>
 
-        <div>
-            <label for="title">Title</label>
-            <input type="text" id="title" name="title" value="{{ old('title', $event->title) }}" required>
+                                <div class="form-group">
+                                    <label for="type_events_id">Type Event</label>
+                                    <select id="type_events_id" name="type_events_id" class="form-control" required>
+                                        @foreach ($typeEvents as $typeEvent)
+                                            <option value="{{ $typeEvent->id }}" {{ $event->type_events_id == $typeEvent->id ? 'selected' : '' }}>
+                                                {{ $typeEvent->title }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block">Update</button>
+                                </div>
+                            </form>
+
+                            <a href="{{ route('events.index') }}" class="btn btn-danger btn-block">Back to List</a>
+                        </div>
+                    </div>
+                </div>
+
+                @include('admin.footer')
+            </div>
         </div>
+    </div>
 
-        <div>
-            <label for="description">Description</label>
-            <textarea id="description" name="description" required>{{ old('description', $event->description) }}</textarea>
-        </div>
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
-        <div >
-            <label for="image">Image </label>
-       
-            <input type="file" id="image" name="image" class="form-control" accept="image/*"   />
+    @include('admin.logout')
 
-        <div>
-        <div>
-            <label for="type_events_id">Type Event</label>
-            <select id="type_events_id" name="type_events_id" required>
-                @foreach ($typeEvents as $typeEvent)
-                    <option value="{{ $typeEvent->id }}" {{ $event->type_events_id == $typeEvent->id ? 'selected' : '' }}>
-                        {{ $typeEvent->title }}
-                    </option>
-                @endforeach
-            </select>
-        </div>
+    <!-- JavaScript for previewing image -->
+    <script>
+        function previewImage(event) {
+            const preview = document.getElementById('image-preview');
+            const file = event.target.files[0];
 
-        <button type="submit">Update</button>
-    </form>
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.classList.remove('d-none');
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
 
-    <a href="{{ route('events.index') }}">Back to List</a>
-
-
-</div>
-               
-<!-- Footer -->
-@include('admin.footer')
-<!-- End of Footer -->
-
-</div>
-<!-- End of Content Wrapper -->
-
-</div>
-<!-- End of Page Wrapper -->
-
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-<i class="fas fa-angle-up"></i>
-</a>
-
-<!-- Logout Modal-->
-@include('admin.logout')
-<!-- Bootstrap core JavaScript-->
-<script src="admin/vendor/jquery/jquery.min.js"></script>
-<script src="admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Core plugin JavaScript-->
-<script src="admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-<!-- Custom scripts for all pages-->
-<script src="admin/js/sb-admin-2.min.js"></script>
-
-<!-- Page level plugins -->
-<script src="admin/vendor/chart.js/Chart.min.js"></script>
-
-<!-- Page level custom scripts -->
-<script src="admin/js/demo/chart-area-demo.js"></script>
-<script src="admin/js/demo/chart-pie-demo.js"></script>
-
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset('admin/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('admin/js/sb-admin-2.min.js') }}"></script>
 </body>
+
 </html>
-
-

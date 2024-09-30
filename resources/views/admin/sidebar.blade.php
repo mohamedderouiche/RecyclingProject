@@ -15,90 +15,83 @@
     <li class="nav-item active">
         <a class="nav-link" href="index.html">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+            <span>Dashboard</span>
+        </a>
     </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
 
     <!-- Heading -->
-    <div class="sidebar-heading">
-        Interface
-    </div>
+    <div class="sidebar-heading">Interface</div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
-
-    <!-- Nav Item - Utilities Collapse Menu -->
+    <!-- Nav Item - Recycling Center -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRecycling"
-            aria-expanded="true" aria-controls="collapseRecycling">
+        <a class="nav-link" href="{{ url ('/centres') }}">
             <i class="fas fa-fw fa-recycle"></i>
-            <span>Recycling Center</span>
+            <span>View Centers</span>
         </a>
-        <div id="collapseRecycling" class="collapse" aria-labelledby="headingRecycling"
-            data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Recycling Options:</h6>
-                <a class="collapse-item" href="#">View Centers</a>
-                <a class="collapse-item" href="#">View ..</a>
-            </div>
-        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">
+            <i class="fas fa-fw fa-recycle"></i>
+            <span>View ..</span>
+        </a>
     </li>
 
+    <!-- Nav Item - Article -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseArticle"
-            aria-expanded="true" aria-controls="collapseArticle">
+        <a class="nav-link" href="{{ url ('/articles') }}">
             <i class="fas fa-fw fa-newspaper"></i>
-            <span>Article</span>
+            <span>View Articles</span>
         </a>
-        <div id="collapseArticle" class="collapse" aria-labelledby="headingArticle"
-            data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Article Management:</h6>
-                <a class="collapse-item" href="#">View Articles</a>
-                <a class="collapse-item" href="#">View Comments</a>
-            </div>
-        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">
+            <i class="fas fa-fw fa-newspaper"></i>
+            <span>View Comments</span>
+        </a>
     </li>
 
+    <!-- Nav Item - Event -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEvent"
-            aria-expanded="true" aria-controls="collapseEvent">
+        <a class="nav-link" href="{{ url ('/type-events') }}">
             <i class="fas fa-fw fa-calendar"></i>
-            <span>Event</span>
+            <span>View Type Events</span>
         </a>
-        <div id="collapseEvent" class="collapse" aria-labelledby="headingEvent"
-            data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Event Management:</h6>
-                <a class="collapse-item" href="{{ url ('/type-events')}}">View Type Events</a>
-                <a class="collapse-item" href="{{ url ('/events')}}">View  Events</a>
-            </div>
-        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url ('/events') }}">
+            <i class="fas fa-fw fa-calendar"></i>
+            <span>View Events</span>
+        </a>
     </li>
 
+    <!-- Nav Item - Recycled Product -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRecycledProduct"
-            aria-expanded="true" aria-controls="collapseRecycledProduct">
+        <a class="nav-link" href="{{ url ('/products') }}">
             <i class="fas fa-fw fa-recycle"></i>
-            <span>Recycled Product</span>
+            <span>View Recycled Products</span>
         </a>
-        <div id="collapseRecycledProduct" class="collapse" aria-labelledby="headingRecycledProduct"
-            data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header"> Products option :</h6>
-                <a class="collapse-item" href="#">View Recycled Products</a>
-                <a class="collapse-item" href="{{ url ('/categories')}}">View categories</a>
-            </div>
-        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url ('/categories') }}">
+            <i class="fas fa-fw fa-recycle"></i>
+            <span>View Categories</span>
+        </a>
     </li>
 
-
+    <!-- Nav Item - Formation -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFormation"
-            aria-expanded="true" aria-controls="collapseFormation">
+        <a class="nav-link" href="{{ url ('/formations') }}">
             <i class="fas fa-fw fa-chalkboard-teacher"></i>
-            <span>Formation</span>
+            <span>View Formations</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">
+            <i class="fas fa-fw fa-chalkboard-teacher"></i>
+            <span>View Inscriptions</span>
         </a>
         <div id="collapseFormation" class="collapse" aria-labelledby="headingFormation"
             data-parent="#accordionSidebar">
@@ -110,31 +103,26 @@
         </div>
     </li>
 
+    <!-- Nav Item - Reclamation -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReclamation"
-            aria-expanded="true" aria-controls="collapseReclamation">
+        <a class="nav-link" href="{{ url ('/typeR') }}">
             <i class="fas fa-fw fa-exclamation-triangle"></i>
-            <span>Reclamation</span>
+            <span>View Types</span>
         </a>
-        <div id="collapseReclamation" class="collapse" aria-labelledby="headingReclamation"
-            data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Reclamation Management:</h6>
-                <a class="collapse-item" href="{{ url ('/typeR')}}"> view Types</a>
-                <a class="collapse-item" href="{{ url ('/reclamationsadmin')}}">View Reclamations</a>
-
-            </div>
-        </div>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url ('/reclamationsadmin') }}">
+            <i class="fas fa-fw fa-exclamation-triangle"></i>
+            <span>View Reclamations</span>
+        </a>
+    </li>
+
+    <!-- Nav Item - Front Office -->
     <li class="nav-item active">
         <a class="nav-link" href="index.html">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Front Office</span></a>
+            <span>Front Office</span>
+        </a>
     </li>
-
-
-
-
-
 
 </ul>

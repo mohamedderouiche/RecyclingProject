@@ -29,6 +29,7 @@ class FormationController extends Controller
         $formations = formation::all();
         return view('formations.trainings', compact('formations'));
     }
+   
     /**
      * Show the form for creating a new resource.
      *

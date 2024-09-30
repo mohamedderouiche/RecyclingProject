@@ -16,11 +16,11 @@
     <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template-->
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
-    
+
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-    
-   
+
+
 
 </head>
 
@@ -55,13 +55,13 @@
                 <div class="container">
     <h1 class="my-4">Liste des Formations</h1>
     <a href="{{ route('formations.create') }}" class="btn btn-primary mb-3 btn-sm">Add Formation</a>
-    
+
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
     @endif
-    
+
     <table class="table table-striped">
         <thead>
             <tr>
@@ -98,12 +98,14 @@
                             </a>
                             <a href="{{ route('formations.edit', $formation->id) }}" class="btn btn-warning btn-sm action-btn">
                                 <i class="fas fa-edit fa-xs icon-spacing"></i> 
+
                             </a>
                             <form action="{{ route('formations.destroy', $formation->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm action-btn" onclick="return confirm('Are you sure you want to delete this formation?');">
-                                    <i class="fas fa-trash fa-xs icon-spacing"></i> 
+
+                                    <i class="fas fa-trash fa-xs icon-spacing"></i>
                                 </button>
                             </form>
                         </div>
@@ -114,7 +116,8 @@
     </table>
 </div>
 
-               
+</div>
+
 <!-- Footer -->
 <!-- End of Footer -->
 
@@ -150,4 +153,3 @@
 
 </body>
 </html>
-

@@ -74,6 +74,7 @@
                                     <a class="btn btn-lg-square rounded-circle mx-2" href="{{ route('formations.frontdetails', $formation->id) }}"><i class="fa fa-eye"></i></a>
                                 </div>
                                 <a class="btn btn-sm" href="{{ route('formations.frontdetails', $formation->id) }}"><i class="fa text-primary me-2"></i>S'inscrire</a>
+
                             </div>
                         </div>
                     </div>

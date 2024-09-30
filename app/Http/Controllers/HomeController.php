@@ -16,6 +16,7 @@ class HomeController extends Controller
         $typeEvents = TypeEvent::all();
         $formations = formation::all();
 
+
         return view('home', compact('typeReclamations', 'data','typeEvents','formations')); 
 
     }

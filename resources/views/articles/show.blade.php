@@ -22,7 +22,7 @@
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    {{-- <link href="{{ asset('design/style.css') }}" > --}}
+
 
 
 
@@ -57,78 +57,24 @@
                 <!-- End of Topbar -->
 
            <div>
-            <div class="container">
-    <h1>Type Events List</h1>
 
-    {{-- Success message --}}
-    @if(session('success'))
-        <div>
-            <p>{{ session('success') }}</p>
-        </div>
+
+           <h1>{{ $article->title }}</h1>
+    <p>{{ $article->contenu }}</p>
+    @if($article->image)
+        <img src="{{ asset('storage/' . $article->image) }}" alt="Image" width="300px">
     @endif
-
-    {{-- Button to create a new Type Event --}}
-    <div>
-        <a href="{{ route('type_events.create') }}" class="btn btn-success mb-3">Create New Type Event</a>
-    </div>
-
-    {{-- Display the list of TypeEvents --}}
-
-        <table class="table table-striped">
-            <thead >
-            <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Image</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($typeEvents as $typeEvent)
-                <tr>
-                    <td>{{ $typeEvent->id }}</td>
-                    <td>{{ $typeEvent->title }}</td>
-                    <td>{{ $typeEvent->description }}</td>
-                    <td>
-                        @if($typeEvent->image)
-                            <img src="{{ asset('storage/' . $typeEvent->image) }}"alt="Event Image" style="width:100px;height:100px;">
-                        @else
-                            No image
-                        @endif
-                    </td>
-                    <td>
-                       {{-- Get by ID (View) Button --}}
-<a href="{{ route('type_events.events', $typeEvent->id) }}">
-    <i class="fas fa-eye fa-lg"></i>
-</a>
+    <a href="{{ route('articles.index') }}" class="btn btn-secondary">Back to list</a>
 
 
-                        {{-- Update (Edit) Button --}}
-                        <a href="{{ route('type_events.edit', $typeEvent->id) }}">
-                            <i class="fas fa-edit fa-lg text-warning"></i>
-                        </a>
-
-                        {{-- Delete Form --}}
-                        <form action="{{ route('type_events.destroy', $typeEvent->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" onclick="return confirm('Are you sure you want to delete this event?')"><i class="fas fa-trash fa-lg text-danger"></i></button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
 
 </div>
-           </div>
-        </div>
+</div>
+
 <!-- Footer -->
 @include('admin.footer')
 <!-- End of Footer -->
 
-</div>
 </div>
 <!-- End of Content Wrapper -->
 
@@ -161,4 +107,5 @@
 
 </body>
 </html>
+
 

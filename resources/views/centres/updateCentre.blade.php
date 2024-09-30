@@ -5,12 +5,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>BETTER CALL US - Dashboard</title>
+    <title>Green Recycle</title>
+    <link rel="icon" href="{{ asset('img/logo/recycling.ico') }}" type="image/x-icon">
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    
+
     <!-- Custom styles for this template-->
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
 </head>
@@ -26,13 +27,16 @@
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-dark bg-dark topbar mb-4 static-top shadow">
+                <nav class="navbar navbar-expand navbar-dark bg-light topbar mb-4 static-top shadow">
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
+
                     <!-- Topbar Search -->
                     @include('admin.topbar')
+                    <!-- End of Topbar -->
+
                 </nav>
                 <!-- End of Topbar -->
 
@@ -48,42 +52,42 @@
                                     <label for="">Old Image</label>
                                     <img style="height: 100px; width:100px" src="{{ asset('centreImages/'.$centre->image) }}">
                                 </div>
-                    
+
                                 <div>
                                     <label for="">New Image</label>
                                     <input style="color: blue;" type="file" name="image" required>
                                 </div>
-                    
+
                                 <!-- Centre Name -->
                                 <div class="form-group">
                                     <label for="nom">Nom du Centre</label>
                                     <input type="text" class="form-control" id="nom" name="nom" value="{{ $centre->nom }}" required>
                                 </div>
-                            
+
                                 <!-- Address -->
                                 <div class="form-group">
                                     <label for="adresse">Adresse</label>
                                     <input type="text" class="form-control" id="adresse" name="adresse" value="{{ $centre->adresse }}" required>
                                 </div>
-                            
+
                                 <!-- Description -->
                                 <div class="form-group">
                                     <label for="description">Description</label>
                                     <textarea class="form-control" id="description" name="description" rows="2">{{ $centre->description }}</textarea>
                                 </div>
-                            
+
                                 <!-- Opening Hours -->
                                 <div class="form-group">
                                     <label for="horaire_ouverture">Horaire d'ouverture</label>
                                     <input type="text" class="form-control" id="horaire_ouverture" name="horaire_ouverture" value="{{ $centre->horaire_ouverture }}" required>
                                 </div>
-                            
+
                                 <!-- Contact -->
                                 <div class="form-group">
                                     <label for="contact">Contact</label>
                                     <input type="text" class="form-control" id="contact" name="contact" value="{{ $centre->contact }}" required>
                                 </div>
-                            
+
                                 <!-- Submit Button -->
                                 <button type="submit" class="btn btn-primary btn-block">Update Centre</button>
                             </form>

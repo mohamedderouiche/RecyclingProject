@@ -15,15 +15,16 @@
 
     <title>Green Recycle</title>
     <link rel="icon" href="{{ asset('img/logo/recycling.ico') }}" type="image/x-icon">
+    <link href="{{ asset('design/style.css') }}" >
     <!-- Custom fonts for this template-->
     <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template-->
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
-    
+
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-    
-   
+
+
 
 </head>
 
@@ -56,21 +57,23 @@
                 <!-- End of Topbar -->
 
            <div>
-            
-    <h1>Events</h1>
+
+            <div class="container">
+                <h1 class="mb-4">Events List</h1>
     @if (session('success'))
         <div>
             {{ session('success') }}
         </div>
     @endif
-    <a href="{{ route('events.create') }}">Create New Event</a>
-    <table>
-        <thead>
+    <a href="{{ route('events.create') }}" class="btn btn-success mb-3">Create New Event</a>
+
+    <table class="table table-striped">
+        <thead >
             <tr>
                 <th>Title</th>
                 <th>Description</th>
                 <th>Type Event</th>
-                <th>Image</th>               
+                <th>Image</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -78,7 +81,7 @@
             @foreach ($events as $event)
                 <tr>
                     <td>{{ $event->title }}</td>
-                    <td>{{ $event->description }}</td>                
+                    <td>{{ $event->description }}</td>
                     <td>{{ $event->typeEvent->title ?? 'N/A' }}</td>
                     <td>
                         @if($event->image)
@@ -88,19 +91,21 @@
                     @endif
                     </td>
                     <td>
-                        <a href="{{ route('events.edit', $event->id) }}">Edit</a>
+                        <a href="{{ route('events.edit', $event->id) }}"><i class="fas fa-edit fa-lg text-warning"></i></a>
                         <form action="{{ route('events.destroy', $event->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" onclick="return confirm('Are you sure you want to delete this event?');">Delete</button>
+                            <button type="submit" onclick="return confirm('Are you sure you want to delete this event?');"><i class="fas fa-trash fa-lg text-danger"></i></button>
                         </form>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+
            </div>
-               
+           </div>
+        </div>
             <!-- Footer -->
             @include('admin.footer')
             <!-- End of Footer -->

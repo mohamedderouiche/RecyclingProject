@@ -79,17 +79,17 @@
                     <td>{{ $category->description }}</td>
                     <td>
                         <div class="btn-group" role="group" aria-label="Actions">
-                            <a href="{{ route('categories.show', $category->id) }}" class="btn btn-info btn-sm action-btn">
-                                <i class="fas fa-eye fa-xs icon-spacing"></i> 
+                            <a href="{{ route('categories.show', $category->id) }}" class="btn btn-link action-btn" title="Details">
+                                <i class="fas fa-eye fa-lg"></i>
                             </a>
-                            <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-warning btn-sm action-btn">
-                                <i class="fas fa-edit fa-xs icon-spacing"></i> 
+                            <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-link action-btn" title="Edit">
+                                <i class="fas fa-edit fa-lg text-warning"></i>
                             </a>
                             <form action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm action-btn">
-                                    <i class="fas fa-trash fa-xs icon-spacing"></i> 
+                                <button type="submit" class="btn btn-link action-btn" title="Delete" onclick="return confirm('Are you sure you want to delete this category?');">
+                                    <i class="fas fa-trash fa-lg text-danger"></i>
                                 </button>
                             </form>
                         </div>
@@ -97,6 +97,7 @@
                 </tr>
             @endforeach
         </tbody>
+        
     </table>
 </div>
 

@@ -8,7 +8,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TypeEventController;
 
 use App\Http\Controllers\CategoryController;
-
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReclamationController;
 use App\Http\Controllers\Type_ReclamationController;
 
@@ -61,6 +62,9 @@ Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('categ
 Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
 Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
 Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+//products
+Route::resource('products', ProductController::class);
+Route::get('/categories/home', [CategoryController::class, 'categoriesIndex'])->name('categories.indexfront');
 // Event
 Route::get('/events/user', [EventController::class, 'indexUser'])->name('events.indexUser');
 Route::get('/type-events', [TypeEventController::class, 'index'])->name('type_events.index');
@@ -89,7 +93,7 @@ Route::get('/type_events/{id}/events', [EventController::class, 'displayEventByT
     Route::get('/events/{id}/events', [EventController::class, 'displayEventsByTypeEventId'])
     ->name('events.events');
 // // Show the form for creating a new Event
-// Route::get('/events/create', [EventController::class, 'create'])->name('events.create'); 
+// Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
 // Route::get('/events/index', [EventController::class, 'index'])->name('events.index');
 // // Store the newly created Event
 // Route::post('/events', [EventController::class, 'store'])->name('events.store');
@@ -130,9 +134,22 @@ Route::get('/typeR/create', [Type_ReclamationController::class, 'create'])->name
 Route::delete('/typeR/{id}', [Type_ReclamationController::class, 'destroy'])->name('type_reclamations.destroy');
 Route::post('/typeR/create', [Type_ReclamationController::class, 'store'])->name('type_reclamations.store');
 Route::put('/typeR/{id}', [Type_ReclamationController::class, 'update'])->name('type_reclamations.update');
+// Article
+Route::resource('articles', ArticleController::class);
+Route::get('/article', [ArticleController::class, 'indexarticle'])->name('articles.article');
+
 
 Route::get('/reclamations/{id}', [ReclamationController::class, 'show'])->name('reclamations.show');
+//Centre 
 
+Route::get('centres',[CentreController::class,'centres'])->name('centres.index'); 
+
+Route::get('addCentre', [CentreController::class,'create'])->name('addCentre');
+Route::post('upload', [CentreController::class,'uploadCentre'])->name('centres.upload'); 
+Route::delete('/centres/{id}', [CentreController::class, "delete"])->name('centres.destroy');
+Route::get('/updatecentre/{id}', [CentreController::class, 'edit']);
+Route::post('/update/{id}', [CentreController::class, 'updatecentre']);
+Route::get('/centres/{id}', [CentreController::class, 'show'])->name('centres.show');
 
 
 });
@@ -151,16 +168,7 @@ Route::get('/teams', function () {
 
 
 
-//Centre 
 
-Route::get('centres',[CentreController::class,'centres'])->name('centres.index'); 
-
-Route::get('addCentre', [CentreController::class,'create'])->name('addCentre');
-Route::post('upload', [CentreController::class,'uploadCentre'])->name('centres.upload'); 
-Route::delete('/centres/{id}', [CentreController::class, "delete"])->name('centres.destroy');
-Route::get('/updatecentre/{id}', [CentreController::class, 'edit']);
-Route::post('/update/{id}', [CentreController::class, 'updatecentre']);
-Route::get('/centres/{id}', [CentreController::class, 'show'])->name('centres.show');
 
 
 

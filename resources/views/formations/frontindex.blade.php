@@ -1,7 +1,17 @@
-<div class="container">
-            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <p class="fs-5 fw-bold text-primary">Nos Formations</p>
-                <h1 class="display-5 mb-5">Découvrez nos Formations</h1>
+
+
+    <div class="container">
+        <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <p class="fs-5 fw-bold text-primary">Nos Formations</p>
+            <h1 class="display-5 mb-5">Découvrez nos Formations</h1>
+        </div>
+        <div class="row wow fadeInUp" data-wow-delay="0.3s">
+            <div class="col-12 text-center">
+                <ul class="list-inline rounded mb-5" id="portfolio-flters">
+                    <li class="mx-2 active" data-filter="*">Toutes</li>
+                    <li class="mx-2" data-filter=".completed">Formations Complétées</li>
+                    <li class="mx-2" data-filter=".ongoing">Formations en Cours</li>
+                </ul>
             </div>
             <div class="row wow fadeInUp" data-wow-delay="0.3s">
                 <div class="col-12 text-center">
@@ -27,6 +37,7 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
-            </div>
+                </div>
+            @endforeach
         </div>
+    </div>
