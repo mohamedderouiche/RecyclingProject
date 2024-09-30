@@ -51,6 +51,10 @@ Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('cat
 Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 //products
 Route::resource('products', ProductController::class);
+// Routes pour afficher les produits par catégorie
+Route::get('/categories/home', [ProductController::class, 'categoriesIndex'])->name('categories.indexfront');
+Route::get('/categories/{category}', [ProductController::class, 'showProductsByCategory'])->name('categories.showfront');
+
 // Event
 Route::get('/type-events', [TypeEventController::class, 'index'])->name('type_events.index');
 // Store the newly created TypeEvent

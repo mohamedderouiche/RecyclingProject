@@ -81,4 +81,19 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
     }
+
+    public function categoriesIndex()
+    {
+        // Récupérer toutes les catégories
+        $categories = Category::all();
+        return view('categories.indexfront', compact('categories'));
+    }
+
+    public function showProductsByCategory(Category $category)
+    {
+        // Récupérer les produits associés à la catégorie
+        $products = $category->products; // Assurez-vous que la relation est définie dans le modèle Category
+
+        return view('categories.showfront', compact('category', 'products'));
+    }
 }
