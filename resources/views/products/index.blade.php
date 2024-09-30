@@ -47,7 +47,7 @@
                 <div class="container">
                     <h1 class="my-4">Products</h1>
 
-                    <a href="{{ route('products.create') }}" class="btn btn-primary mb-3 btn-sm">Créer un nouveau produit</a>
+                    <a href="{{ route('products.create') }}" class="btn btn-primary mb-3 btn-sm">Create New Product</a>
 
                     @if (session('success'))
                         <div class="alert alert-success">
