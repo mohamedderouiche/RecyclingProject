@@ -20,11 +20,11 @@
     <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template-->
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
-    
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-    
-   
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    {{-- <link href="{{ asset('design/style.css') }}" > --}}
+
+
 
 </head>
 
@@ -57,6 +57,7 @@
                 <!-- End of Topbar -->
 
            <div>
+            <div class="container">
     <h1>Type Events List</h1>
 
     {{-- Success message --}}
@@ -68,12 +69,13 @@
 
     {{-- Button to create a new Type Event --}}
     <div>
-        <a href="{{ route('type_events.create') }}">Create New Type Event</a>
+        <a href="{{ route('type_events.create') }}" class="btn btn-success mb-3">Create New Type Event</a>
     </div>
 
     {{-- Display the list of TypeEvents --}}
-    <table border="1" cellpadding="10" cellspacing="0">
-        <thead>
+
+        <table class="table table-striped">
+            <thead >
             <tr>
                 <th>ID</th>
                 <th>Title</th>
@@ -98,20 +100,20 @@
                     <td>
                        {{-- Get by ID (View) Button --}}
 <a href="{{ route('type_events.events', $typeEvent->id) }}">
-    <button>Detail</button>
+    <i class="fas fa-eye fa-lg"></i>
 </a>
 
 
                         {{-- Update (Edit) Button --}}
                         <a href="{{ route('type_events.edit', $typeEvent->id) }}">
-                            <button>Update</button>
+                            <i class="fas fa-edit fa-lg text-warning"></i>
                         </a>
 
                         {{-- Delete Form --}}
                         <form action="{{ route('type_events.destroy', $typeEvent->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" onclick="return confirm('Are you sure you want to delete this event?')">Delete</button>
+                            <button type="submit" onclick="return confirm('Are you sure you want to delete this event?')"><i class="fas fa-trash fa-lg text-danger"></i></button>
                         </form>
                     </td>
                 </tr>
@@ -119,14 +121,14 @@
         </tbody>
     </table>
 
-    <a href="/">Back to Home</a>
-
 </div>
-               
+           </div>
+        </div>
 <!-- Footer -->
 @include('admin.footer')
 <!-- End of Footer -->
 
+</div>
 </div>
 <!-- End of Content Wrapper -->
 

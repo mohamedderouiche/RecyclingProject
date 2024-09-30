@@ -4,16 +4,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>BETTER CALL US - Dashboard</title>
+    <title>Green Recycle</title>
+    <link rel="icon" href="{{ asset('img/logo/recycling.ico') }}" type="image/x-icon">
 
     <!-- Custom fonts for this template-->
     <link href="admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    
+
     <!-- Custom styles for this template-->
     <link href="admin/css/sb-admin-2.min.css" rel="stylesheet">
-    
+
 
 </head>
 
@@ -28,13 +28,16 @@
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-dark bg-dark topbar mb-4 static-top shadow">
+                <nav class="navbar navbar-expand navbar-dark bg-light topbar mb-4 static-top shadow">
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
+
                     <!-- Topbar Search -->
                     @include('admin.topbar')
+                    <!-- End of Topbar -->
+
                 </nav>
                 <!-- End of Topbar -->
 
@@ -48,50 +51,49 @@
                         <div class="col-md-6"> <!-- Set the width of the form -->
                             <form action="{{ route('centres.upload') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                            
+
                                 <!-- Image Upload -->
                                 <div class="form-group">
                                     <label for="image">Centre Image</label>
                                     <input type="file" class="form-control" id="image" name="image" required>
                                 </div>
-                            
+
                                 <!-- Centre Name -->
                                 <div class="form-group">
                                     <label for="nom">Nom du Centre</label>
                                     <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom du centre" required>
                                 </div>
-                            
+
                                 <!-- Address -->
                                 <div class="form-group">
                                     <label for="adresse">Adresse</label>
                                     <input type="text" class="form-control" id="adresse" name="adresse" placeholder="Adresse du centre" required>
                                 </div>
-                            
+
                                 <!-- Description -->
                                 <div class="form-group">
                                     <label for="description">Description</label>
                                     <textarea class="form-control" id="description" name="description" rows="2" placeholder="Description du centre"></textarea>
                                 </div>
-                            
+
                                 <!-- Opening Hours -->
                                 <div class="form-group">
                                     <label for="horaire_ouverture">Horaire d'ouverture</label>
                                     <input type="text" class="form-control" id="horaire_ouverture" name="horaire_ouverture" placeholder="Horaire d'ouverture" required>
                                 </div>
-                            
+
                                 <!-- Contact -->
                                 <div class="form-group">
                                     <label for="contact">Contact</label>
                                     <input type="text" class="form-control" id="contact" name="contact" placeholder="Contact" required>
                                 </div>
-                            
+
                                 <!-- Submit Button -->
                                 <button type="submit" class="btn btn-primary btn-block">Upload Centre</button>
                             </form>
                         </div>
                     </div>
                 </div>
-                
 
 
 
@@ -110,7 +112,8 @@
 
 
 
-               
+
+
             </div>
             <!-- End of Page Content -->
 

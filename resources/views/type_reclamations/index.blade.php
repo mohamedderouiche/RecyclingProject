@@ -159,6 +159,7 @@
                         </table>
                     </div>
                 </div>
+            </div>
 
             <!-- Footer -->
             @include('admin.footer')

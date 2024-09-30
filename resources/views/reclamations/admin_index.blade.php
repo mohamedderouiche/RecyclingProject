@@ -17,7 +17,7 @@
     @endif
 
     <div class="container">
-        <h1 class="my-4">Reclamations</h1>
+    
 
         @if (session('success'))
             <div class="alert alert-success">

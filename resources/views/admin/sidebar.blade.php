@@ -103,12 +103,14 @@
         <div id="collapseFormation" class="collapse" aria-labelledby="headingFormation"
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Formation Programs:</h6>  
+                <h6 class="collapse-header">Formation Programs:</h6>
                 <a class="collapse-item" href="{{ url ('/formations')}}">View Formations</a>
                 <a class="collapse-item" href="#">View Inscriptions</a>
             </div>
         </div>
     </li>
+
+
 
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReclamation"
@@ -118,7 +120,7 @@
         </a>
         <div id="collapseReclamation" class="collapse" aria-labelledby="headingReclamation"
             data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">   
+            <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Reclamation Management:</h6>
                 <a class="collapse-item" href="{{ url ('/typeR')}}"> view Types</a>
                 <a class="collapse-item" href="{{ url ('/reclamationsadmin')}}">View Reclamations</a>

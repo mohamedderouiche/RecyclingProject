@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Gardener - Gardening Website Template</title>
+    <title>Green Recycle</title>
+    <link rel="icon" href="{{ asset('img/logo/recycling.ico') }}" type="image/x-icon">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -56,7 +57,7 @@
                 <p class="card-text"><strong>Contact:</strong> {{ $centre->contact }}</p>
                 <p class="card-text"><strong>Description:</strong> {{ $centre->description }}</p>
                 <p class="card-text"><strong>Operating Hours:</strong> {{ $centre->horaire_ouverture }}</p>
-                <a href="{{ route('home') }}" class="btn btn-primary">Back to Centres</a>
+
             </div>
         </div>
     </div>
