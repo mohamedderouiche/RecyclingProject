@@ -57,7 +57,7 @@
                     </div>
 
                     <!-- Button to return to the product list -->
-                    <a href="{{ route('products.index') }}" class="btn btn-secondary">Retour à la liste</a>
+                    <a href="{{ route('products.index') }}" class="btn btn-secondary">Back To List</a>
                 </div>
             </div>
             <!-- End of Content Wrapper -->
