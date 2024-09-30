@@ -27,7 +27,7 @@ class FormationController extends Controller
         // Fetch all formations
 
         $formations = formation::all();
-        return view('formations.frontindex', compact('formations'));
+        return view('formations.trainings', compact('formations'));
     }
     /**
      * Show the form for creating a new resource.
@@ -91,6 +91,12 @@ class FormationController extends Controller
         // Find the formation by ID
         $formation = formation::findOrFail($id);
         return view('formations.show', compact('formation'));
+    }
+    public function frontdetails($id)
+    {
+        // Find the formation by ID
+        $formation = formation::findOrFail($id);
+        return view('formations.frontdetails', compact('formation'));
     }
 
     /**

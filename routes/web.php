@@ -109,6 +109,7 @@ Route::get('/formation/create', [FormationController::class, 'create'])->name('f
 Route::get('/Nosformations', [FormationController::class, 'frontindex'])->name('formations.frontindex');
 Route::post('/formations', [FormationController::class, 'store'])->name('formations.store');
 Route::get('/formations/{id}', [FormationController::class, 'show'])->name('formations.show');
+Route::get('/formationss/{id}', [FormationController::class, 'frontdetails'])->name('formations.frontdetails');
 Route::get('/formations/{id}/edit', [FormationController::class, 'edit'])->name('formations.edit');
 Route::put('/formations/{id}', [FormationController::class, 'update'])->name('formations.update');
 Route::delete('/formations/{id}', [FormationController::class, 'destroy'])->name('formations.destroy'); 
