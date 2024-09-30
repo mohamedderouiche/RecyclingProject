@@ -14,7 +14,6 @@
     <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template-->
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
-
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 </head>
 
@@ -42,20 +41,26 @@
                     <!-- Topbar Search -->
                     @include('admin.topbar')
                     <!-- End of Topbar -->
-
                 </nav>
 
+                <!-- Main Content -->
                 <div class="container">
-                    <h1 class="my-4">List of Products</h1>
+                    <h1 class="my-4">Products</h1>
 
-                    <a href="{{ route('products.create') }}" class="btn btn-primary mb-3">Create New Product</a>
+                    <a href="{{ route('products.create') }}" class="btn btn-primary mb-3 btn-sm">Créer un nouveau produit</a>
 
-                    <table class="table">
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Category</th>
-                                <th>Price</th>
+                                <th>Nom</th>
+                                <th>Catégorie</th>
+                                <th>Prix</th>
                                 <th>Image</th>
                                 <th>Actions</th>
                             </tr>
@@ -70,58 +75,60 @@
                                         <img src="{{ asset('storage/' . $product->image) }}" width="50" alt="{{ $product->name }}">
                                     </td>
                                     <td>
-                                        <!-- Edit Icon -->
-                                        <a href="{{ route('products.edit', $product) }}" class="btn btn-info" title="Edit">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <!-- Details Icon -->
-                                        <a href="{{ route('products.show', $product) }}" class="btn btn-success" title="Details">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <!-- Delete Icon -->
-                                        <form action="{{ route('products.destroy', $product) }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this product?');" title="Delete">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </form>
+                                        <div class="btn-group" role="group" aria-label="Actions">
+                                            <a href="{{ route('products.show', $product->id) }}" class="btn btn-link action-btn" title="Details">
+                                                <i class="fas fa-eye fa-lg"></i>
+                                            </a>
+                                            <a href="{{ route('products.edit', $product->id) }}" class="btn btn-link action-btn" title="Edit">
+                                                <i class="fas fa-edit fa-lg text-warning"></i>
+                                            </a>
+                                            <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-link action-btn" title="Delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?');">
+                                                    <i class="fas fa-trash fa-lg text-danger"></i>
+                                                </button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
-                <!-- End of Content Wrapper -->
+                <!-- End of Main Content -->
 
             </div>
         </div>
-        <!-- End of Page Wrapper -->
+        <!-- End of Content Wrapper -->
 
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
+    </div>
+    <!-- End of Page Wrapper -->
 
-        <!-- Logout Modal-->
-        @include('admin.logout')
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="{{ asset('admin/vendor/jquery/jquery.min.js') }}"></script>
-        <script src="{{ asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- Logout Modal-->
+    @include('admin.logout')
 
-        <!-- Core plugin JavaScript-->
-        <script src="{{ asset('admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset('admin/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-        <!-- Custom scripts for all pages-->
-        <script src="{{ asset('admin/js/sb-admin-2.min.js') }}"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
-        <!-- Page level plugins -->
-        <script src="{{ asset('admin/vendor/chart.js/Chart.min.js') }}"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="{{ asset('admin/js/sb-admin-2.min.js') }}"></script>
 
-        <!-- Page level custom scripts -->
-        <script src="{{ asset('admin/js/demo/chart-area-demo.js') }}"></script>
-        <script src="{{ asset('admin/js/demo/chart-pie-demo.js') }}"></script>
+    <!-- Page level plugins -->
+    <script src="{{ asset('admin/vendor/chart.js/Chart.min.js') }}"></script>
 
-    </body>
+    <!-- Page level custom scripts -->
+    <script src="{{ asset('admin/js/demo/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('admin/js/demo/chart-pie-demo.js') }}"></script>
+
+</body>
 </html>
