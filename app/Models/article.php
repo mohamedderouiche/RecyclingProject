@@ -12,7 +12,6 @@ class article extends Model
         'title',
         'contenu',
         'image',
-        'users_id',
         'created_at',
         'updated_at',
     ];
@@ -22,9 +21,4 @@ class article extends Model
         return $this->hasMany(Comments::class);
     }
 
-   
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 }
