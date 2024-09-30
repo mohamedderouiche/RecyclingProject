@@ -51,113 +51,115 @@
                 <!-- End of Topbar -->
 
                 <div class="container-fluid">
-            <div class="container mt-5">
-                <h2 class="text-center mb-4">Type Reclamations</h2>
+                    <div class="container mt-5">
+                        <h2 class="text-center mb-4">Type Reclamations</h2>
 
-                @if (session('success'))
-                    <div class="alert alert-success">{{ session('success') }}</div>
-                @endif
+                        <!-- Success Message -->
+                        @if (session('success'))
+                            <div class="alert alert-success">{{ session('success') }}</div>
+                        @endif
 
-                <a href="#" class="btn btn-primary mb-3" data-toggle="modal" data-target="#createTypeModal">Add Type Reclamation</a>
+                        <!-- Button to Open Create Modal -->
+                        <a href="#" class="btn btn-primary mb-3" data-toggle="modal" data-target="#createTypeModal">Add Type Reclamation</a>
 
-                <!-- Modal for Creating Reclamation Type -->
-                <div class="modal fade" id="createTypeModal" tabindex="-1" role="dialog" aria-labelledby="createTypeModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="createTypeModalLabel">Create Type Reclamation</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <!-- Form to Create Reclamation Type -->
-                                <form action="{{ route('type_reclamations.store') }}" method="POST">
-                                    @csrf
-                                    <div class="form-group">
-                                        <label for="name">Reclamation Type Name</label>
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Reclamation Type" required>
+                        <!-- Modal for Creating Reclamation Type -->
+                        <div class="modal fade" id="createTypeModal" tabindex="-1" role="dialog" aria-labelledby="createTypeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="createTypeModalLabel">Create Type Reclamation</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-block">Create</button>
-                                </form>
+                                    <div class="modal-body">
+                                        <!-- Form to Create Reclamation Type -->
+                                        <form action="{{ route('type_reclamations.store') }}" method="POST">
+                                            @csrf
+                                            <div class="form-group">
+                                                <label for="name">Reclamation Type Name</label>
+                                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Reclamation Type" required>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary btn-block">Create</button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
+                        <!-- Table Displaying Reclamation Types -->
+                        <table class="table table-striped">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if($types->isEmpty())
+                                    <tr>
+                                        <td colspan="3" class="text-center">No Type Reclamations found</td>
+                                    </tr>
+                                @else
+                                    @foreach ($types as $type)
+                                        <tr>
+                                            <td>{{ $type->id }}</td>
+                                            <td>{{ $type->name }}</td>
+                                            <td>
+                                                <div class="btn-group" role="group" aria-label="Actions">
+                                                    <!-- Edit Button with Modal Trigger -->
+                                                    <button class="btn btn-link action-btn" data-toggle="modal" data-target="#editModal-{{ $type->id }}" title="Edit">
+                                                        <i class="fas fa-edit text-warning"></i> <!-- Edit Icon -->
+                                                    </button>
+
+                                                    <!-- Delete Form -->
+                                                    <form action="{{ route('type_reclamations.destroy', $type->id) }}" method="POST" style="display: inline;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-link action-btn" title="Delete" onclick="return confirm('Are you sure you want to delete this type reclamation?');">
+                                                            <i class="fas fa-trash text-danger"></i> <!-- Trash Icon -->
+                                                        </button>
+                                                    </form>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+
+                                        <!-- Edit Modal for Each Type -->
+                                        <div class="modal fade" id="editModal-{{ $type->id }}" tabindex="-1" aria-labelledby="editModalLabel-{{ $type->id }}" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="editModalLabel-{{ $type->id }}">Edit Type Reclamation</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form action="{{ route('type_reclamations.update', $type->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <div class="modal-body">
+                                                            <div class="mb-3">
+                                                                <label for="name-{{ $type->id }}" class="form-label">Name</label>
+                                                                <input type="text" class="form-control" id="name-{{ $type->id }}" name="name" value="{{ $type->name }}" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endif
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
-
-
-                <table class="table table-bordered table-hover">
-                    <thead class="table-light">
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if($types->isEmpty())
-                            <tr>
-                                <td colspan="3" class="text-center">No Type Reclamations found</td>
-                            </tr>
-                        @else
-                            @foreach ($types as $type)
-                                <tr>
-                                    <td>{{ $type->id }}</td>
-                                    <td>{{ $type->name }}</td>
-                                    <td>
-                                        <div class="d-flex">
-                                            <!-- Edit Button -->
-                                         <!-- Edit Button -->
-<button type="button" class="btn btn-warning btn-sm me-2" data-toggle="modal" data-target="#editModal-{{ $type->id }}">
-    <i class="fas fa-edit"></i> <!-- Font Awesome Edit Icon -->
-</button>
-
-<!-- Delete Button -->
-<form action="{{ route('type_reclamations.destroy', $type->id) }}" method="POST" class="ms-1" style="display: inline;">
-    @csrf
-    @method('DELETE')
-    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this type reclamation?');">
-        <i class="fas fa-trash-alt"></i> <!-- Font Awesome Trash Icon -->
-    </button>
-</form>
-
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <!-- Edit Modal -->
-                                <div class="modal fade" id="editModal-{{ $type->id }}" tabindex="-1" aria-labelledby="editModalLabel-{{ $type->id }}" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="editModalLabel-{{ $type->id }}">Edit Type Reclamation</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <form action="{{ route('type_reclamations.update', $type->id) }}" method="POST">
-                                                @csrf
-                                                @method('PUT')
-                                                <div class="modal-body">
-                                                    <div class="mb-3">
-                                                        <label for="name-{{ $type->id }}" class="form-label">Name</label>
-                                                        <input type="text" class="form-control" id="name-{{ $type->id }}" name="name" value="{{ $type->name }}" required>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary">Save changes</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        @endif
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
             <!-- Footer -->
             @include('admin.footer')
             <!-- End of Footer -->
