@@ -116,7 +116,6 @@
 
                
 <!-- Footer -->
-@include('admin.footer')
 <!-- End of Footer -->
 
 </div>

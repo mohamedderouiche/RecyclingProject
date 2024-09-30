@@ -9,7 +9,7 @@
         <div class="navbar-nav ms-auto p-4 p-lg-0">
             <a  href="{{ url ('/home')}}" class="nav-item nav-link active">Home</a>
             <a href="about.html" class="nav-item nav-link">About</a>
-            <a href="{{ url ('/teams')}}" class="nav-item nav-link">Teams</a>
+            <a href="{{ url ('/Nosformations')}}" class="nav-item nav-link">Trainings</a>
             <a href="{{ url ('/events/user')}}" class="nav-item nav-link">Events</a>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>

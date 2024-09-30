@@ -98,7 +98,7 @@
 
 
     <!-- Projects Start -->
-  @include('projects')
+  @include('formations.frontindex')
     <!-- Projects End -->
 
 
