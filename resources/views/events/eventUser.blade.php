@@ -65,13 +65,11 @@
                         <div class="service-text rounded p-5">
                             <div class="btn-square rounded-circle mx-auto mb-3">
                                 {{-- Replace with another icon or event-related graphic if needed --}}
-                                <img class="img-fluid" src="{{ asset('img/icon/icon-3.png') }}" alt="Icon">
+                                <img class="img-fluid" src="{{ asset('img/icon/event.png') }}" alt="Icon">
                             </div>
                             <h4 class="mb-3">{{ $event->title }}</h4>
                             <p class="mb-4">{{ $event->description }}</p>
-                            <a class="btn btn-sm" href="#">
-                                <i class="fa fa-plus text-primary me-2"></i>Read More
-                            </a>
+                           
                         </div>
                     </div>
                 </div>
