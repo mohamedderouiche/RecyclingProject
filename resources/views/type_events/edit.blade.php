@@ -49,11 +49,33 @@
 
 <body id="page-top">
 
+    <!-- Page Wrapper -->
     <div id="wrapper">
+
+        <!-- Sidebar -->
         @include('admin.sidebar')
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
+
             <div id="content">
-                @include('admin.topbar')
+
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-dark bg-light topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars">zaazaz</i>
+                    </button>
+
+                    <!-- Topbar Search -->
+                   @include('admin.topbar')
+                <!-- End of Topbar -->
+
+           <div>
+
 
                 <div class="container mt-5">
                     <h1 class="mb-4 text-center">Edit Type Event</h1>
@@ -114,13 +136,13 @@
             </div>
         </div>
     </div>
-
+    
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
 
     @include('admin.logout')
-
+</div>
     <!-- JavaScript for previewing image -->
     <script>
         function previewImage(event) {
