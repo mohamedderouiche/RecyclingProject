@@ -20,7 +20,7 @@
                         <div class="service-text rounded p-5">
                             <a href="{{ route('events.events', $typeEvent->id) }}">
                             <div class="btn-square rounded-circle mx-auto mb-3">
-                                <img class="img-fluid" src="img/icon/icon-6.png" alt="Icon">
+                                <img class="img-fluid" src="img/icon/event.png" alt="Icon">
                             </div>
                             </a>
                             <h4 class="mb-3">{{ $typeEvent->title }}</h4>
