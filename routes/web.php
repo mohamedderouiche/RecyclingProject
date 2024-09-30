@@ -8,7 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TypeEventController;
 
 use App\Http\Controllers\CategoryController;
-
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReclamationController;
 use App\Http\Controllers\Type_ReclamationController;
 
@@ -61,6 +61,8 @@ Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('categ
 Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
 Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
 Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+//products
+Route::resource('products', ProductController::class);
 // Event
 Route::get('/events/user', [EventController::class, 'indexUser'])->name('events.indexUser');
 Route::get('/type-events', [TypeEventController::class, 'index'])->name('type_events.index');
