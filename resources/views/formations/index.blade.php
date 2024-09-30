@@ -93,7 +93,7 @@
                     </td>
                     <td>
                         <div class="btn-group" role="group" aria-label="Actions">
-                            <a href="{{ route('formations.show', $formation->id) }}" class="btn btn-info btn-sm action-btn">
+                        <a href="{{ route('formations.show', $formation->id) }}" class="btn btn-info btn-sm action-btn">
                                 <i class="fas fa-eye fa-xs icon-spacing"></i> 
                             </a>
                             <a href="{{ route('formations.edit', $formation->id) }}" class="btn btn-warning btn-sm action-btn">

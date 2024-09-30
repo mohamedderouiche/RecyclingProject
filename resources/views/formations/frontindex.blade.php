@@ -69,10 +69,9 @@
                             <img class="img-fluid" src="{{ asset('storage/' . $formation->image) }}" alt="Image de la formation {{ $formation->name }}">
                             <div class="portfolio-text">
                                 <h4 class="text-white mb-4">{{ $formation->name }}</h4>
-                                <p class="text-white mb-4">{{ $formation->description }}</p>
                                 <div class="d-flex mb-4">
                                     <a class="btn btn-lg-square rounded-circle mx-2" href="{{ asset('storage/' . $formation->image) }}" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                                    <a class="btn btn-lg-square rounded-circle mx-2" href="{{ route('formations.show', $formation->id) }}"><i class="fa fa-link"></i></a>
+                                    <a class="btn btn-lg-square rounded-circle mx-2" href="{{ route('formations.show', $formation->id) }}"><i class="fa fa-eye"></i></a>
                                 </div>
                                 <a class="btn btn-sm" href="{{ route('formations.show', $formation->id) }}"><i class="fa fa-plus text-primary me-2"></i> En savoir plus</a>
                             </div>
