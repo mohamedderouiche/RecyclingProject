@@ -105,6 +105,7 @@ Route::get('/type_events/{id}/events', [EventController::class, 'displayEventByT
 Route::resource('/formations', FormationController::class);
 Route::post('/formations/store', [FormationController::class, 'store'])->name('formations.store');
 Route::get('/formations', [FormationController::class, 'index'])->name('formations.index');
+Route::get('/formation/create', [FormationController::class, 'create'])->name('formations.create');
 Route::get('/Nosformations', [FormationController::class, 'frontindex'])->name('formations.frontindex');
 Route::post('/formations', [FormationController::class, 'store'])->name('formations.store');
 Route::get('/formations/{id}', [FormationController::class, 'show'])->name('formations.show');
