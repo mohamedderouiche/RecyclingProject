@@ -93,6 +93,14 @@
             <i class="fas fa-fw fa-chalkboard-teacher"></i>
             <span>View Inscriptions</span>
         </a>
+        <div id="collapseFormation" class="collapse" aria-labelledby="headingFormation"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Formation Programs:</h6>
+                <a class="collapse-item" href="{{ url ('/formations')}}">View Formations</a>
+                <a class="collapse-item" href="#">View Inscriptions</a>
+            </div>
+        </div>
     </li>
 
     <!-- Nav Item - Reclamation -->

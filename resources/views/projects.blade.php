@@ -1,8 +1,8 @@
 <div class="container-xxl py-5">
     <div class="container">
         <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-            <p class="fs-5 fw-bold text-primary">Our Projects</p>
-            <h1 class="display-5 mb-5">Some Of Our Wonderful Projects</h1>
+            <p class="fs-5 fw-bold text-primary">Our Trainigs</p>
+            <h1 class="display-5 mb-5">Some Of Our Wonderful Trainings</h1>
         </div>
         <div class="row wow fadeInUp" data-wow-delay="0.3s">
             <div class="col-12 text-center">

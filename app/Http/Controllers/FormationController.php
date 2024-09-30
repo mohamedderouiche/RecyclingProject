@@ -93,6 +93,12 @@ class FormationController extends Controller
         $formation = formation::findOrFail($id);
         return view('formations.show', compact('formation'));
     }
+    public function frontdetails($id)
+    {
+        // Find the formation by ID
+        $formation = formation::findOrFail($id);
+        return view('formations.frontdetails', compact('formation'));
+    }
 
     /**
      * Show the form for editing the specified resource.

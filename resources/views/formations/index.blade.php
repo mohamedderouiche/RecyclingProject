@@ -93,16 +93,18 @@
                     </td>
                     <td>
                         <div class="btn-group" role="group" aria-label="Actions">
-                            <a href="{{ route('formations.show', $formation->id) }}" class="btn btn-info btn-sm action-btn">
-                                <i class="fas fa-eye fa-xs icon-spacing"></i>
+                        <a href="{{ route('formations.show', $formation->id) }}" class="btn btn-info btn-sm action-btn">
+                                <i class="fas fa-eye fa-xs icon-spacing"></i> 
                             </a>
                             <a href="{{ route('formations.edit', $formation->id) }}" class="btn btn-warning btn-sm action-btn">
-                                <i class="fas fa-edit fa-xs icon-spacing"></i>
+                                <i class="fas fa-edit fa-xs icon-spacing"></i> 
+
                             </a>
                             <form action="{{ route('formations.destroy', $formation->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm action-btn" onclick="return confirm('Are you sure you want to delete this formation?');">
+
                                     <i class="fas fa-trash fa-xs icon-spacing"></i>
                                 </button>
                             </form>
@@ -113,10 +115,10 @@
         </tbody>
     </table>
 </div>
+
 </div>
 
 <!-- Footer -->
-@include('admin.footer')
 <!-- End of Footer -->
 
 </div>
