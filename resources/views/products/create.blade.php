@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,58 +52,38 @@
                 <!-- End of Topbar -->
 
            <div>
-   
 <div class="container">
-    <h1 class="my-4">Categories</h1>
-    <a href="{{ route('categories.create') }}" class="btn btn-primary mb-3 btn-sm">Create New Category</a>
-    
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
+    <h1 class="my-4">Create Product</h1>
+
+    <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" name="name" id="name" class="form-control" required>
         </div>
-    @endif
-    
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($categories as $category)
-                <tr>
-                    <td>{{ $category->name }}</td>
-                    <td>{{ $category->description }}</td>
-                    <td>
-                        <div class="btn-group" role="group" aria-label="Actions">
-                            <a href="{{ route('categories.show', $category->id) }}" class="btn btn-link action-btn" title="Details">
-                                <i class="fas fa-eye fa-lg"></i>
-                            </a>
-                            <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-link action-btn" title="Edit">
-                                <i class="fas fa-edit fa-lg text-warning"></i>
-                            </a>
-                            <form action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-link action-btn" title="Delete" onclick="return confirm('Are you sure you want to delete this category?');">
-                                    <i class="fas fa-trash fa-lg text-danger"></i>
-                                </button>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-        
-    </table>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea name="description" id="description" class="form-control" rows="3" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="text" name="price" id="price" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input type="file" name="image" id="image" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="categories_id" class="form-label">Category</label>
+            <select name="categories_id" id="categories_id" class="form-control" required>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
 </div>
-
-</div>
-               
-
-
 </div>
 <!-- End of Content Wrapper -->
 
@@ -137,6 +116,4 @@
 
 </body>
 </html>
-
-
 

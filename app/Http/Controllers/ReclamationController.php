@@ -22,6 +22,8 @@ class ReclamationController extends Controller
             ->get();
 
         return view('reclamations.index', compact('reclamations'));
+
+
     }
 
 
@@ -41,7 +43,7 @@ class ReclamationController extends Controller
     public function create()
     {       $typeReclamations = type_reclamations::all();
          // Show the form for creating a new reclamation
-         return view('reclamations.create', compact('typeReclamations'));
+         return view('reclamations.createReclamation', compact('typeReclamations'));
     }
 
     /**
@@ -84,8 +86,14 @@ class ReclamationController extends Controller
      */
     public function show($id)
     {
-        //
+        // Retrieve the reclamation by ID with related user, status, and type of reclamation
+        $reclamation = reclamation::with(['statusReclamation', 'user', 'typeReclamation'])
+            ->findOrFail($id);
+
+        // Pass the reclamation details to the view
+        return view('reclamations.show', compact('reclamation'));
     }
+
 
     /**
      * Show the form for editing the specified resource.

@@ -39,7 +39,7 @@
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Recycling Options:</h6>
-                <a class="collapse-item" href="#">View Centers</a>
+                <a class="collapse-item" href="{{ url ('/centres')}}">View Centers</a>
                 <a class="collapse-item" href="#">View ..</a>
             </div>
         </div>
@@ -87,7 +87,7 @@
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header"> Products option :</h6>
-                <a class="collapse-item" href="#">View Recycled Products</a>
+                <a class="collapse-item" href="{{ url ('/products')}}">View Recycled Products</a>
                 <a class="collapse-item" href="{{ url ('/categories')}}">View categories</a>
             </div>
         </div>
@@ -103,8 +103,8 @@
         <div id="collapseFormation" class="collapse" aria-labelledby="headingFormation"
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Formation Programs:</h6>
-                <a class="collapse-item" href="#">View Formations</a>
+                <h6 class="collapse-header">Formation Programs:</h6>  
+                <a class="collapse-item" href="{{ url ('/formations')}}">View Formations</a>
                 <a class="collapse-item" href="#">View Inscriptions</a>
             </div>
         </div>
@@ -118,7 +118,7 @@
         </a>
         <div id="collapseReclamation" class="collapse" aria-labelledby="headingReclamation"
             data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
+            <div class="bg-white py-2 collapse-inner rounded">   
                 <h6 class="collapse-header">Reclamation Management:</h6>
                 <a class="collapse-item" href="{{ url ('/typeR')}}"> view Types</a>
                 <a class="collapse-item" href="{{ url ('/reclamationsadmin')}}">View Reclamations</a>

@@ -54,56 +54,64 @@
 
            <div>
    
-<div class="container">
-    <h1 class="my-4">Categories</h1>
-    <a href="{{ route('categories.create') }}" class="btn btn-primary mb-3 btn-sm">Create New Category</a>
-    
+
+  
+           <h1>Liste des Formations</h1>
     @if (session('success'))
-        <div class="alert alert-success">
+        <div>
             {{ session('success') }}
         </div>
     @endif
-    
-    <table class="table table-striped">
+    <a href="{{ route('formations.create') }}">Add Formation</a>
+    <table class="table">
         <thead>
             <tr>
                 <th>Name</th>
                 <th>Description</th>
+                <th>Date de Formation</th>
+                <th>Durée</th>
+                <th>Lieu</th>
+                <th>Image</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($categories as $category)
+            @foreach($formations as $formation)
                 <tr>
-                    <td>{{ $category->name }}</td>
-                    <td>{{ $category->description }}</td>
                     <td>
-                        <div class="btn-group" role="group" aria-label="Actions">
-                            <a href="{{ route('categories.show', $category->id) }}" class="btn btn-link action-btn" title="Details">
-                                <i class="fas fa-eye fa-lg"></i>
-                            </a>
-                            <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-link action-btn" title="Edit">
-                                <i class="fas fa-edit fa-lg text-warning"></i>
-                            </a>
-                            <form action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-link action-btn" title="Delete" onclick="return confirm('Are you sure you want to delete this category?');">
-                                    <i class="fas fa-trash fa-lg text-danger"></i>
-                                </button>
-                            </form>
-                        </div>
+                        <a href="{{ route('formations.show', $formation->id) }}">{{ $formation->name }}</a>
+                    </td>
+                    <td>{{ $formation->description }}</td>
+                    <td>{{ $formation->date_formation }}</td>
+                    <td>{{ $formation->duree }}</td>
+                    <td>{{ $formation->lieu }}</td>
+                    <td>
+                        @if($formation->image)
+                            <img src="{{ asset('storage/' . $formation->image) }}" alt="Image" width="100">
+                        @else
+                            No Image
+                        @endif
+                    </td>
+                    <td>
+                        <a href="{{ route('formations.edit', $formation->id) }}" class="btn btn-primary">Edit</a>
+                        <form action="{{ route('formations.destroy', $formation->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this formation?');">Delete</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
         </tbody>
-        
     </table>
-</div>
+
+  
 
 </div>
                
-
+<!-- Footer -->
+@include('admin.footer')
+<!-- End of Footer -->
 
 </div>
 <!-- End of Content Wrapper -->
@@ -137,6 +145,4 @@
 
 </body>
 </html>
-
-
 

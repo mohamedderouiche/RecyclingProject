@@ -15,7 +15,12 @@ class EventController extends Controller
         $events = Event::all();
         return view('events.index', compact('events'));
     }
-
+    public function indexUser()
+    {
+        // Retrieve all events (you can add any specific conditions for users here if needed)
+        $events = TypeEvent::all();
+        return view('events.indexUser', compact('events'));
+    }
     public function create()
     {
         // Retrieve all type events for the dropdown
@@ -102,5 +107,10 @@ class EventController extends Controller
         // Find all events of a specific type by its ID
         $events = Event::where('type_events_id', $id)->get();
         return view('type_events.showEvent', compact('events'));
+    }
+    public function displayEventsByTypeEventId($id){
+        // Find all events of a specific type by its ID
+        $events = Event::where('type_events_id', $id)->get();
+        return view('events.eventUser', compact('events'));
     }
 }

@@ -1,13 +1,15 @@
 <?php
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CentreController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\FormationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TypeEventController;
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ArticleController;
-
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReclamationController;
 use App\Http\Controllers\Type_ReclamationController;
 
@@ -36,11 +38,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    // ******************************
+
+require __DIR__.'/auth.php';
+
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('/index', [AdminController::class,"index"]);
+
+Route::resource('/type_events', TypeEventController::class);
+  //**********
     Route::resource('/type_events', TypeEventController::class);
 Route::get('/type-events/create', [TypeEventController::class, 'create'])->name('type_events.create');
 // home admin
 Route::get('/index', [AdminController::class,"index"]);
+Route::get('', [AdminController::class,"index"]);
 //Category
 Route::resource('/categories', CategoryController::class);
 Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
@@ -50,10 +62,16 @@ Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('categ
 Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
 Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
 Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+//products
+Route::resource('products', ProductController::class);
 // Event
+Route::get('/events/user', [EventController::class, 'indexUser'])->name('events.indexUser');
 Route::get('/type-events', [TypeEventController::class, 'index'])->name('type_events.index');
+Route::get('/type-events/card', [TypeEventController::class, 'homeDisplay'])->name('type_events.home');
 // Store the newly created TypeEvent
 Route::post('/type_events', [TypeEventController::class, 'store'])->name('type_events.store');
+
+
 
 // Display a specific TypeEvent by ID
 Route::get('/type_events/{id}', [TypeEventController::class, 'show'])->name('type_events.show');
@@ -71,6 +89,8 @@ Route::delete('/type_events/{id}', [TypeEventController::class, 'destroy'])->nam
 Route::resource('/events', EventController::class);
 Route::get('/type_events/{id}/events', [EventController::class, 'displayEventByTypeEventId'])
     ->name('type_events.events');
+    Route::get('/events/{id}/events', [EventController::class, 'displayEventsByTypeEventId'])
+    ->name('events.events');
 // // Show the form for creating a new Event
 // Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
 // Route::get('/events/index', [EventController::class, 'index'])->name('events.index');
@@ -85,10 +105,24 @@ Route::get('/type_events/{id}/events', [EventController::class, 'displayEventByT
 // // Delete a specific Event by ID
 // Route::delete('/events/{id}', [EventController::class, 'destroy'])->name('events.destroy');
 
+Route::resource('/formations', FormationController::class);
+Route::post('/formations/store', [FormationController::class, 'store'])->name('formations.store');
+Route::get('/formations', [FormationController::class, 'index'])->name('formations.index');
+Route::get('/Nosformations', [FormationController::class, 'frontindex'])->name('formations.frontindex');
+Route::post('/formations', [FormationController::class, 'store'])->name('formations.store');
+Route::get('/formations/{id}', [FormationController::class, 'show'])->name('formations.show');
+Route::get('/formations/{id}/edit', [FormationController::class, 'edit'])->name('formations.edit');
+Route::put('/formations/{id}', [FormationController::class, 'update'])->name('formations.update');
+Route::delete('/formations/{id}', [FormationController::class, 'destroy'])->name('formations.destroy'); 
+  
 // reclamation
 Route::get('/reclamationsadmin', [ReclamationController::class, 'adminIndex'])->name('reclamations.admin_index');
+
+Route::get('/reclamations/create', [ReclamationController::class, 'create'])->name('reclamations.createReclamation');
+
 Route::get('/reclamations', [ReclamationController::class, 'index'])->name('reclamations.index');
-Route::get('/reclamations/create', [ReclamationController::class, 'create'])->name('reclamations.create');
+
+
 Route::post('/reclamations', [ReclamationController::class, 'store'])->name('reclamations.store');
 Route::put('/reclamations/{id}', [ReclamationController::class, 'update'])->name('reclamations.update');
 Route::delete('/reclamations/{id}', [ReclamationController::class, 'destroy'])->name('reclamations.destroy');
@@ -102,6 +136,18 @@ Route::resource('articles', ArticleController::class);
 Route::get('/article', [ArticleController::class, 'indexarticle'])->name('articles.article');
 
 
+Route::get('/reclamations/{id}', [ReclamationController::class, 'show'])->name('reclamations.show');
+//Centre 
+
+Route::get('centres',[CentreController::class,'centres'])->name('centres.index'); 
+
+Route::get('addCentre', [CentreController::class,'create'])->name('addCentre');
+Route::post('upload', [CentreController::class,'uploadCentre'])->name('centres.upload'); 
+Route::delete('/centres/{id}', [CentreController::class, "delete"])->name('centres.destroy');
+Route::get('/updatecentre/{id}', [CentreController::class, 'edit']);
+Route::post('/update/{id}', [CentreController::class, 'updatecentre']);
+Route::get('/centres/{id}', [CentreController::class, 'show'])->name('centres.show');
+
 
 });
 
@@ -109,6 +155,18 @@ require __DIR__.'/auth.php';
 
 
 Route::get('/home', [HomeController::class,"index"]);
+Route::get('/teams', function () {
+    return view('team'); 
+})->name('teams');
+
+
+
+
+
+
+
+
+
 
 
 
