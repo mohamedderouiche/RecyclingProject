@@ -130,9 +130,7 @@ Route::get('/typeR/create', [Type_ReclamationController::class, 'create'])->name
 Route::delete('/typeR/{id}', [Type_ReclamationController::class, 'destroy'])->name('type_reclamations.destroy');
 Route::post('/typeR/create', [Type_ReclamationController::class, 'store'])->name('type_reclamations.store');
 Route::put('/typeR/{id}', [Type_ReclamationController::class, 'update'])->name('type_reclamations.update');
-
 Route::get('/reclamations/{id}', [ReclamationController::class, 'show'])->name('reclamations.show');
-
 
 
 });
@@ -151,16 +149,7 @@ Route::get('/teams', function () {
 
 
 
-//Centre 
 
-Route::get('centres',[CentreController::class,'centres'])->name('centres.index'); 
-
-Route::get('addCentre', [CentreController::class,'create'])->name('addCentre');
-Route::post('upload', [CentreController::class,'uploadCentre'])->name('centres.upload'); 
-Route::delete('/centres/{id}', [CentreController::class, "delete"])->name('centres.destroy');
-Route::get('/updatecentre/{id}', [CentreController::class, 'edit']);
-Route::post('/update/{id}', [CentreController::class, 'updatecentre']);
-Route::get('/centres/{id}', [CentreController::class, 'show'])->name('centres.show');
 
 
 
