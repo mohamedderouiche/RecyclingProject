@@ -66,7 +66,8 @@ Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name(
 Route::resource('products', ProductController::class);
 Route::get('/categories-list', [CategoryController::class, 'categoriesIndex'])->name('categories.indexfront');
 Route::get('/categories/{id}/products', [ProductController::class, 'displayProductByCategoryId'])->name('categories.products');
-
+Route::get('/categories/{id}', [ProductController::class, 'displayProductByCategoryId'])->name('product.category');
+Route::get('/products/front/{product}', [ProductController::class, 'showFront'])->name('products.detailfront');
 // Event
 Route::get('/events/user', [EventController::class, 'indexUser'])->name('events.indexUser');
 Route::get('/type-events', [TypeEventController::class, 'index'])->name('type_events.index');
@@ -124,8 +125,8 @@ Route::get('/formationss/{id}', [FormationController::class, 'frontdetails'])->n
 
 Route::get('/formations/{id}/edit', [FormationController::class, 'edit'])->name('formations.edit');
 Route::put('/formations/{id}', [FormationController::class, 'update'])->name('formations.update');
-Route::delete('/formations/{id}', [FormationController::class, 'destroy'])->name('formations.destroy'); 
-  
+Route::delete('/formations/{id}', [FormationController::class, 'destroy'])->name('formations.destroy');
+
 // reclamation
 Route::get('/reclamationsadmin', [ReclamationController::class, 'adminIndex'])->name('reclamations.admin_index');
 
@@ -149,12 +150,12 @@ Route::get('/article/create', [ArticleController::class, 'create'])->name('artic
 
 
 Route::get('/reclamations/{id}', [ReclamationController::class, 'show'])->name('reclamations.show');
-//Centre 
+//Centre
 
-Route::get('centres',[CentreController::class,'centres'])->name('centres.index'); 
+Route::get('centres',[CentreController::class,'centres'])->name('centres.index');
 
 Route::get('addCentre', [CentreController::class,'create'])->name('addCentre');
-Route::post('upload', [CentreController::class,'uploadCentre'])->name('centres.upload'); 
+Route::post('upload', [CentreController::class,'uploadCentre'])->name('centres.upload');
 Route::delete('/centres/{id}', [CentreController::class, "delete"])->name('centres.destroy');
 Route::get('/updatecentre/{id}', [CentreController::class, 'edit']);
 Route::post('/update/{id}', [CentreController::class, 'updatecentre']);
@@ -168,7 +169,7 @@ require __DIR__.'/auth.php';
 
 Route::get('/home', [HomeController::class,"index"]);
 Route::get('/teams', function () {
-    return view('team'); 
+    return view('team');
 })->name('teams');
 
 

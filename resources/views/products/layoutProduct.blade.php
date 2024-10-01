@@ -3,14 +3,18 @@
 
 <head>
     <meta charset="utf-8">
+    <title>Green Recycle</title>
+    <link rel="icon" href="{{ asset('img/logo/recycling.ico') }}" type="image/x-icon">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
 
-    <title>Green Recycle</title>
-    <link rel="icon" href="{{ asset('img/logo/recycling.ico') }}" type="image/x-icon">
+    <!-- Favicon -->
+    <link href="{{ asset('img/favicon.ico') }}" rel="icon">
 
     <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
@@ -30,47 +34,25 @@
 </head>
 
 <body>
-    <!-- Topbar Start -->
-    @include('topbar')
-    <!-- Topbar End -->
+     <!-- Topbar Start -->
+   @include('topbar')
+   <!-- Topbar End -->
 
-    <!-- Navbar Start -->
-    @include('navbar')
-    <!-- Navbar End -->
 
-    <div class="container my-5">
-        <!-- Message de succès -->
-        @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
+   <!-- Navbar Start -->
+   @include('navbar')
+   <!-- Navbar End -->
 
-        <!-- Affichage des catégories -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                    <p class="fs-5 fw-bold text-primary">Nos Catégories</p>
-                    <h1 class="display-5 mb-5">Découvrez nos Catégories</h1>
-                </div>
-                <div class="row wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="col-12 text-center">
-                        <!-- Liste des catégories en ligne (horizontale) -->
-                        <ul class="list-inline mb-5" style="padding: 0; display: flex; justify-content: center; flex-wrap: wrap;">
-                            @foreach($categories as $category)
-                                <li class="list-inline-item mx-3" style="font-size: 18px;">
-                                    <a href="{{ route('categories.products', $category->id) }}" class="text-decoration-none text-primary fw-bold" style="transition: color 0.3s;">
-                                        {{ $category->name }}
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
     </div>
+    <!-- Spinner End -->
 
+
+
+    @yield('content')
     <!-- Footer Start -->
     @include('footer')
     <!-- Footer End -->
@@ -80,9 +62,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a class="border-bottom" href="#">Your Site Name</a>, Tous droits réservés.
+                    &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
                 </div>
                 <div class="col-md-6 text-center text-md-end">
+                    <!-- Template Attribution -->
                     Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a href="https://themewagon.com">ThemeWagon</a>
                 </div>
             </div>
@@ -107,18 +90,6 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('js/main.js') }}"></script>
-
-    <!-- Inline JavaScript pour effet de survol -->
-    <script>
-        document.querySelectorAll('ul li a').forEach(function(link) {
-            link.addEventListener('mouseover', function() {
-                this.style.color = '#0056b3'; // Couleur lors du survol
-            });
-            link.addEventListener('mouseout', function() {
-                this.style.color = '#007bff'; // Couleur par défaut
-            });
-        });
-    </script>
 </body>
 
 </html>
