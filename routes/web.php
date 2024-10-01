@@ -43,15 +43,13 @@ require __DIR__.'/auth.php';
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/index', [AdminController::class,"index"]);
 
 Route::resource('/type_events', TypeEventController::class);
   //**********
     Route::resource('/type_events', TypeEventController::class);
 Route::get('/type-events/create', [TypeEventController::class, 'create'])->name('type_events.create');
 // home admin
-Route::get('/index', [AdminController::class,"index"]);
-Route::get('', [AdminController::class,"index"]);
+Route::get('', action: [AdminController::class,"index"]);
 //Category
 Route::resource('/categories', CategoryController::class);
 Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');

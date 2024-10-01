@@ -51,7 +51,7 @@
                     
                                 <div>
                                     <label for="">New Image</label>
-                                    <input style="color: blue;" type="file" name="image" required>
+                                    <input style="color: blue;" type="file" name="image" >
                                 </div>
                     
                                 <!-- Centre Name -->

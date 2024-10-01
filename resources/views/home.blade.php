@@ -105,7 +105,7 @@
 
 
     <!-- Testimonial Start -->
-      @include('testimonial')
+      @include('centreClinets')
     <!-- Testimonial End -->
 
 

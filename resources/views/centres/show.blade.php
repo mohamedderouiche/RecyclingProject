@@ -52,11 +52,10 @@
         <div class="card mx-auto" style="width: 50%;">
             <img class="img-fluid" src="/centreImages/{{ $centre->image }}" alt="{{ $centre->nom }}">
             <div class="card-body">
-                <p class="card-text"><strong>Location:</strong> {{ $centre->adresse }}</p>
+                <p class="card-text"><strong>Locat  ion:</strong> {{ $centre->adresse }}</p>
                 <p class="card-text"><strong>Contact:</strong> {{ $centre->contact }}</p>
                 <p class="card-text"><strong>Description:</strong> {{ $centre->description }}</p>
                 <p class="card-text"><strong>Operating Hours:</strong> {{ $centre->horaire_ouverture }}</p>
-                <a href="{{ route('home') }}" class="btn btn-primary">Back to Centres</a>
             </div>
         </div>
     </div>
