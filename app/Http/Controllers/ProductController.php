@@ -48,6 +48,11 @@ class ProductController extends Controller
     return view('products.show', compact('product'));
 }
 
+public function showFront(Products $product)
+{
+    return view('products.detailfront', compact('product'));
+}
+
 
 
     public function edit(Products $product)
@@ -81,19 +86,15 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
     }
-
-    public function categoriesIndex()
+   
+    public function displayProductByCategoryId($id)
     {
-        // Récupérer toutes les catégories
-        $categories = Category::all();
-        return view('categories.indexfront', compact('categories'));
-    }
+        $products = Products::where('categories_id', $id)->get();
+        $category = Category::find($id); // Récupérer la catégorie par ID
+        $categories = Category::all(); // Récupérer toutes les catégories
 
-    public function showProductsByCategory(Category $category)
-    {
-        // Récupérer les produits associés à la catégorie
-        $products = $category->products; // Assurez-vous que la relation est définie dans le modèle Category
-
-        return view('categories.showfront', compact('category', 'products'));
+        return view('categories.showfront', compact('products', 'category', 'categories')); // Passer les produits, la catégorie et toutes les catégories
     }
+    
+    
 }

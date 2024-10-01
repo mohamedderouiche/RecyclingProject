@@ -55,4 +55,10 @@ class CategoryController extends Controller
         $category->delete();
         return redirect()->route('categories.index')->with('success', 'Category deleted successfully.');
     }
+    public function categoriesIndex()
+    {
+        // Récupérer toutes les catégories
+        $categories = Category::all();
+        return view('categories.indexfront', compact('categories'));
+    }
 }
