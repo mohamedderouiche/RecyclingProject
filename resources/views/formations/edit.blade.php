@@ -140,7 +140,6 @@
         </div>
         <div class="text-center">
         <button type="submit" class="btn btn-primary btn-sm">Update Formation</button>
- 
 </div>
 <div class="text-center">
 
