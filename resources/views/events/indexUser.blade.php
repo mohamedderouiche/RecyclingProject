@@ -42,7 +42,7 @@
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                    <p class="fs-5 fw-bold text-primary">Our Events</p>
+                    <p class="fs-5 fw-bold text-primary">Our Type Events</p>
                     <h1 class="display-5 mb-5">Upcoming Events</h1> <!-- Added title for clarity -->
                 </div>
                 <div class="row">
