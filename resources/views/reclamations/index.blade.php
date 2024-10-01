@@ -20,6 +20,7 @@
                 <th>Description</th>
                 <th>Status</th>
                 <th>Created At</th>
+                <th>image</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +30,13 @@
                     <td>{{ $reclamation->description }}</td>
                     <td>{{ optional($reclamation->statusReclamation)->status_reclamation ?? 'En Attente' }}</td>
                     <td>{{ $reclamation->created_at->format('Y-m-d H:i') }}</td>
+                    <td>
+                        @if($reclamation->image)
+                            <img src="{{ asset('storage/' . $reclamation->image) }}" alt="Image" style="width: 100px; height: auto;">
+                        @else
+                            No Image
+                        @endif
+                    </td>
                 </tr>
             @endforeach
         </tbody>

@@ -61,24 +61,6 @@
     <!-- Carousel End -->
 
 
-    <!-- Top Feature Start -->
-      @include('topfeautures')
-    <!-- Top Feature End -->
-
-
-    <!-- About Start -->
-   @include('about')
-    <!-- About End -->
-
-
-    <!-- Facts Start -->
-     @include('facts')
-    <!-- Facts End -->
-
-
-    <!-- Features Start -->
-    @include('features')
-    <!-- Features End -->
 
 
     <!-- Service Start -->
@@ -91,7 +73,7 @@
     <!-- Quote Start -->
 
    <!-- resources/views/home.blade.php -->
-@include('reclamations.create', ['typeReclamations' => $typeReclamations])
+
 
 
     <!-- Quote End -->
@@ -108,7 +90,7 @@
       @include('centreClinets')
     <!-- Testimonial End -->
 
-
+    @include('reclamations.create', ['typeReclamations' => $typeReclamations])
     <!-- Footer Start -->
     @include('footer')
     <!-- Footer End -->

@@ -17,7 +17,7 @@
     @endif
 
     <div class="container">
-    
+
 
         @if (session('success'))
             <div class="alert alert-success">
@@ -119,3 +119,18 @@
 </div>
 
 @endsection <!-- This ends the content section -->
+<script>
+    function previewImage(event) {
+        const preview = document.getElementById('image-preview');
+        const file = event.target.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.classList.remove('d-none');
+            }
+            reader.readAsDataURL(file);
+        }
+    }
+</script>

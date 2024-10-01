@@ -48,6 +48,11 @@ class ProductController extends Controller
     return view('products.show', compact('product'));
 }
 
+public function showFront(Products $product)
+{
+    return view('products.detailfront', compact('product'));
+}
+
 
 
     public function edit(Products $product)
@@ -81,11 +86,15 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
     }
-   
+
     public function displayProductByCategoryId($id)
     {
         $products = Products::where('categories_id', $id)->get();
-        return view('categories.showfront', compact('products'));
+        $category = Category::find($id); // Récupérer la catégorie par ID
+        $categories = Category::all(); // Récupérer toutes les catégories
+
+        return view('categories.showfront', compact('products', 'category', 'categories')); // Passer les produits, la catégorie et toutes les catégories
     }
-    
+
+
 }
