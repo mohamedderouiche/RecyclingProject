@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-success sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url ('') }}">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
@@ -13,7 +13,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ url ('') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
         </a>
@@ -32,12 +32,12 @@
             <span>View Centers</span>
         </a>
     </li>
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a class="nav-link" href="#">
             <i class="fas fa-fw fa-recycle"></i>
             <span>View ..</span>
         </a>
-    </li>
+    </li> --}}
 
     <!-- Nav Item - Article -->
     <li class="nav-item">
@@ -46,12 +46,12 @@
             <span>View Articles</span>
         </a>
     </li>
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a class="nav-link" href="#">
             <i class="fas fa-fw fa-newspaper"></i>
             <span>View Comments</span>
         </a>
-    </li>
+    </li> --}}
 
     <!-- Nav Item - Event -->
     <li class="nav-item">
@@ -88,7 +88,7 @@
             <span>View Formations</span>
         </a>
     </li>
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a class="nav-link" href="#">
             <i class="fas fa-fw fa-chalkboard-teacher"></i>
             <span>View Inscriptions</span>
@@ -101,7 +101,7 @@
                 <a class="collapse-item" href="#">View Inscriptions</a>
             </div>
         </div>
-    </li>
+    </li> --}}
 
     <!-- Nav Item - Reclamation -->
     <li class="nav-item">
@@ -119,7 +119,7 @@
 
     <!-- Nav Item - Front Office -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ url ('/home') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Front Office</span>
         </a>
