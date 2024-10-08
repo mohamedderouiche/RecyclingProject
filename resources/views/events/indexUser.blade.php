@@ -66,7 +66,7 @@
             <div class="container">
                 <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
                     <p class="fs-5 fw-bold text-primary">Our Type Events</p>
-                    <h1 class="display-5 mb-5">Upcoming Events</h1> <!-- Added title for clarity -->
+                    <h1 class="display-5 mb-5">Discover Type Events</h1> <!-- Added title for clarity -->
                 </div>
                 <div class="row">
                     @foreach ($events as $event)
@@ -79,9 +79,8 @@
                                 @endif
                                 <div class="team-text">
                                     <h4 class="mb-0">{{ $event->title }}</h4>
-                                    <p class="text-primary">{{ $event->description }}</p>
-                                    
-                                    <a href="{{ route('events.events', $event->id) }}" class="btn btn-primary mt-auto">Go To Event</a> <!-- Bouton positionné en bas -->
+
+                                    <a href="{{ route('events.events', $event->id) }}" class="btn btn-primary mt-auto">Go To Event <i class="fa fa-eye"></i></a> <!-- Bouton positionné en bas -->
                                 </div>
                             </div>
                         </div>
