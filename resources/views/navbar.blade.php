@@ -7,12 +7,13 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a  href="{{ url ('/home')}}" class="nav-item nav-link active">Home</a>           
+            <a  href="{{ url ('/home')}}" class="nav-item nav-link active">Home</a>
             <a  href="{{ url ('/article')}}" class="nav-item nav-link">Articles</a>
+            <a  href="{{ url ('/categories-list')}}" class="nav-item nav-link">Produit</a>
             <a href="{{ url ('/teams')}}" class="nav-item nav-link">Teams</a>
             <a href="{{ url ('/events/user')}}" class="nav-item nav-link">Events</a>
             <a href="{{ url ('/Nosformations')}}" class="nav-item nav-link">Trainings</a>
-           
+
 
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Reclamation</a>

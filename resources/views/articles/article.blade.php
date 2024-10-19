@@ -85,12 +85,12 @@
                             <img class="img-fluid" src="{{ asset('storage/' . $article->image) }}" alt="{{ $article->title }}">
                         </div>
                         <div class="service-text rounded p-5">
-                            <div class="btn-square rounded-circle mx-auto mb-3">
-                                <img class="img-fluid" src="{{ asset('img/icon/article-icon.png') }}" alt="Icon">
-                            </div>
+                            
                             <h4 class="mb-3">{{ $article->title }}</h4>
                             <p class="mb-4">{{ Str::limit($article->content, 100) }}</p>
-                            {{-- <a class="btn btn-sm" href="{{ route('articles.show', $article->id) }}"><i class="fa fa-plus text-primary me-2"></i>Read More</a> --}}
+                            <div class="d-flex mb-4">
+                                    <a class="btn btn-lg-square rounded-circle mx-2" href="{{ route('articles.show', $article->id) }}"><i class="fa fa-eye"></i></a>
+                                </div>
                         </div>
                     </div>
                 </div>

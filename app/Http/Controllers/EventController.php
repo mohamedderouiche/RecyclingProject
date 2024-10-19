@@ -42,7 +42,7 @@ class EventController extends Controller
             $file = $request->file('image');
             $filename = time() . '.' . $file->getClientOriginalExtension();
             $path = $file->storeAs('events_image', $filename, 'public');
-            
+
             // Ajouter le chemin de l'image dans les données validées
             $validated['image'] = $path;
         }
@@ -82,7 +82,7 @@ class EventController extends Controller
             $file = $request->file('image');
             $filename = time() . '.' . $file->getClientOriginalExtension();
             $path = $file->storeAs('events_image', $filename, 'public');
-            
+
             // Ajouter le chemin de l'image dans les données validées
             $validated['image'] = $path;
         }

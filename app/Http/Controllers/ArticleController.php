@@ -48,38 +48,44 @@ class ArticleController extends Controller
 
     public function show(Article $article)
     {
-        return view('articles.show', compact('article'));
+        return view('articles.frontdetails', compact('article'));
     }
 
+    public function showback(Article $article)
+    {
+        return view('articles.showback', compact('article'));
+    }
 
     public function edit(Article $article)
     {
         return view('articles.edit', compact('article'));
     }
 
-
+    // Update the specified article
     public function update(Request $request, Article $article)
     {
+        // Validate the incoming request
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'contenu' => 'required',
             'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
-
-
+    
+        // Handle image upload if a new image is provided
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('images', 'public');
-            $validatedData['image'] = $imagePath;
+            $validatedData['image'] = $imagePath; // Add image path to validated data
         }
-
-
+    
+        // Update the article with the validated data
         $article->update($validatedData);
-
-
+    
+        // Redirect back to the article index page with a success message
         return redirect()->route('articles.index')->with('success', 'Article updated successfully.');
     }
-
-
+    
+    
+    
     public function destroy(Article $article)
     {
         $article->delete();

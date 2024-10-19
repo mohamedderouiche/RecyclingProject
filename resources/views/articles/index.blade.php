@@ -90,7 +90,6 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Title</th>
                 <th>Actions</th>
             </tr>
@@ -98,11 +97,10 @@
         <tbody>
             @foreach ($articles as $article)
                 <tr>
-                    <td>{{ $article->id }}</td>
                     <td>{{ $article->title }}</td>
                     <td>
                         <div class="btn-group" role="group" aria-label="Actions">
-                            <a href="{{ route('articles.show', $article->id) }}" class="btn btn-link action-btn" title="View">
+                            <a href="{{ route('articles.showback', $article->id) }}" class="btn btn-link action-btn" title="View">
                                 <i class="fas fa-eye fa-lg"></i>
                             </a>
                             <a href="{{ route('articles.edit', $article->id) }}" class="btn btn-link action-btn" title="Edit">
@@ -148,7 +146,6 @@
 
 
 <!-- Logout Modal-->
-@include('admin.logout')
 <!-- Bootstrap core JavaScript-->
 <script src="admin/vendor/jquery/jquery.min.js"></script>
 <script src="admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

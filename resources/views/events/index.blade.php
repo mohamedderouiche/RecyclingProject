@@ -13,7 +13,7 @@
     <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    
+
     <style>
         body {
             font-family: 'Nunito', sans-serif;
@@ -90,7 +90,7 @@
                             <tr>
                                 <th>Title</th>
                                 <th>Description</th>
-                                <th>Type Event</th>
+                                {{-- <th>Type Event</th> --}}
                                 <th>Image</th>
                                 <th>Actions</th>
                             </tr>
@@ -100,7 +100,7 @@
                                 <tr>
                                     <td>{{ $event->title }}</td>
                                     <td>{{ $event->description }}</td>
-                                    <td>{{ $event->typeEvent->title ?? 'N/A' }}</td>
+                                    {{-- <td>{{ $event->type_events->title ?? 'N/A' }}</td> --}}
                                     <td>
                                         @if($event->image)
                                             <img src="{{ asset('storage/' . $event->image) }}" alt="Event Image: {{ $event->title }}">

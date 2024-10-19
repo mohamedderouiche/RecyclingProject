@@ -76,6 +76,11 @@ Route::get('/type-events/card', [TypeEventController::class, 'homeDisplay'])->na
 Route::post('/type_events', [TypeEventController::class, 'store'])->name('type_events.store');
 
 
+Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
+Route::get('/articless/{article}', [ArticleController::class, 'showback'])->name('articles.showback');
+Route::get('/articles/{article}/edit', [ArticleController::class, 'edit'])->name('articles.edit');
+Route::put('/articles/update/{article}', [ArticleController::class, 'update'])->name('articles.update');
+
 
 // Display a specific TypeEvent by ID
 Route::get('/type_events/{id}', [TypeEventController::class, 'show'])->name('type_events.show');
@@ -117,6 +122,7 @@ Route::get('/Nosformations', [FormationController::class, 'frontindex'])->name('
 Route::post('/formations', [FormationController::class, 'store'])->name('formations.store');
 Route::get('/formations/{id}', [FormationController::class, 'show'])->name('formations.show');
 Route::get('/formationss/{id}', [FormationController::class, 'frontdetails'])->name('formations.frontdetails');
+
 Route::get('/formations/{id}/edit', [FormationController::class, 'edit'])->name('formations.edit');
 Route::put('/formations/{id}', [FormationController::class, 'update'])->name('formations.update');
 Route::delete('/formations/{id}', [FormationController::class, 'destroy'])->name('formations.destroy');
@@ -146,6 +152,7 @@ Route::get('/reclamations/{id}/details', [ReclamationController::class, 'frontde
 // Article
 Route::resource('articles', ArticleController::class);
 Route::get('/article', [ArticleController::class, 'indexarticle'])->name('articles.article');
+Route::get('/article/create', [ArticleController::class, 'create'])->name('articles.create');
 
 
 Route::get('/reclamations/{id}', [ReclamationController::class, 'show'])->name('reclamations.show');
