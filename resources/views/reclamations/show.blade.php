@@ -1,33 +1,33 @@
-@extends('reclamations.layout')  <!-- Extending the admin layout -->
+@extends('reclamations.layout') <!-- Extending the admin layout -->
 
 @section('content')
-<div class="container mt-5">
-    <h1 class="mb-4 text-center">Reclamation Details</h1>
+<div class="container-fluid text-center">
+    <h1 class="h3 mb-4 text-gray-800">Reclamation Details</h1>
 
-    <div class="card" style="width: 30rem; margin: auto; border-radius: 15px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);">
-        <!-- Reclamation Image -->
-        @if($reclamation->image)
-            <img class="card-img-top" src="{{ asset('storage/' . $reclamation->image) }}" alt="Reclamation Image" style="height: 300px; object-fit: cover; border-top-left-radius: 15px; border-top-right-radius: 15px;">
-        @endif
-
+    <div class="card shadow mb-4" style="border-radius: 15px; max-width: 800px; margin: auto; height: auto;">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Reclamation #{{ $reclamation->id }}</h6>
+        </div>
         <div class="card-body">
-            <h5 class="card-title text-center" style="font-weight: bold; font-size: 1.5rem;">Reclamation #{{ $reclamation->id }}</h5>
-            <p class="card-text" style="font-size: 1.1rem;">{{ $reclamation->description }}</p>
+            <div class="text-center mb-3">
+                @if($reclamation->image)
+                    <img src="{{ asset('storage/' . $reclamation->image) }}" class="img-fluid" alt="Reclamation Image" style="max-width: 100%; height: 400px; object-fit: cover;" />
+                @endif
+            </div>
+            <p><strong>Description:</strong> {{ $reclamation->description }}</p>
 
             <!-- Submitted by and Submitted at Information -->
-            <div class="mb-3">
-                <p class="mb-1"><strong>Submitted by:</strong> {{ $reclamation->user->name }}</p>
-                <p class="mb-1"><strong>Submitted at:</strong> {{ $reclamation->created_at->format('d-m-Y H:i') }}</p>
-            </div>
+            <p><strong>Submitted by:</strong> {{ $reclamation->user->name }}</p>
+            <p><strong>Submitted at:</strong> {{ $reclamation->created_at->format('d-m-Y H:i') }}</p>
+
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Type of Reclamation:</strong> {{ $reclamation->typeReclamation->name }}</li>
+            </ul>
         </div>
 
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item"><strong>Type of Reclamation:</strong> {{ $reclamation->typeReclamation->name }}</li>
-   
-        </ul>
-
-        <div class="card-body d-flex justify-content-between align-items-center">
-            <a href="{{ url('/reclamationsadmin') }}" class="btn btn-primary btn-lg">
+        <!-- Card Footer -->
+        <div class="card-body d-flex justify-content-center align-items-center" style="padding: 15px;">
+            <a href="{{ url('/reclamationsadmin') }}" class="btn btn-primary ">
                 <i class="fas fa-arrow-left"></i> Back to List
             </a>
         </div>
