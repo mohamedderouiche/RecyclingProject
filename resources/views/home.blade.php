@@ -4,7 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Gardener - Gardening Website Template</title>
+    <title>Green Recycle</title>
+    <link rel="icon" href="{{ asset('img/logo/recycling.ico') }}" type="image/x-icon">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -60,55 +61,36 @@
     <!-- Carousel End -->
 
 
-    <!-- Top Feature Start -->
-      @include('topfeautures')
-    <!-- Top Feature End -->
-
-
-    <!-- About Start -->
-   @include('about')
-    <!-- About End -->
-
-
-    <!-- Facts Start -->
-     @include('facts')
-    <!-- Facts End -->
-
-
-    <!-- Features Start -->
-    @include('features')
-    <!-- Features End -->
 
 
     <!-- Service Start -->
-    @include('service')
+    {{-- @include('service') --}}
+    @include('type_events.home')
+
     <!-- Service End -->
 
 
     <!-- Quote Start -->
 
    <!-- resources/views/home.blade.php -->
-@include('reclamations.create', ['typeReclamations' => $typeReclamations])
+
 
 
     <!-- Quote End -->
 
 
     <!-- Projects Start -->
-  @include('projects')
+  @include('formations.frontindex')
     <!-- Projects End -->
 
 
-    <!-- Team Start -->
-   @include('team')
-    <!-- Team End -->
 
 
     <!-- Testimonial Start -->
-      @include('testimonial')
+      @include('centreClinets')
     <!-- Testimonial End -->
 
-
+    @include('reclamations.create', ['typeReclamations' => $typeReclamations])
     <!-- Footer Start -->
     @include('footer')
     <!-- Footer End -->

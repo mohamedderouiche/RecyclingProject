@@ -1,0 +1,32 @@
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: #f8f9fc;
+}
+
+.btn-icon {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-icon:hover {
+    background-color: #e2e6ea;
+    border-radius: 5px;
+}
+
+.btn-icon i {
+    margin-right: 5px; /* Espace entre l'icône et le texte */
+}
+
+table th, table td {
+    vertical-align: middle; /* Centre le contenu des cellules */
+}
+
+.table img {
+    width: 100px;
+    height: auto; /* Conserve le ratio de l'image */
+}

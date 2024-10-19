@@ -22,7 +22,44 @@ class ReclamationController extends Controller
             ->get();
 
         return view('reclamations.index', compact('reclamations'));
+
+
     }
+    public function updateuserreclamtion(Request $request, $id)
+    {
+        $request->validate([
+            'type_reclamation_id' => 'required|exists:type_reclamations,id',
+            'description' => 'required|string',
+            'image' => 'nullable|image',
+        ]);
+
+        // Find the reclamation by ID
+        $reclamation = reclamation::where('id', $id)->where('users_id', Auth::id())->firstOrFail();
+
+        // Handle image upload
+        $imagePath = $request->file('image') ? $request->file('image')->store('images', 'public') : $reclamation->image;
+
+        // Update the reclamation fields
+        $reclamation->type_reclamation_id = $request->type_reclamation_id;
+        $reclamation->description = $request->description;
+        $reclamation->image = $imagePath;
+
+        // Save the updated reclamation
+        $reclamation->save();
+
+        return redirect()->route('reclamations.index')->with('success', 'Reclamation updated successfully.');
+    }
+    public function cancelUserReclamation($id)
+    {
+        // Find the reclamation by ID
+        $reclamation = reclamation::where('id', $id)->where('users_id', Auth::id())->firstOrFail();
+
+        // Delete the reclamation
+        $reclamation->delete();
+
+        return redirect()->route('reclamations.index')->with('success', 'Reclamation canceled successfully.');
+    }
+
 
 
     public function adminIndex()
@@ -41,7 +78,7 @@ class ReclamationController extends Controller
     public function create()
     {       $typeReclamations = type_reclamations::all();
          // Show the form for creating a new reclamation
-         return view('reclamations.create', compact('typeReclamations'));
+         return view('reclamations.createReclamation', compact('typeReclamations'));
     }
 
     /**
@@ -84,8 +121,24 @@ class ReclamationController extends Controller
      */
     public function show($id)
     {
-        //
+        // Retrieve the reclamation by ID with related user, status, and type of reclamation
+        $reclamation = reclamation::with(['statusReclamation', 'user', 'typeReclamation'])
+            ->findOrFail($id);
+
+        // Pass the reclamation details to the view
+        return view('reclamations.show', compact('reclamation'));
     }
+
+    public function frontdetails($id)
+    {
+        // Retrieve the reclamation by ID with related user, status, and type of reclamation
+        $reclamation = reclamation::with(['statusReclamation', 'user', 'typeReclamation'])
+            ->findOrFail($id);
+
+        // Pass the reclamation details to the view
+        return view('reclamations.frontdetails', compact('reclamation'));
+    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -95,8 +148,12 @@ class ReclamationController extends Controller
      */
     public function edit($id)
     {
+        $reclamation = reclamation::where('id', $id)->where('users_id', Auth::id())->firstOrFail();
+        $typeReclamations = type_reclamations::all(); // Fetch all reclamation types
 
+        return view('reclamations.edit_reclamation', compact('reclamation', 'typeReclamations'));
     }
+
 
 
 
@@ -126,6 +183,10 @@ class ReclamationController extends Controller
     }
 
 
+
+
+
+
     /**
      * Remove the specified resource from storage.
      *
@@ -143,5 +204,7 @@ class ReclamationController extends Controller
     // Redirect back to the admin index with a success message
     return redirect()->route('reclamations.admin_index')->with('success', 'Reclamation deleted successfully.');
 }
+
+
 
 }

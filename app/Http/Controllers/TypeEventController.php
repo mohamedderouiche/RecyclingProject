@@ -20,6 +20,14 @@ class TypeEventController extends Controller
         // Retourner la vue avec les données
         return view('type_events.index', compact('typeEvents'));
     }
+    public function homeDisplay()
+    {
+        // Récupérer tous les TypeEvents
+        $typeEvents = TypeEvent::all();
+
+        // Retourner la vue avec les données
+        return view('type_events.home', compact('typeEvents'));
+    }
 
     /**
      * Show the form for creating a new resource.
