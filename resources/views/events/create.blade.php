@@ -99,12 +99,18 @@
 
                                 <div class="form-group">
                                     <label for="title">Title</label>
-                                    <input type="text" id="title" name="title" value="{{ old('title') }}" class="form-control" required>
+                                    <input type="text" id="title" name="title" value="{{ old('title') }}" class="form-control" >
+                                    @error('title')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
                                 <div class="form-group">
                                     <label for="description">Description</label>
-                                    <textarea id="description" name="description" class="form-control" required>{{ old('description') }}</textarea>
+                                    <textarea id="description" name="description" class="form-control" >{{ old('description') }}</textarea>
+                                    @error('description')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
                                 <!-- Design section for uploading image -->
@@ -113,7 +119,10 @@
                                     <div class="image-upload-wrapper" onclick="document.getElementById('image').click();">
                                         <i class="fas fa-cloud-upload-alt image-upload-icon"></i>
                                         <p>Click to upload an image</p>
-                                        <input type="file" id="image" name="image" class="form-control-file d-none" accept="image/*" onchange="previewImage(event)" required />
+                                        <input type="file" id="image" name="image" class="form-control-file d-none" accept="image/*" onchange="previewImage(event)"  />
+                                        @error('image')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                         <img id="image-preview" class="image-upload-preview d-none" alt="Image Preview">
                                     </div>
                                 </div>

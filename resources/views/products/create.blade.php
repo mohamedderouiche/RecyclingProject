@@ -64,28 +64,40 @@
                                 <!-- Product Name -->
                                 <div class="form-group">
                                     <label for="name">Product Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter product name" required>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter product name" >
+                                    @error('name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
 
                                 <!-- Product Description -->
                                 <div class="form-group">
                                     <label for="description">Description</label>
-                                    <textarea class="form-control" id="description" name="description" rows="2" placeholder="Enter product description" required></textarea>
+                                    <textarea class="form-control" id="description" name="description" rows="2" placeholder="Enter product description" ></textarea>
+                                    @error('description')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
 
                                 <!-- Product Price -->
                                 <div class="form-group">
                                     <label for="price">Price</label>
-                                    <input type="text" class="form-control" id="price" name="price" placeholder="Enter product price" required>
+                                    <input type="text" class="form-control" id="price" name="price" placeholder="Enter product price" >
+                                    @error('price')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
 
                                 <!-- Image Upload -->
                                 <div class="form-group">
                                     <label for="image">Product Image</label>
-                                    <input type="file" class="form-control" id="image" name="image" required>
+                                    <input type="file" class="form-control" id="image" name="image" >
+                                    @error('image')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
 
@@ -97,6 +109,9 @@
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
+                                    @error('categories_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
 
