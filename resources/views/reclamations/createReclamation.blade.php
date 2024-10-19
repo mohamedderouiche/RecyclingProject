@@ -16,7 +16,7 @@
                         <!-- Type of Reclamation -->
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <select class="form-control" id="typeReclamation" name="type_reclamation_id" 
+                                <select class="form-control" id="typeReclamation" name="type_reclamation_id"
                                     style="width: 100%; height: 58px; background-color: #ffffff; color: #6c757d; border: 1px solid #ced4da; padding: 12px;">
                                     <option value="" disabled selected>Select Type   of Reclamation</option>
                                     @foreach($typeReclamations as $type)
@@ -105,7 +105,9 @@
 </div>
 @endsection
     <!-- JavaScript for previewing image -->
-    <script>
+   
+
+   <script>
         function previewImage(event) {
             const preview = document.getElementById('image-preview');
             const file = event.target.files[0];
@@ -120,3 +122,5 @@
             }
         }
     </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Add jQuery if you don't have it -->
+

@@ -63,32 +63,34 @@
                         <a href="#" class="btn btn-primary mb-3" data-toggle="modal" data-target="#createTypeModal">Add Type Reclamation</a>
 
                         <!-- Modal for Creating Reclamation Type -->
-                        <div class="modal fade" id="createTypeModal" tabindex="-1" role="dialog" aria-labelledby="createTypeModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="createTypeModalLabel">Create Type Reclamation</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <!-- Form to Create Reclamation Type -->
-                                        <form action="{{ route('type_reclamations.store') }}" method="POST">
-                                            @csrf
-                                            <div class="form-group">
-                                                <label for="name">Reclamation Type Name</label>
-                                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Reclamation Type" >
-                                                @error('name')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                            </div>
-                                            <button type="submit" class="btn btn-primary btn-block">Create</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                     <!-- Modal for Creating Reclamation Type -->
+<div class="modal fade" id="createTypeModal" tabindex="-1" role="dialog" aria-labelledby="createTypeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createTypeModalLabel">Create Type Reclamation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Form to Create Reclamation Type -->
+                <form action="{{ route('type_reclamations.store') }}" method="POST" id="createTypeForm">
+                    @csrf
+                    <div class="form-group">
+                        <label for="name">Reclamation Type Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Reclamation Type" value="{{ old('name') }}">
+                        @error('name')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Create</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 
                         <!-- Table Displaying Reclamation Types -->
                         <table class="table table-striped">
@@ -200,6 +202,42 @@
    <!-- Page level custom scripts -->
    <script src="admin/js/demo/chart-area-demo.js"></script>
    <script src="admin/js/demo/chart-pie-demo.js"></script>
+   <script>
+    $(document).ready(function() {
+        // On form submission
+        $('#createTypeForm').on('submit', function(event) {
+            var form = this;
+
+            // AJAX form submission
+            $.ajax({
+                type: 'POST',
+                url: $(form).attr('action'),
+                data: $(form).serialize(),
+                success: function(response) {
+                    // If successful, you may want to close the modal and refresh the page or append the new type to the list
+                    $('#createTypeModal').modal('hide');
+                    location.reload(); // or append to the table without refreshing
+                },
+                error: function(xhr) {
+                    // Show validation errors and keep the modal open
+                    if (xhr.status === 422) {
+                        var errors = xhr.responseJSON.errors;
+
+                        // Clear previous error messages
+                        $('.text-danger').remove();
+
+                        // Display error messages
+                        $.each(errors, function(key, messages) {
+                            $('#' + key).after('<span class="text-danger">' + messages[0] + '</span>');
+                        });
+                    }
+                }
+            });
+
+            event.preventDefault(); // Prevent the default form submission
+        });
+    });
+</script>
 
 </body>
 </html>
