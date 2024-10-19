@@ -12,6 +12,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReclamationController;
 use App\Http\Controllers\Type_ReclamationController;
+use App\Http\Controllers\CommentController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -80,7 +81,11 @@ Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('art
 Route::get('/articless/{article}', [ArticleController::class, 'showback'])->name('articles.showback');
 Route::get('/articles/{article}/edit', [ArticleController::class, 'edit'])->name('articles.edit');
 Route::put('/articles/update/{article}', [ArticleController::class, 'update'])->name('articles.update');
+Route::get('/article/{article}/download', [ArticleController::class, 'downloadArticlePDF'])->name('articles.download');
 
+
+Route::post('/articles/{article}/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::get('/articles/{article}/comments', [CommentController::class, 'index'])->name('comments.index');
 
 // Display a specific TypeEvent by ID
 Route::get('/type_events/{id}', [TypeEventController::class, 'show'])->name('type_events.show');

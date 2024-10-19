@@ -12,13 +12,14 @@ class article extends Model
         'title',
         'contenu',
         'image',
+        'pdf',
         'created_at',
         'updated_at',
     ];
 
     public function comments()
     {
-        return $this->hasMany(Comments::class);
+        return $this->hasMany(Comment::class, 'article_id');
     }
 
 }
