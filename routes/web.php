@@ -128,23 +128,23 @@ Route::put('/formations/{id}', [FormationController::class, 'update'])->name('fo
 Route::delete('/formations/{id}', [FormationController::class, 'destroy'])->name('formations.destroy');
 
 // reclamation
-Route::get('/reclamationsadmin', [ReclamationController::class, 'adminIndex'])->name('reclamations.admin_index');
+if (Auth::check() && Auth::user()->role === 'admin') {
+    Route::get('/reclamationsadmin', [ReclamationController::class, 'adminIndex'])->name('reclamations.admin_index');
+    Route::get('/typeR', [Type_ReclamationController::class, 'index'])->name('type_reclamations.index');
+    Route::get('/typeR/create', [Type_ReclamationController::class, 'create'])->name('type_reclamations.create');
+    Route::post('/typeR/create', [Type_ReclamationController::class, 'store'])->name('type_reclamations.store');
+Route::put('/typeR/{id}', [Type_ReclamationController::class, 'update'])->name('type_reclamations.update');
+Route::delete('/typeR/{id}', [Type_ReclamationController::class, 'destroy'])->name('type_reclamations.destroy');
+
+}
 
 Route::get('/reclamations/create', [ReclamationController::class, 'create'])->name('reclamations.createReclamation');
-
 Route::get('/reclamations', [ReclamationController::class, 'index'])->name('reclamations.index');
-
-
 Route::post('/reclamations', [ReclamationController::class, 'store'])->name('reclamations.store');
 Route::put('/reclamations/{id}', [ReclamationController::class, 'update'])->name('reclamations.update');
 Route::delete('/reclamations/{id}', [ReclamationController::class, 'destroy'])->name('reclamations.destroy');
 Route::post('reclamations/{id}/cancel', [ReclamationController::class, 'cancelUserReclamation'])->name('reclamations.cancel');
 Route::put('reclamations/{id}', [ReclamationController::class, 'update'])->name('reclamations.update');
-Route::get('/typeR', [Type_ReclamationController::class, 'index'])->name('type_reclamations.index');
-Route::get('/typeR/create', [Type_ReclamationController::class, 'create'])->name('type_reclamations.create');
-Route::delete('/typeR/{id}', [Type_ReclamationController::class, 'destroy'])->name('type_reclamations.destroy');
-Route::post('/typeR/create', [Type_ReclamationController::class, 'store'])->name('type_reclamations.store');
-Route::put('/typeR/{id}', [Type_ReclamationController::class, 'update'])->name('type_reclamations.update');
 Route::get('/reclamations/stats', [ReclamationController::class, 'stats'])->name('reclamations.stats');
 Route::post('/reclamations/{id}/update', [ReclamationController::class, 'updateuserreclamtion'])->name('reclamations.updateuser');
 Route::get('/reclamations/{id}/edit', [ReclamationController::class, 'edit'])->name('reclamations.edit');
