@@ -146,7 +146,7 @@ Route::get('/formationss/{id}', [FormationController::class, 'frontdetails'])->n
 Route::get('/formations/{id}/edit', [FormationController::class, 'edit'])->name('formations.edit');
 Route::put('/formations/{id}', [FormationController::class, 'update'])->name('formations.update');
 Route::delete('/formations/{id}', [FormationController::class, 'destroy'])->name('formations.destroy');
-
+    
 //reclamation
 Route::get('/reclamations/create', [ReclamationController::class, 'create'])->name('reclamations.createReclamation');
 Route::get('/reclamations', [ReclamationController::class, 'index'])->name('reclamations.index');
