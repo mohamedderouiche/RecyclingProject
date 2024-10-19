@@ -50,7 +50,6 @@
             color: #777;
         }
 
-        /* Maximized Image Styles */
         .img-fluid {
             max-width: 100%;
             height: auto;
