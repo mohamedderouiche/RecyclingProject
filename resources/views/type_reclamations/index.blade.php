@@ -78,7 +78,10 @@
                                             @csrf
                                             <div class="form-group">
                                                 <label for="name">Reclamation Type Name</label>
-                                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Reclamation Type" required>
+                                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Reclamation Type" >
+                                                @error('name')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                             </div>
                                             <button type="submit" class="btn btn-primary btn-block">Create</button>
                                         </form>
@@ -142,7 +145,10 @@
                                                         <div class="modal-body">
                                                             <div class="mb-3">
                                                                 <label for="name-{{ $type->id }}" class="form-label">Name</label>
-                                                                <input type="text" class="form-control" id="name-{{ $type->id }}" name="name" value="{{ $type->name }}" required>
+                                                                <input type="text" class="form-control" id="name-{{ $type->id }}" name="name" value="{{ $type->name }}" >
+                                                                @error('name')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
