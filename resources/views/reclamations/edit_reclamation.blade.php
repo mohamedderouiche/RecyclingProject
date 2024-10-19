@@ -15,7 +15,7 @@
                         <!-- Type of Reclamation -->
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <select class="form-control" id="typeReclamation" name="type_reclamation_id" required
+                                <select class="form-control" id="typeReclamation" name="type_reclamation_id" 
                                     style="width: 100%; height: 58px; background-color: #ffffff; color: #6c757d; border: 1px solid #ced4da; padding: 12px;">
                                     <option value="" disabled>Select Type of Reclamation</option>
                                     @foreach($typeReclamations as $type)
@@ -24,13 +24,19 @@
                                         </option>
                                     @endforeach
                                 </select>
+                                @error('type_reclamation_id')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                             </div>
                         </div>
 
                         <!-- Description -->
                         <div class="col-12">
                             <div class="form-floating">
-                                <textarea class="form-control" id="description" name="description" placeholder="Describe the issue" style="height: 100px" required>{{ $reclamation->description }}</textarea>
+                                <textarea class="form-control" id="description" name="description" placeholder="Describe the issue" style="height: 100px" >{{ $reclamation->description }}</textarea>
+                                @error('description')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                                 <label for="description">Message</label>
                             </div>
                         </div>
@@ -42,7 +48,10 @@
                                 <i class="fas fa-cloud-upload-alt image-upload-icon"></i>
                                 <p id="upload-text">Click to upload an image</p>
                                 <input type="file" id="image" name="image" class="form-control-file d-none" accept="image/*" onchange="previewImage(event)" />
-
+                                @error('image')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                            </div>
                                 <!-- Show existing image if available -->
                                 @if($reclamation->image)
                                     <img id="image-preview" class="image-upload-preview" src="{{ asset('storage/' . $reclamation->image) }}" alt="Image Preview" style="margin-top: 10px; max-width: 100%; height: auto; border-radius: 10px;" />
