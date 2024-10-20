@@ -64,6 +64,7 @@ Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('cat
 Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 //products
 Route::resource('products', ProductController::class);
+Route::get('/categories/{categoryId}/filter', [ProductController::class, 'filter'])->name('categories.filter');
 Route::get('/categories-list', [CategoryController::class, 'categoriesIndex'])->name('categories.indexfront');
 Route::get('/categories/{id}/products', [ProductController::class, 'displayProductByCategoryId'])->name('categories.products');
 Route::get('/categories/{id}', [ProductController::class, 'displayProductByCategoryId'])->name('product.category');

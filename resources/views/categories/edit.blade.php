@@ -58,13 +58,19 @@
                                 <!-- Category Name -->
                                 <div class="form-group">
                                     <label for="name">Category Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" value="{{ $category->name }}" required>
+                                    <input type="text" class="form-control" id="name" name="name" value="{{ $category->name }}" >
+                                    @error('name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
                                 <!-- Category Description -->
                                 <div class="form-group">
                                     <label for="description">Description</label>
-                                    <textarea class="form-control" id="description" name="description" rows="3" required>{{ $category->description }}</textarea>
+                                    <textarea class="form-control" id="description" name="description" rows="3" >{{ $category->description }}</textarea>
+                                    @error('description')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
                                 <!-- Submit Button -->
