@@ -49,24 +49,36 @@
                                 <div class="form-group">
                                     <label for="title">Article Title</label>
                                     <input type="text" class="form-control" id="title" name="title" placeholder="Enter article title" value="{{ old('title', $article->title ?? '') }}" >
+                                    @error('title')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
                                 <!-- Content -->
                                 <div class="form-group">
                                     <label for="contenu">Content</label>
-                                    <textarea class="form-control" id="contenu" name="contenu" rows="5" placeholder="Write the article content" required>{{ old('contenu', $article->contenu ?? '') }}</textarea>
+                                    <textarea class="form-control" id="contenu" name="contenu" rows="5" placeholder="Write the article content" >{{ old('contenu', $article->contenu ?? '') }}</textarea>
+                                    @error('contenu')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
                                 <!-- Image Upload -->
                                 <div class="form-group">
                                     <label for="image">Article Image</label>
-                                    <input type="file" class="form-control" id="image" name="image" required>
+                                    <input type="file" class="form-control" id="image" name="image" >
+                                    @error('image')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
                              <!-- PDF Upload -->
                                 <div class="form-group">
                                     <label for="pdf">Article PDF</label>
                                     <input type="file" class="form-control" id="pdf" name="pdf" accept=".pdf">
+                                    @error('pdf')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
                                 <!-- Submit Button -->
