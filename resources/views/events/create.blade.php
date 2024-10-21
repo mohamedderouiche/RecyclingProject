@@ -83,7 +83,7 @@
                     <div class="row justify-content-center">
                         <div class="col-md-6">
                             {{-- Display validation errors --}}
-                            @if ($errors->any())
+                            {{-- @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
                                     @foreach ($errors->all() as $error)
@@ -91,7 +91,7 @@
                                     @endforeach
                                 </ul>
                             </div>
-                            @endif
+                            @endif --}}
 
                             {{-- Form for creating a new event --}}
                             <form action="{{ route('events.store') }}" method="POST" enctype="multipart/form-data">

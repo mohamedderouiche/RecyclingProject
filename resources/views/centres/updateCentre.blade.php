@@ -55,37 +55,55 @@
 
                                 <div>
                                     <label for="">New Image</label>
-                                    <input style="color: blue;" type="file" name="image" required>
+                                    <input style="color: blue;" type="file" name="image" >
+                                    @error('image')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
                                 <!-- Centre Name -->
                                 <div class="form-group">
                                     <label for="nom">Nom du Centre</label>
-                                    <input type="text" class="form-control" id="nom" name="nom" value="{{ $centre->nom }}" required>
+                                    <input type="text" class="form-control" id="nom" name="nom" value="{{ $centre->nom }}" >
+                                    @error('nom')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
                                 <!-- Address -->
                                 <div class="form-group">
                                     <label for="adresse">Adresse</label>
-                                    <input type="text" class="form-control" id="adresse" name="adresse" value="{{ $centre->adresse }}" required>
+                                    <input type="text" class="form-control" id="adresse" name="adresse" value="{{ $centre->adresse }}" >
+                                    @error('adresse')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
                                 <!-- Description -->
                                 <div class="form-group">
                                     <label for="description">Description</label>
                                     <textarea class="form-control" id="description" name="description" rows="2">{{ $centre->description }}</textarea>
+                                    @error('description')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
                                 <!-- Opening Hours -->
                                 <div class="form-group">
                                     <label for="horaire_ouverture">Horaire d'ouverture</label>
-                                    <input type="text" class="form-control" id="horaire_ouverture" name="horaire_ouverture" value="{{ $centre->horaire_ouverture }}" required>
+                                    <input type="text" class="form-control" id="horaire_ouverture" name="horaire_ouverture" value="{{ $centre->horaire_ouverture }}" >
+                                    @error('horaire_ouverture')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
                                 <!-- Contact -->
                                 <div class="form-group">
                                     <label for="contact">Contact</label>
-                                    <input type="text" class="form-control" id="contact" name="contact" value="{{ $centre->contact }}" required>
+                                    <input type="text" class="form-control" id="contact" name="contact" value="{{ $centre->contact }}" >
+                                    @error('contact')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
                                 <!-- Submit Button -->

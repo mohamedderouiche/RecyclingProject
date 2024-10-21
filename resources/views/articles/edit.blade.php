@@ -48,7 +48,7 @@
                 <div class="container">
                     <h1 class="h4 mb-4 text-gray-800">Edit article: {{ $article->name }}</h1>
 
-                    @if ($errors->any())
+                    {{-- @if ($errors->any())
                         <div class="alert alert-danger">
                             <strong>Whoops!</strong> There were some problems with your input.
                             <ul>
@@ -57,7 +57,7 @@
                                 @endforeach
                             </ul>
                         </div>
-                    @endif
+                    @endif --}}
 
                     <form action="{{ route('articles.update', $article->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -66,19 +66,28 @@
                         <!-- Title input -->
                         <div class="form-group">
                             <label for="title">Title:</label>
-                            <input type="text" class="form-control form-control-sm" name="title" id="title" value="{{ old('title', $article->title) }}" required>
+                            <input type="text" class="form-control form-control-sm" name="title" id="title" value="{{ old('title', $article->title) }}" >
+                            @error('title')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                         </div>
 
                         <!-- Contenu input -->
                         <div class="form-group">
                             <label for="contenu">Contenu:</label>
-                            <textarea class="form-control form-control-sm" name="contenu" id="contenu" rows="3" required>{{ old('contenu', $article->contenu) }}</textarea>
+                            <textarea class="form-control form-control-sm" name="contenu" id="contenu" rows="3" >{{ old('contenu', $article->contenu) }}</textarea>
+                            @error('contenu')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                         </div>
 
                         <!-- Image input -->
                         <div class="form-group">
                             <label for="image">Image:</label>
                             <input type="file" class="form-control-file" name="image" id="image">
+                            @error('image')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                             @if ($article->image)
                                 <div class="mt-2">
                                     <img src="{{ asset('storage/' . $article->image) }}" alt="Current Image" class="img-thumbnail" style="max-height: 100px;">
@@ -91,6 +100,9 @@
                         <div class="form-group">
                             <label for="pdf">PDF File:</label>
                             <input type="file" class="form-control-file" name="pdf" id="pdf">
+                            @error('pdf')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                             @if ($article->pdf)
                                 <div class="mt-2">
                                     <a href="{{ asset('storage/' . $article->pdf) }}" target="_blank" class="btn btn-sm btn-info">View Current PDF</a>

@@ -51,13 +51,19 @@
                                 <!-- Centre Name -->
                                 <div class="form-group">
                                     <label for="nom">Nom du Déchet</label>
-                                    <input type="text" class="form-control" id="nom" name="categorie" value="{{ $dechet->categorie }}" required>
+                                    <input type="text" class="form-control" id="nom" name="categorie" value="{{ $dechet->categorie }}" >
+                                    @error('categorie')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
                                 <!-- Quantity -->
                                 <div class="form-group">
                                     <label for="quantite">Quantité</label>
-                                    <input type="number" class="form-control" id="quantite" name="quantite" value="{{ $dechet->quantite }}" required>
+                                    <input type="number" class="form-control" id="quantite" name="quantite" value="{{ $dechet->quantite }}" >
+                                    @error('quantite')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
                                 <!-- Centre Recyclage ID -->
@@ -71,6 +77,9 @@
                                             </option>
                                         @endforeach
                                     </select>
+                                    @error('centre_recyclage_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
                                 <!-- Submit Button -->

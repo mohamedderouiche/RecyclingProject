@@ -35,8 +35,12 @@
                             <div class="form-floating">
                                 <textarea class="form-control" id="description" name="description" placeholder="Describe the issue" style="height: 100px" ></textarea>
                                 @error('description')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
+
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+
+                               
+
                                 <label for="description">Message</label>
                             </div>
                         </div>
