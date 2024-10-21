@@ -1,6 +1,25 @@
+
 pipeline {
     agent any
     stages {
+    stage('Clean Up') {
+    steps {
+        script {
+            // Stop and remove the application container if needed
+            sh 'docker stop rescuefood-container || true'
+            sh 'docker rm rescuefood-container || true'
+            
+            // Stop and remove Prometheus container if it exists
+            sh 'docker stop /prometheus-container || true'
+            sh 'docker rm /prometheus-container || true'
+
+            // Stop and remove Grafana container if it exists
+            sh 'docker stop grafana-container || true'
+            sh 'docker rm grafana-container || true'
+        }
+    }
+}
+
         stage('Docker Login') {
             steps {
                 script {
@@ -23,7 +42,7 @@ pipeline {
             steps {
                 script {
                     // Run the application image as a container
-                    sh 'docker run -d --name recyclingproject-container mohamedderouiche/RecyclingProject:latest'
+                  sh'docker run -d --name recyclingproject-container -p 8000:8000 mohamedderouiche/RecyclingProject:latest'
                 }
             }
         }
@@ -49,7 +68,7 @@ pipeline {
                 emailext attachLog: true, 
                          body: 'Check our logs after running the pipeline', 
                          compressLog: true, 
-                         subject: 'Jenkins Output Logs from Mohamed amine Pipeline', 
+                         subject: 'Jenkins Output Logs from better call us Pipeline', 
                          to: 'derouiche568@gmail.com'
             }
         }
