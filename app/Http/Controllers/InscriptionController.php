@@ -75,4 +75,15 @@ class InscriptionController extends Controller
         // Redirect to the inscriptions list with a success message
         return redirect()->route('inscriptions.index')->with('success', 'Le statut de l\'inscription a été mis à jour avec succès.');
     }
+
+    public function show($id)
+{
+    // Find the inscription by ID and eager load the associated formation
+    $inscription = Inscription::with('formation')->findOrFail($id);
+
+    // Return the view with the inscription and formation data
+    return view('inscriptions.details', compact('inscription'));
+}
+
+
 }

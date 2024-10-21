@@ -124,13 +124,13 @@ Route::get('/formations/{id}/edit', [FormationController::class, 'edit'])->name(
 Route::put('/formations/{id}', [FormationController::class, 'update'])->name('formations.update');
 Route::delete('/formations/{id}', [FormationController::class, 'destroy'])->name('formations.destroy'); 
 Route::get('/formations/{id}/inscription', [InscriptionController::class, 'create'])->name('inscription.form');
-
 // Route pour enregistrer l'inscription
 Route::post('/formations/{id}/inscription', [InscriptionController::class, 'store'])->name('inscription.store');
-
 Route::resource('/inscriptions', InscriptionController::class);
 Route::get('/inscriptions', [InscriptionController::class, 'index'])->name('inscriptions.index');
+Route::get('/inscriptions/{id}', [InscriptionController::class, 'show'])->name('inscriptions.show');
 Route::patch('/inscriptions/{id}/status', [InscriptionController::class, 'updateStatus'])->name('inscriptions.updateStatus');
+Route::get('/formations/{id}/inscriptions', [FormationController::class, 'showInscriptions'])->name('formations.inscriptions');
 
 
 

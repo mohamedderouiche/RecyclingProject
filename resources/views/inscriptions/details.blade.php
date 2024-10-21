@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Green Recycle</title>
+    <title>Green Recycle - Détails Inscription</title>
     <link rel="icon" href="{{ asset('img/logo/recycling.ico') }}" type="image/x-icon">
     <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
@@ -35,34 +35,48 @@
                         <i class="fa fa-bars"></i>
                     </button>
                     @include('admin.topbar')
-                    <!-- End of Topbar -->
                 </nav>
+                <!-- End of Topbar -->
 
                 <div class="container-fluid text-center">
-                    <h1 class="h3 mb-4 text-gray-800">{{ $formation->name }}</h1>
+                    <h1 class="h3 mb-4 text-gray-800">Détails de l'inscription</h1>
                     
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Détails de la formation</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Informations d'inscription</h6>
                         </div>
                         <div class="card-body">
                             <div class="text-center mb-3">
+                                <!-- You can add an image if relevant, similar to the formation details -->
+                            </div>
+                            <p><strong>Nom:</strong> {{ $inscription->nom }} {{ $inscription->prenom }}</p>
+                            <p><strong>Email:</strong> {{ $inscription->email }}</p>
+                            <p><strong>Date d'inscription:</strong> {{ \Carbon\Carbon::parse($inscription->date_inscription)->format('d M, Y') }}</p>
+                            <p><strong>Statut:</strong> {{ $inscription->statut }}</p>
+
+                            <h5 class="card-title mt-4">Formation Associée</h5>
+                            @if($inscription->formation)
+                            <div class="text-center mb-3">
                                 <img src="{{ asset('storage/' . $formation->image) }}" class="img-fluid" alt="Image de la formation" width="400" />
                             </div>
-                            <p><strong>Description:</strong> {{ $formation->description }}</p>
-                            <p><strong>Date:</strong> {{ $formation->date_formation }}</p>
-                            <p><strong>Durée:</strong> {{ $formation->duree }}</p>
-                            <p><strong>Lieu:</strong> {{ $formation->lieu }}</p>
-                            
-                            <form action="{{ route('formations.inscriptions', $formation->id) }}" method="GET">
-    <button type="submit" class="btn btn-success">Consulter les inscriptions</button>
-</form>
+                                <p><strong>Nom de la formation:</strong> {{ $inscription->formation->name }}</p>
+                                <p><strong>Description:</strong> {{ $inscription->formation->description }}</p>
+                                <p><strong>Date de formation:</strong> {{ \Carbon\Carbon::parse($inscription->formation->date_formation)->format('d M, Y') }}</p>
+                                <p><strong>Durée:</strong> {{ $inscription->formation->duree }} heures</p>
+                                <p><strong>Lieu:</strong> {{ $inscription->formation->lieu }}</p>
+                            @else
+                                <p>Aucune formation associée.</p>
+                            @endif
 
+                            <a href="{{ route('inscriptions.index') }}" class="btn btn-primary mt-3">Retourner à la liste des inscriptions</a>
 
                         </div>
                     </div>
                 </div>
 
+                <!-- Footer -->
+                @include('admin.footer')
+                <!-- End of Footer -->
 
             </div>
             <!-- End of Content Wrapper -->
@@ -75,7 +89,6 @@
             <i class="fas fa-angle-up"></i>
         </a>
 
-        <!-- Logout Modal-->
         <!-- Bootstrap core JavaScript-->
         <script src="admin/vendor/jquery/jquery.min.js"></script>
         <script src="admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

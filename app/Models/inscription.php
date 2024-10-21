@@ -20,10 +20,13 @@ class Inscription extends Model
         'updated_at',
     ];
 
+ 
+
     public function formation()
-    {
-        return $this->belongsTo(Formation::class ,'name');
-    }
+{
+    return $this->belongsTo(Formation::class, 'formations_id'); // Use 'formations_id' to match the foreign key
+}
+
 
     public function user()
     {
