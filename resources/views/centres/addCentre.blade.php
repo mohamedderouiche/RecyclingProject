@@ -55,37 +55,55 @@
                                 <!-- Image Upload -->
                                 <div class="form-group">
                                     <label for="image">Centre Image</label>
-                                    <input type="file" class="form-control" id="image" name="image" required>
+                                    <input type="file" class="form-control" id="image" name="image" >
+                                    @error('image')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
                                 <!-- Centre Name -->
                                 <div class="form-group">
                                     <label for="nom">Nom du Centre</label>
-                                    <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom du centre" required>
+                                    <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom du centre" >
+                                    @error('nom')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
                                 <!-- Address -->
                                 <div class="form-group">
                                     <label for="adresse">Adresse</label>
-                                    <input type="text" class="form-control" id="adresse" name="adresse" placeholder="Adresse du centre" required>
+                                    <input type="text" class="form-control" id="adresse" name="adresse" placeholder="Adresse du centre" >
+                                    @error('adresse')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
                                 <!-- Description -->
                                 <div class="form-group">
                                     <label for="description">Description</label>
                                     <textarea class="form-control" id="description" name="description" rows="2" placeholder="Description du centre"></textarea>
+                                    @error('description')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
                                 <!-- Opening Hours -->
                                 <div class="form-group">
                                     <label for="horaire_ouverture">Horaire d'ouverture</label>
-                                    <input type="text" class="form-control" id="horaire_ouverture" name="horaire_ouverture" placeholder="Horaire d'ouverture" required>
+                                    <input type="text" class="form-control" id="horaire_ouverture" name="horaire_ouverture" placeholder="Horaire d'ouverture" >
+                                    @error('horaire_ouverture')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
                                 <!-- Contact -->
                                 <div class="form-group">
                                     <label for="contact">Contact</label>
-                                    <input type="text" class="form-control" id="contact" name="contact" placeholder="Contact" required>
+                                    <input type="text" class="form-control" id="contact" name="contact" placeholder="Contact" >
+                                    @error('contact')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
                                 <!-- Submit Button -->

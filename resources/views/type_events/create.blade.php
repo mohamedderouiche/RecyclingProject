@@ -83,7 +83,7 @@
                     <div class="row justify-content-center">
                         <div class="col-md-6">
                             {{-- Affichage des erreurs de validation --}}
-                            @if ($errors->any())
+                            {{-- @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
                                     @foreach ($errors->all() as $error)
@@ -91,7 +91,7 @@
                                     @endforeach
                                 </ul>
                             </div>
-                            @endif
+                            @endif --}}
 
                             {{-- Formulaire pour créer un nouveau TypeEvent --}}
                             <form action="{{ route('type_events.store') }}" method="POST" enctype="multipart/form-data">

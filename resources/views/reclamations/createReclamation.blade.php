@@ -23,7 +23,9 @@
                                         <option value="{{ $type->id }}">{{ $type->name }}</option>
                                     @endforeach
                                 </select>
-
+                                @error('type_reclamation_id')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                             </div>
                         </div>
 
@@ -31,7 +33,10 @@
                         <!-- Description -->
                         <div class="col-12">
                             <div class="form-floating">
-                                <textarea class="form-control" id="description" name="description" placeholder="Describe the issue" style="height: 100px" required></textarea>
+                                <textarea class="form-control" id="description" name="description" placeholder="Describe the issue" style="height: 100px" ></textarea>
+                                @error('description')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 <label for="description">Message</label>
                             </div>
                         </div>
@@ -44,6 +49,9 @@
                                 <i class="fas fa-cloud-upload-alt image-upload-icon"></i>
                                 <p id="upload-text">Click to upload an image</p>
                                 <input type="file" id="image" name="image" class="form-control-file d-none" accept="image/*" onchange="previewImage(event)" />
+                                @error('image')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                                 <img id="image-preview" class="image-upload-preview d-none" alt="Image Preview" style="margin-top: 10px; max-width: 100%; height: auto; border-radius: 10px;" />
                             </div>
                             <small class="form-text text-muted mt-2">
