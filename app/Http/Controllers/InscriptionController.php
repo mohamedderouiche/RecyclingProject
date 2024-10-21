@@ -5,58 +5,74 @@ namespace App\Http\Controllers;
 use App\Models\Inscription;
 use App\Models\Formation;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 
 class InscriptionController extends Controller
 {
-    // Front Office: User registers for a formation
-    public function store(Request $request, $formation_id)
+    public function showForm($formationId)
     {
-        $validated = $request->validate([
-            'users_id' => 'required|exists:users,id',
-        ]);
-
-        Inscription::create([
-            'formations_id' => $formation_id,
-            'users_id' => $validated['users_id'],
-            'date_inscription' => now(),
-            'statut' => 'en attente',
-        ]);
-
-        return redirect()->route('formations.index')->with('success', 'Registered successfully for the formation!');
+        $formation = Formation::findOrFail($formationId);
+        return view('inscriptions.inscription', compact('formation'));
     }
 
-    // Back Office: Show all inscriptions for a specific formation
-    public function index($formation_id)
+    public function create($formationId)
     {
-        $inscriptions = Inscription::where('formations_id', $formation_id)->get();
-        return view('admin.inscriptions.index', compact('inscriptions', 'formation_id'));
+        $formation = Formation::findOrFail($formationId);
+            return view('inscriptions.inscription', compact('formation'));
     }
 
-    // Back Office: Accept or reject inscription
-    public function update(Request $request, $id)
+    public function index()
     {
-        $inscription = Inscription::findOrFail($id);
-        $validated = $request->validate([
-            'statut' => 'required|in:accepté,rejeté',
+        // Eager load the 'formation' relationship to avoid null errors
+        $inscriptions = Inscription::with('formation')->get();
+
+        return view('inscriptions.index', compact('inscriptions'));
+    }
+
+ 
+
+    public function store(Request $request, $formationId)
+    {
+        // Valider les données du formulaire
+        $request->validate([
+            'nom' => 'required|string|max:255',
+            'prenom' => 'required|string|max:255',
+            'email' => 'required|email|max:255|regex:/^.+@.+$/',
         ]);
 
-        $inscription->update(['statut' => $validated['statut']]);
+        // Créer une nouvelle inscription
+        $inscription = new Inscription();
+        $inscription->users_id = auth()->user()->id; 
+        $inscription->nom = $request->nom;
+        $inscription->prenom = $request->prenom;
+        $inscription->email = $request->email;
+        $inscription->statut = 'en cours';
+        $inscription->formations_id = $formationId; 
+        $inscription->date_inscription = now();
 
-        // Send email notification to the user
-        Mail::to($inscription->user->email)->send(new \App\Mail\InscriptionStatusUpdated($inscription));
 
-        return redirect()->route('admin.inscriptions.index', $inscription->formations_id)
-            ->with('success', 'Inscription status updated successfully!');
+        // Sauvegarder l'inscription dans la base de données
+        $inscription->save();
+
+        // Rediriger vers la page de succès ou vers la liste des formations avec un message de succès
+        return redirect()->route('formations.frontdetails', $formationId)->with('success', 'Votre inscription a été réalisée avec succès !');
+
     }
 
-    // Back Office: Delete inscription
-    public function destroy($id)
+    public function updateStatus(Request $request, $inscriptionId)
     {
-        $inscription = Inscription::findOrFail($id);
-        $inscription->delete();
+        // Find the inscription by ID
+        $inscription = Inscription::findOrFail($inscriptionId);
 
-        return redirect()->route('admin.inscriptions.index', $inscription->formations_id)
-            ->with('success', 'Inscription deleted successfully!');
+        // Validate the new status
+        $request->validate([
+            'statut' => 'required|string|in:en cours,acceptée,refusée',
+        ]);
+
+        // Update the status of the inscription
+        $inscription->statut = $request->input('statut');
+        $inscription->save();
+
+        // Redirect to the inscriptions list with a success message
+        return redirect()->route('inscriptions.index')->with('success', 'Le statut de l\'inscription a été mis à jour avec succès.');
     }
 }

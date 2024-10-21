@@ -88,8 +88,9 @@
             <span>View Formations</span>
         </a>
     </li>
-    {{-- <li class="nav-item">
-        <a class="nav-link" href="#">
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url ('/inscriptions')}}">
+
             <i class="fas fa-fw fa-chalkboard-teacher"></i>
             <span>View Inscriptions</span>
         </a>
@@ -98,7 +99,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Formation Programs:</h6>
                 <a class="collapse-item" href="{{ url ('/formations')}}">View Formations</a>
-                <a class="collapse-item" href="#">View Inscriptions</a>
+                <a class="collapse-item" href="{{ url ('/inscriptions')}}">View Inscriptions</a>
             </div>
         </div>
     </li> --}}

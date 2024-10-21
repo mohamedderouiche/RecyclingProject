@@ -21,9 +21,11 @@ class formation extends Model
         'updated_at',
     ];
 
-    public function inscription(){
-        return $this->hasMany(Inscription::class);
+    public function inscriptions()
+    {
+        return $this->hasMany(Inscription::class, 'formations_id');
     }
+    
    
     public function user()
     {
