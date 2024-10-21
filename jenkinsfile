@@ -46,13 +46,14 @@ pipeline {
             }
         }
         stage('Prometheus Setup') {
-            steps {
-                script {
-                    // Run Prometheus container directly with volume mapping
-                    sh 'sudo docker run -d --name prometheus-container -p 9091:9090 -v $(pwd)/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus'
-                }
-            }
+    steps {
+        script {
+            // Run Prometheus container directly with volume mapping
+            sh 'sudo docker run -d --name prometheus-container -p 9091:9090 -v /var/lib/jenkins/workspace/RecyclingProjectLaravel/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus'
         }
+    }
+}
+
         stage('Grafana Setup') {
             steps {
                 script {
