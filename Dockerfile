@@ -32,4 +32,4 @@ RUN npm install
 CMD php artisan serve
 
 # Expose the port for the application
-EXPOSE 8000
+EXPOSE 8001
