@@ -90,7 +90,6 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Title</th>
                 <th>Actions</th>
             </tr>
@@ -98,7 +97,6 @@
         <tbody>
             @foreach ($articles as $article)
                 <tr>
-                    <td>{{ $article->id }}</td>
                     <td>{{ $article->title }}</td>
                     <td>
                         <div class="btn-group" role="group" aria-label="Actions">

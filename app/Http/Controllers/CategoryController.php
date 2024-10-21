@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\category;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -21,8 +21,8 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
+            'name' => 'required|string|min:3|max:255', // Minimum 3 caractères
+            'description' => 'required|string|min:5',   // Minimum 5 caractères
         ]);
 
         Category::create($request->all());
@@ -42,8 +42,8 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
+            'name' => 'required|string|min:3|max:255', // Minimum 3 caractères
+            'description' => 'required|string|min:5',   // Minimum 5 caractères
         ]);
 
         $category->update($request->all());
@@ -55,6 +55,7 @@ class CategoryController extends Controller
         $category->delete();
         return redirect()->route('categories.index')->with('success', 'Category deleted successfully.');
     }
+
     public function categoriesIndex()
     {
         // Récupérer toutes les catégories

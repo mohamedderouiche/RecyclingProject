@@ -1,3 +1,5 @@
+
+
 @extends('reclamations.layoutFront')  <!-- Extending the admin layout -->
 
 @section('content')
@@ -14,14 +16,16 @@
                         <!-- Type of Reclamation -->
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <select class="form-control" id="typeReclamation" name="type_reclamation_id" required
+                                <select class="form-control" id="typeReclamation" name="type_reclamation_id"
                                     style="width: 100%; height: 58px; background-color: #ffffff; color: #6c757d; border: 1px solid #ced4da; padding: 12px;">
                                     <option value="" disabled selected>Select Type   of Reclamation</option>
                                     @foreach($typeReclamations as $type)
                                         <option value="{{ $type->id }}">{{ $type->name }}</option>
                                     @endforeach
                                 </select>
-
+                                @error('type_reclamation_id')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                             </div>
                         </div>
 
@@ -29,25 +33,56 @@
                         <!-- Description -->
                         <div class="col-12">
                             <div class="form-floating">
-                                <textarea class="form-control" id="description" name="description" placeholder="Describe the issue" style="height: 100px" required></textarea>
+                                <textarea class="form-control" id="description" name="description" placeholder="Describe the issue" style="height: 100px" ></textarea>
+                                @error('description')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                                 <label for="description">Message</label>
                             </div>
                         </div>
 
                         <!-- Upload Image -->
 
-                        <div class="col-12">
-                            <label for="image" style="color: #6c757d; margin-bottom: 5px; display: block;">
-                                Upload Image (optional)
-                            </label>
-                            <div class="form-floating">
-                                <input type="file" class="form-control" id="image" name="image"
-                                    style="width: 100%;  background-color: #ffffff; color: #6c757d; border: 1px solid #ced4da; padding: 12px; padding-left: 10px;">
+                        <div class="form-group">
+                            <label for="image">Image (optional)</label>
+                            <div class="image-upload-wrapper" onclick="document.getElementById('image').click();">
+                                <i class="fas fa-cloud-upload-alt image-upload-icon"></i>
+                                <p id="upload-text">Click to upload an image</p>
+                                <input type="file" id="image" name="image" class="form-control-file d-none" accept="image/*" onchange="previewImage(event)" />
+                                @error('image')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                                <img id="image-preview" class="image-upload-preview d-none" alt="Image Preview" style="margin-top: 10px; max-width: 100%; height: auto; border-radius: 10px;" />
                             </div>
-                            <small style="color: #6c757d; display: block; margin-top: 5px;">
+                            <small class="form-text text-muted mt-2">
                                 Please upload an image related to your reclamation, such as issues with event organization, recycling center, or formation of recycled products, articles, or other waste related to recycling of waste.
                             </small>
                         </div>
+
+
+                        <style>
+                            .image-upload-wrapper {
+                                border: 2px dashed #ced4da;
+                                padding: 20px;
+                                text-align: center;
+                                cursor: pointer;
+                                margin-top: 10px;
+                                border-radius: 5px;
+                                position: relative; /* Ensure proper positioning */
+                            }
+
+                            .image-upload-icon {
+                                font-size: 40px;
+                                color: #6c757d;
+                            }
+
+                            .image-upload-preview {
+                                width: 100%;
+                                height: auto;
+                                object-fit: cover; /* Ensure the image covers the area without stretching */
+                            }
+                        </style>
+
 
 
 
@@ -69,3 +104,23 @@
     </div>
 </div>
 @endsection
+    <!-- JavaScript for previewing image -->
+
+
+   <script>
+        function previewImage(event) {
+            const preview = document.getElementById('image-preview');
+            const file = event.target.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.classList.remove('d-none');
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Add jQuery if you don't have it -->
+

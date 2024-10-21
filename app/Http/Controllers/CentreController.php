@@ -61,15 +61,13 @@ class CentreController extends Controller
 }
 
 public function show($id)
-    {
-        $centre = CentreRecyclage::findOrFail($id); 
-      
+{
+    $centre = CentreRecyclage::findOrFail($id);
 
-        return view('centres.show', compact('centre')); 
+    $dechets = $centre->dechets; 
 
-
-
-    }
+    return view('centres.show', compact('centre', 'dechets'));
+}
     public function edit(Request $request)
     {
         $centre = CentreRecyclage::find($request->id);

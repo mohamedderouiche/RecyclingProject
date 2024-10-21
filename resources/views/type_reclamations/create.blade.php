@@ -59,7 +59,10 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="name">Reclamation Type Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Reclamation Type" required>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Reclamation Type" >
+                                    @error('name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-block">Create</button>
                             </form>

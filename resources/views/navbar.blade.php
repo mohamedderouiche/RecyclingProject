@@ -7,12 +7,13 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a  href="{{ url ('/home')}}" class="nav-item nav-link active">Home</a>           
+            <a  href="{{ url ('/home')}}" class="nav-item nav-link active">Home</a>
             <a  href="{{ url ('/article')}}" class="nav-item nav-link">Articles</a>
+            <a  href="{{ url ('/categories-list')}}" class="nav-item nav-link">Produit</a>
             <a href="{{ url ('/teams')}}" class="nav-item nav-link">Teams</a>
             <a href="{{ url ('/events/user')}}" class="nav-item nav-link">Events</a>
             <a href="{{ url ('/Nosformations')}}" class="nav-item nav-link">Trainings</a>
-           
+
 
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Reclamation</a>
@@ -32,6 +33,19 @@
 
 
         </div>
-        <a href="{{ url ('/login')}}" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Login<i class="fa fa-arrow-right ms-3"></i></a>
+        @if(!auth()->check())
+    <a href="{{ url('/login') }}" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Login<i class="fa fa-arrow-right ms-3"></i></a>
+@else
+<form method="POST" action="{{ route('logout') }}">
+    @csrf
+    <a class="dropdown-item" href="{{ route('logout') }}"
+        onclick="event.preventDefault(); this.closest('form').submit();">
+        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+        {{ __('Log Out') }}
+    </a>
+</form>
+
+@endif
+
     </div>
 </nav>
