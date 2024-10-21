@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="d-flex justify-content-center mt-3">
-            <a href="{{ url('/reclamationsadmin') }}" class="btn btn-primary">Retour</a>
+            <a href="{{ url('/reclamationsadmin') }}" class="btn btn-primary">return</a>
         </div>
     </div>
 

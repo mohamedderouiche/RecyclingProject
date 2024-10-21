@@ -54,27 +54,27 @@ class TypeEventController extends Controller
             'description' => 'required|string',
             'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
         ]);
-    
+
         // Vérifier si un fichier image a été téléchargé
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $filename = time() . '.' . $file->getClientOriginalExtension();
             $path = $file->storeAs('typeevent_image', $filename, 'public');
-            
+
             // Ajouter le chemin de l'image dans les données validées
             $validated['image'] = $path;
         }
-    
+
         // Assigner l'ID de l'utilisateur connecté
-        $validated['users_id'] = auth()->id(); 
-    
+        $validated['users_id'] = auth()->id();
+
         // Créer un nouveau TypeEvent avec les données validées
         TypeEvent::create($validated);
-    
+
         // Rediriger vers l'index avec un message de succès
         return redirect()->route('type_events.index')->with('success', 'TypeEvent created successfully');
     }
-    
+
 
     /**
      * Display the specified resource.
@@ -121,13 +121,13 @@ class TypeEventController extends Controller
             'description' => 'required|string',
             'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
         ]);
-    
+
         // Vérifier si un fichier image a été téléchargé
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $filename = time() . '.' . $file->getClientOriginalExtension();
             $path = $file->storeAs('typeevent_image', $filename, 'public');
-            
+
             // Ajouter le chemin de l'image dans les données validées
             $validated['image'] = $path;
         }
@@ -157,4 +157,20 @@ class TypeEventController extends Controller
         // Rediriger vers l'index avec un message de succès
         return redirect()->route('type_events.index')->with('success', 'TypeEvent deleted successfully');
     }
+
+
+    public function userTypeEventStatistics()
+    {
+        // Get statistics for each user and the total number of events they have added, grouped by event type
+        $statistics = TypeEvent::select('users_id', 'title', \DB::raw('count(*) as total'))
+            ->with('user:id,name') // Load user data, ensure you have a relationship defined
+            ->groupBy('users_id', 'title') // Group by user ID and event title
+            ->get();
+
+        // Return the view with the statistics data
+        return view('type_events.statistics', compact('statistics'));
+    }
+
+
+
 }

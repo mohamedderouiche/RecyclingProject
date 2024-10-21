@@ -127,6 +127,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <a href="{{ route('type_events.statistics') }}" class="btn btn-success">View events Statistics</a>
                 </div>
             </div>
             <!-- Footer -->

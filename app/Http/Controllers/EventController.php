@@ -116,4 +116,9 @@ class EventController extends Controller
         $events = Event::where('type_events_id', $id)->get();
         return view('events.eventUser', compact('events'));
     }
+
+
+ 
+
+
 }
