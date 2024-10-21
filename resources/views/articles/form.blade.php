@@ -48,7 +48,7 @@
                                 <!-- Title -->
                                 <div class="form-group">
                                     <label for="title">Article Title</label>
-                                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter article title" value="{{ old('title', $article->title ?? '') }}" required>
+                                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter article title" value="{{ old('title', $article->title ?? '') }}" >
                                 </div>
 
                                 <!-- Content -->
