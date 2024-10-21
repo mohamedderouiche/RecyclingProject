@@ -40,9 +40,7 @@
                         <h5 class="text-dark">{{ $formation->name }}</h5>
                         <p class="text-muted mb-3">{{ $formation->lieu }}</p>
                         <!-- Registration Button -->
-                        <a class="btn btn-sm btn-primary" href="{{ route('formations.frontdetails', $formation->id) }}">
-                            <i class="fa fa-sign-in-alt text-white me-2"></i>S'inscrire
-                        </a>
+                      
                     </div>
                 </div>
             </div>

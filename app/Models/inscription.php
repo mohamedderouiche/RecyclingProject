@@ -5,13 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class inscription extends Model
+class Inscription extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'formations_id',
-        'users_id',
+        'nom',
+        'prenom',
+        'email',
         'date_inscription',
         'statut',
         'created_at',
@@ -20,10 +22,9 @@ class inscription extends Model
 
     public function formation()
     {
-        return $this->belongsTo(Formation::class);
+        return $this->belongsTo(Formation::class ,'name');
     }
 
-   
     public function user()
     {
         return $this->belongsTo(User::class);

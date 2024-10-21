@@ -9,6 +9,7 @@ use App\Http\Controllers\TypeEventController;
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReclamationController;
 use App\Http\Controllers\Type_ReclamationController;
@@ -119,11 +120,20 @@ Route::get('/Nosformations', [FormationController::class, 'frontindex'])->name('
 Route::post('/formations', [FormationController::class, 'store'])->name('formations.store');
 Route::get('/formations/{id}', [FormationController::class, 'show'])->name('formations.show');
 Route::get('/formationss/{id}', [FormationController::class, 'frontdetails'])->name('formations.frontdetails');
-
 Route::get('/formations/{id}/edit', [FormationController::class, 'edit'])->name('formations.edit');
 Route::put('/formations/{id}', [FormationController::class, 'update'])->name('formations.update');
 Route::delete('/formations/{id}', [FormationController::class, 'destroy'])->name('formations.destroy'); 
-  
+Route::get('/formations/{id}/inscription', [InscriptionController::class, 'create'])->name('inscription.form');
+
+// Route pour enregistrer l'inscription
+Route::post('/formations/{id}/inscription', [InscriptionController::class, 'store'])->name('inscription.store');
+
+Route::resource('/inscriptions', InscriptionController::class);
+Route::get('/inscriptions', [InscriptionController::class, 'index'])->name('inscriptions.index');
+Route::patch('/inscriptions/{id}/status', [InscriptionController::class, 'updateStatus'])->name('inscriptions.updateStatus');
+
+
+
 // reclamation
 Route::get('/reclamationsadmin', [ReclamationController::class, 'adminIndex'])->name('reclamations.admin_index');
 
