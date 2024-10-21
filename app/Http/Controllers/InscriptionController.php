@@ -36,7 +36,7 @@ class InscriptionController extends Controller
         $request->validate([
             'nom' => 'required|string|max:255',
             'prenom' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'email' => 'required|email|max:255|regex:/^.+@.+$/',
         ]);
 
         // Créer une nouvelle inscription

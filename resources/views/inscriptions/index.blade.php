@@ -117,7 +117,7 @@
                                                 <select name="statut" class="form-select-status" onchange="this.form.submit()">
                                                     <option value="en cours" {{ $inscription->statut == 'en cours' ? 'selected' : '' }}>En cours</option>
                                                     <option value="acceptée" {{ $inscription->statut == 'acceptée' ? 'selected' : '' }}>Acceptée</option>
-                                                    <option value="refusée" {{ $inscription->statut == 'refusée' ? 'selected' : '' }}>Refuse</option>
+                                                    <option value="refusée" {{ $inscription->statut == 'refusée' ? 'selected' : '' }}>Refusée</option>
                                                 </select>
                                             </form>
                                         </td>
