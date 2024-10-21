@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\TypeEvent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TypeEventController extends Controller
 {
@@ -161,15 +163,18 @@ class TypeEventController extends Controller
 
     public function userTypeEventStatistics()
     {
-        // Get statistics for each user and the total number of events they have added, grouped by event type
-        $statistics = TypeEvent::select('users_id', 'title', \DB::raw('count(*) as total'))
-            ->with('user:id,name') // Load user data, ensure you have a relationship defined
-            ->groupBy('users_id', 'title') // Group by user ID and event title
+        // Get statistics for each event type and the total number of events added
+        $statistics = Event::select('type_events_id', 'type_events.title', \DB::raw('COUNT(*) as total'))
+            ->join('type_events', 'events.type_events_id', '=', 'type_events.id') // Join with the type_events table
+            ->groupBy('type_events_id', 'type_events.title') // Group by type event ID and title
             ->get();
-
+    
         // Return the view with the statistics data
         return view('type_events.statistics', compact('statistics'));
     }
+    
+    
+    
 
 
 
