@@ -211,6 +211,20 @@
             <div class="comment">
                 <p><strong>{{ $comment->user->name }}:</strong> {{ $comment->content }}</p>
                 <small>{{ $comment->created_at->diffForHumans() }}</small>
+                @auth
+        <form action="{{ route('comments.update', $comment->id) }}" method="POST" style="display: inline;">
+            @csrf
+            @method('PUT')
+            <textarea name="content" rows="2" class="form-control" placeholder="Edit your comment">{{ $comment->content }}</textarea>
+            <button type="submit" class="btn btn-primary btn-sm">Update</button>
+        </form>
+
+        <form action="{{ route('comments.destroy', $comment->id) }}" method="POST" style="display: inline;">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this comment?')">Delete</button>
+        </form>
+        @endauth
             </div>
             @endforeach
         </div>
@@ -226,6 +240,7 @@
         <p>Please <a href="{{ route('login') }}">log in</a> to comment.</p>
         @endauth
     </div>
+
 </body>
 
 </html>

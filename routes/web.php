@@ -98,9 +98,12 @@ Route::get('/articles/{article}/edit', [ArticleController::class, 'edit'])->name
 Route::put('/articles/update/{article}', [ArticleController::class, 'update'])->name('articles.update');
 Route::get('/article/{article}/download', [ArticleController::class, 'downloadArticlePDF'])->name('articles.download');
 
-
 Route::post('/articles/{article}/comments', [CommentController::class, 'store'])->name('comments.store');
 Route::get('/articles/{article}/comments', [CommentController::class, 'index'])->name('comments.index');
+Route::put('/comments/{id}', [CommentController::class, 'update'])->name('comments.update');
+Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
+
+
 
 // Display a specific TypeEvent by ID
 Route::get('/type_events/{id}', [TypeEventController::class, 'show'])->name('type_events.show');

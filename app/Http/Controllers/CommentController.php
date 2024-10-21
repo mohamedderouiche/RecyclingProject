@@ -32,4 +32,38 @@ class CommentController extends Controller
 
         return view('articles.show', compact('article'));
     }
+
+    // CommentController.php
+
+public function update(Request $request, $id)
+{
+    $request->validate([
+        'content' => 'required|string|max:500',
+    ]);
+
+    $comment = Comment::findOrFail($id);
+    // Ensure the comment belongs to the authenticated user
+    if ($comment->user_id !== auth()->id()) {
+        return redirect()->back()->with('error', 'You do not have permission to update this comment.');
+    }
+
+    $comment->update([
+        'content' => $request->content,
+    ]);
+
+    return redirect()->back()->with('success', 'Comment updated successfully!');
+}
+
+public function destroy($id)
+{
+    $comment = Comment::findOrFail($id);
+    // Ensure the comment belongs to the authenticated user
+    if ($comment->user_id !== auth()->id()) {
+        return redirect()->back()->with('error', 'You do not have permission to delete this comment.');
+    }
+
+    $comment->delete();
+    return redirect()->back()->with('success', 'Comment deleted successfully!');
+}
+
 }
