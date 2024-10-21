@@ -63,6 +63,17 @@
             "pestphp/pest-plugin": true
         }
     },
+
+        "repositories": [{
+          "type": "composer",
+          "url": "https://flex.symfony.com",
+          "options" : {
+            "ssl" : {
+              "cafile" : "cacert.pem"
+            }
+          }
+        }],
+
     "minimum-stability": "stable",
     "prefer-stable": true
 }
