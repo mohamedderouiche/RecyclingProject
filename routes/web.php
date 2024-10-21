@@ -87,7 +87,7 @@ Route::get('/categories/{id}', [ProductController::class, 'displayProductByCateg
 Route::get('/products/front/{product}', [ProductController::class, 'showFront'])->name('products.detailfront');
 // Event
 //Route::get('/events/statistics', [EventController::class, 'userEventStatistics'])->name('events.statistics');;
-Route::get('/type-events/statistics', [TypeEventController::class, 'userTypeEventStatistics'])->middleware('auth')->name('type_events.statistics');
+Route::get('/type-events/statistics', [EventController::class, 'userTypeEventStatistics'])->middleware('auth')->name('type_events.statistics');
 
 Route::get('/events/user', [EventController::class, 'indexUser'])->name('events.indexUser');
 Route::get('/type-events', [TypeEventController::class, 'index'])->name('type_events.index');

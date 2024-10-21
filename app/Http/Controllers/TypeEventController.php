@@ -159,17 +159,7 @@ class TypeEventController extends Controller
     }
 
 
-    public function userTypeEventStatistics()
-    {
-        // Get statistics for each user and the total number of events they have added, grouped by event type
-        $statistics = TypeEvent::select('users_id', 'title', \DB::raw('count(*) as total'))
-            ->with('user:id,name') // Load user data, ensure you have a relationship defined
-            ->groupBy('users_id', 'title') // Group by user ID and event title
-            ->get();
-
-        // Return the view with the statistics data
-        return view('type_events.statistics', compact('statistics'));
-    }
+  
 
 
 
