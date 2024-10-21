@@ -7,11 +7,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Green Recycle</title>
+    <title>Green Recycle - Article Details</title>
     <link rel="icon" href="{{ asset('img/logo/recycling.ico') }}" type="image/x-icon">
     <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900" rel="stylesheet">
+    <style>
+        .content-title {
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #2c3e50;
+        }
+        .article-content {
+            text-align: center;
+        }
+        .article-image {
+            margin-bottom: 20px;
+        }
+        .btn-back {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .btn-back:hover {
+            background-color: #218838;
+        }
+        .card-body {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 
 <body id="page-top">
@@ -38,23 +69,30 @@
                     <!-- End of Topbar -->
                 </nav>
 
-                <div class="container-fluid text-center">
-                    <h1 class="h3 mb-4 text-gray-800">{{ $article->title }}</h1>
-                    
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Détails de l'article</h6>
+                <!-- Page Content -->
+                <div class="container-fluid">
+                    <h1 class="content-title">Article Details</h1>
+
+                    <div class="card-body article-content">
+                        <div class="article-image">
+                            <img src="{{ asset('storage/' . $article->image) }}" class="img-fluid rounded" alt="Image of the article" width="400" />
                         </div>
-                        <div class="card-body">
-                            <div class="text-center mb-3">
-                                <img src="{{ asset('storage/' . $article->image) }}" class="img-fluid" alt="Image de l'article" width="400" />
-                            </div>
-                            <p><strong>Contenu:</strong> {{ $article->contenu }}</p>
-                         
-                           
+
+                        <p><strong>Content:</strong> {{ $article->contenu }}</p>
+
+                        <!-- Display PDF if available -->
+                        @if ($article->pdf)
+                        <div class="mt-4">
+                            <p><strong>Download Article PDF:</strong></p>
+                            <a href="{{ asset('storage/' . $article->pdf) }}" target="_blank" class="btn btn-secondary">View PDF</a>
                         </div>
+                        @endif
+
+                        <!-- Back to Articles Button -->
+                        <a href="{{ route('articles.index') }}" class="btn btn-back">Back to Articles</a>
                     </div>
                 </div>
+                <!-- End of Page Content -->
 
                 <!-- Footer -->
                 @include('admin.footer')
@@ -71,7 +109,6 @@
             <i class="fas fa-angle-up"></i>
         </a>
 
-        <!-- Logout Modal-->
         <!-- Bootstrap core JavaScript-->
         <script src="admin/vendor/jquery/jquery.min.js"></script>
         <script src="admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -79,11 +116,6 @@
         <script src="admin/vendor/jquery-easing/jquery.easing.min.js"></script>
         <!-- Custom scripts for all pages-->
         <script src="admin/js/sb-admin-2.min.js"></script>
-        <!-- Page level plugins -->
-        <script src="admin/vendor/chart.js/Chart.min.js"></script>
-        <!-- Page level custom scripts -->
-        <script src="admin/js/demo/chart-area-demo.js"></script>
-        <script src="admin/js/demo/chart-pie-demo.js"></script>
 
     </body>
 </html>

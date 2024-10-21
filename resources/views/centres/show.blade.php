@@ -57,9 +57,16 @@
                 <p class="card-text"><strong>Contact:</strong> {{ $centre->contact }}</p>
                 <p class="card-text"><strong>Description:</strong> {{ $centre->description }}</p>
                 <p class="card-text"><strong>Operating Hours:</strong> {{ $centre->horaire_ouverture }}</p>
+                @foreach($dechets as $dechet)
+                <h5 class="card-title"> Type of Dechets : {{ $dechet->categorie }}</h5>
+                @endforeach
+
+
 
             </div>
         </div>
+
+       
     </div>
 
     <!-- Footer Start -->

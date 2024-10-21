@@ -19,4 +19,10 @@ class CentreRecyclage extends Model
         'updated_at',
     ];
 
+
+    public function dechets()
+{
+    return $this->hasMany(Dechet::class);
+}
+
 }

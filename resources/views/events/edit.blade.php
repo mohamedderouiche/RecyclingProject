@@ -49,11 +49,33 @@
 
 <body id="page-top">
 
+    <!-- Page Wrapper -->
     <div id="wrapper">
+
+        <!-- Sidebar -->
         @include('admin.sidebar')
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
+
             <div id="content">
-                @include('admin.topbar')
+
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-dark bg-light topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars">zaazaz</i>
+                    </button>
+
+                    <!-- Topbar Search -->
+                   @include('admin.topbar')
+                <!-- End of Topbar -->
+
+           <div>
+
 
                 <div class="container mt-5">
                     <h1 class="mb-4 text-center">Edit Event</h1>
@@ -78,12 +100,18 @@
 
                                 <div class="form-group">
                                     <label for="title">Title</label>
-                                    <input type="text" id="title" name="title" value="{{ old('title', $event->title) }}" class="form-control" required>
+                                    <input type="text" id="title" name="title" value="{{ old('title', $event->title) }}" class="form-control" >
+                                    @error('title')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
                                 <div class="form-group">
                                     <label for="description">Description</label>
-                                    <textarea id="description" name="description" class="form-control" required>{{ old('description', $event->description) }}</textarea>
+                                    <textarea id="description" name="description" class="form-control" >{{ old('description', $event->description) }}</textarea>
+                                    @error('description')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
                                 <!-- Design section for uploading image -->
@@ -93,6 +121,9 @@
                                         <i class="fas fa-cloud-upload-alt image-upload-icon"></i>
                                         <p>Click to upload a new image</p>
                                         <input type="file" id="image" name="image" class="form-control-file d-none" accept="image/*" onchange="previewImage(event)" />
+                                        @error('image')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                         <img id="image-preview" class="image-upload-preview d-none" alt="Image Preview">
                                     </div>
                                     @if ($event->image)

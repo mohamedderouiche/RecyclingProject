@@ -1,0 +1,76 @@
+
+pipeline {
+    agent any
+    stages {
+    stage('Clean Up') {
+    steps {
+        script {
+            // Stop and remove the application container if needed
+            sh 'docker stop rescuefood-container || true'
+            sh 'docker rm rescuefood-container || true'
+            
+            // Stop and remove Prometheus container if it exists
+            sh 'docker stop /prometheus-container || true'
+            sh 'docker rm /prometheus-container || true'
+
+            // Stop and remove Grafana container if it exists
+            sh 'docker stop grafana-container || true'
+            sh 'docker rm grafana-container || true'
+        }
+    }
+}
+
+        stage('Docker Login') {
+            steps {
+                script {
+                    // Login to Docker Hub
+                    withCredentials([usernamePassword(credentialsId: 'DockerHubCredentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                        sh 'echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin'
+                    }
+                }
+            }
+        }
+        stage('Pull Docker Image') {
+            steps {
+                script {
+                    // Pull the Docker image from Docker Hub
+                    sh 'docker pull mohamedderouiche/RecyclingProject:latest'
+                }
+            }
+        }
+        stage('Run Application') {
+            steps {
+                script {
+                    // Run the application image as a container
+                  sh'docker run -d --name recyclingproject-container -p 8000:8000 mohamedderouiche/RecyclingProject:latest'
+                }
+            }
+        }
+      stage('Prometheus Setup') {
+            steps {
+                script {
+                    // Run Prometheus container directly with volume mapping
+                    sh 'docker run -d --name prometheus-container -p 9090:9090 -v $(pwd)/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus'
+                }
+            }
+        }
+        stage('Grafana Setup') {
+            steps {
+                script {
+                    // Run Grafana container directly with volume mapping and environment variable
+                    sh 'docker run -d --name grafana-container -p 3000:3000 -e GF_SECURITY_ADMIN_PASSWORD=esprit -v grafana_data:/var/lib/grafana grafana/grafana'
+                }
+            }
+        }
+    
+        stage('SMTP Notification Logs') {
+            steps {
+                emailext attachLog: true, 
+                         body: 'Check our logs after running the pipeline', 
+                         compressLog: true, 
+                         subject: 'Jenkins Output Logs from better call us Pipeline', 
+                         to: 'derouiche568@gmail.com'
+            }
+        }
+    }
+}

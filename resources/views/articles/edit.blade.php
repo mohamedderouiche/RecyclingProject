@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,14 +15,10 @@
     <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template-->
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
-    
+
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-    
-   
-
 </head>
-
 
 <body id="page-top">
 
@@ -39,147 +34,111 @@
 
             <div id="content">
 
-
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-dark bg-light topbar mb-4 static-top shadow">
-
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars">zaazaz</i>
+                        <i class="fa fa-bars"></i>
                     </button>
-
                     <!-- Topbar Search -->
-                   @include('admin.topbar')
+                    @include('admin.topbar')
+                </nav>
                 <!-- End of Topbar -->
 
-           <div>
-   
+                <div class="container">
+                    <h1 class="h4 mb-4 text-gray-800">Edit article: {{ $article->name }}</h1>
 
-<!-- resources/views/articles/create.blade.php -->
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <strong>Whoops!</strong> There were some problems with your input.
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
-<!DOCTYPE html>
-<html>
+                    <form action="{{ route('articles.update', $article->id) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
 
-<body>
+                        <!-- Title input -->
+                        <div class="form-group">
+                            <label for="title">Title:</label>
+                            <input type="text" class="form-control form-control-sm" name="title" id="title" value="{{ old('title', $article->title) }}" required>
+                        </div>
 
-    @if ($errors->any())
-        <div>
-            <strong>Whoops!</strong> There were some problems with your input.
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-    <div class="container">
+                        <!-- Contenu input -->
+                        <div class="form-group">
+                            <label for="contenu">Contenu:</label>
+                            <textarea class="form-control form-control-sm" name="contenu" id="contenu" rows="3" required>{{ old('contenu', $article->contenu) }}</textarea>
+                        </div>
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+                        <!-- Image input -->
+                        <div class="form-group">
+                            <label for="image">Image:</label>
+                            <input type="file" class="form-control-file" name="image" id="image">
+                            @if ($article->image)
+                                <div class="mt-2">
+                                    <img src="{{ asset('storage/' . $article->image) }}" alt="Current Image" class="img-thumbnail" style="max-height: 100px;">
+                                    <p>Current Image</p>
+                                </div>
+                            @endif
+                        </div>
 
-    <div class="container">
-    <h1 class="h4 mb-4 text-gray-800">Edit article: {{ $article->name }}</h1>
+                        <!-- PDF input -->
+                        <div class="form-group">
+                            <label for="pdf">PDF File:</label>
+                            <input type="file" class="form-control-file" name="pdf" id="pdf">
+                            @if ($article->pdf)
+                                <div class="mt-2">
+                                    <a href="{{ asset('storage/' . $article->pdf) }}" target="_blank" class="btn btn-sm btn-info">View Current PDF</a>
+                                </div>
+                            @endif
+                        </div>
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+                        <!-- Submit Button -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-sm">Update Article</button>
+                        </div>
 
-    <form action="{{ route('articles.update', $article->id) }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    @method('PUT')
+                        <!-- Cancel Button -->
+                        <div class="text-center">
+                            <a href="{{ route('articles.index') }}" class="btn btn-secondary btn-sm">Cancel</a>
+                        </div>
+                    </form>
 
-    <!-- Title input with correct name attribute -->
-    <div class="form-group">
-        <label for="title">Title:</label>
-        <input type="text" class="form-control form-control-sm" name="title" id="title" value="{{ old('title', $article->title) }}" required>
-    </div>
-
-    <!-- Contenu input with correct name attribute -->
-    <div class="form-group">
-        <label for="contenu">Contenu:</label>
-        <textarea class="form-control form-control-sm" name="contenu" id="contenu" rows="3" required>{{ old('contenu', $article->contenu) }}</textarea>
-    </div>
-
-    <!-- Image input -->
-    <div class="form-group">
-        <label for="image">Image:</label>
-        <input type="file" class="form-control-file" name="image" id="image">
-        @if ($article->image)
-            <div class="mt-2">
-                <img src="{{ asset('storage/' . $article->image) }}" alt="Current Image" class="img-thumbnail" style="max-height: 100px;">
-                <p>Current Image</p>
+                </div>
             </div>
-        @endif
+
+            <!-- Footer -->
+            @include('admin.footer')
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
     </div>
+    <!-- End of Page Wrapper -->
 
-    <!-- Submit Button -->
-    <div class="text-center">
-        <button type="submit" class="btn btn-primary btn-sm">Update Article</button>
-    </div>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
-    <!-- Cancel Button -->
-    <div class="text-center">
-        <a href="{{ route('articles.index') }}" class="btn btn-secondary btn-sm">Cancel</a>
-    </div>
-</form>
+    <!-- Logout Modal-->
+    @include('admin.logout')
 
-</div>
-</div>
-</body>
-</html>
-               
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset('admin/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-</div>
-               
-<!-- Footer -->
-@include('admin.footer')
-<!-- End of Footer -->
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
-</div>
-<!-- End of Content Wrapper -->
-
-</div>
-<!-- End of Page Wrapper -->
-
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-<i class="fas fa-angle-up"></i>
-</a>
-
-<!-- Logout Modal-->
-@include('admin.logout')
-<!-- Bootstrap core JavaScript-->
-<script src="admin/vendor/jquery/jquery.min.js"></script>
-<script src="admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Core plugin JavaScript-->
-<script src="admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-<!-- Custom scripts for all pages-->
-<script src="admin/js/sb-admin-2.min.js"></script>
-
-<!-- Page level plugins -->
-<script src="admin/vendor/chart.js/Chart.min.js"></script>
-
-<!-- Page level custom scripts -->
-<script src="admin/js/demo/chart-area-demo.js"></script>
-<script src="admin/js/demo/chart-pie-demo.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="{{ asset('admin/js/sb-admin-2.min.js') }}"></script>
 
 </body>
 </html>
-

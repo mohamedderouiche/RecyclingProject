@@ -56,13 +56,19 @@
                                 <!-- Category Name -->
                                 <div class="form-group">
                                     <label for="name">Category Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter category name" required>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter category name" >
+                                    @error('name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
                                 <!-- Category Description -->
                                 <div class="form-group">
                                     <label for="description">Description</label>
-                                    <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter category description" required></textarea>
+                                    <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter category description" ></textarea>
+                                    @error('description')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
                                 <!-- Submit Button -->
