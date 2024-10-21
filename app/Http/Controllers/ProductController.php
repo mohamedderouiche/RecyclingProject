@@ -23,8 +23,8 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
+            'name' => 'required|string|min:3|max:255',
+            'description' => 'required|string|min:5',
             'price' => 'required|numeric',
             'image' => 'required|image',
             'categories_id' => 'required|exists:categories,id',
@@ -44,16 +44,14 @@ class ProductController extends Controller
     }
 
     public function show(Products $product)
-{
-    return view('products.show', compact('product'));
-}
+    {
+        return view('products.show', compact('product'));
+    }
 
-public function showFront(Products $product)
-{
-    return view('products.detailfront', compact('product'));
-}
-
-
+    public function showFront(Products $product)
+    {
+        return view('products.detailfront', compact('product'));
+    }
 
     public function edit(Products $product)
     {
@@ -64,8 +62,8 @@ public function showFront(Products $product)
     public function update(Request $request, Products $product)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
+            'name' => 'required|string|min:3|max:255',
+            'description' => 'required|string|min:5',
             'price' => 'required|numeric',
             'image' => 'nullable|image',
             'categories_id' => 'required|exists:categories,id',
@@ -95,6 +93,4 @@ public function showFront(Products $product)
 
         return view('categories.showfront', compact('products', 'category', 'categories')); // Passer les produits, la catégorie et toutes les catégories
     }
-
-
 }

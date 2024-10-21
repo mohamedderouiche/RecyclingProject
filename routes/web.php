@@ -13,7 +13,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReclamationController;
 use App\Http\Controllers\Type_ReclamationController;
 use App\Http\Controllers\CommentController;
-
+use App\Http\Controllers\DechetController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -175,7 +175,15 @@ Route::delete('/centres/{id}', [CentreController::class, "delete"])->name('centr
 Route::get('/updatecentre/{id}', [CentreController::class, 'edit']);
 Route::post('/update/{id}', [CentreController::class, 'updatecentre']);
 Route::get('/centres/{id}', [CentreController::class, 'show'])->name('centres.show');
+// dechets
+Route::get('dechets',[DechetController::class,'dechets'])->name('dechets.index');
 
+Route::get('addDechet', [DechetController::class,'create'])->name('addDechet');
+Route::post('uploadDechets', [DechetController::class,'uploadDechet'])->name('dechets.upload');
+Route::delete('/dechets/{id}', [DechetController::class, "delete"])->name('dechets.destroy');
+
+Route::get('/updateDechet/{id}', [DechetController::class, 'edit']);
+Route::post('/updateDechet/{id}', [DechetController::class, 'updateDechet']);
 
 });
 
