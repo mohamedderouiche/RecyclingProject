@@ -182,6 +182,24 @@ class ReclamationController extends Controller
         return redirect()->route('reclamations.admin_index')->with('success', 'Reclamation updated successfully.');
     }
 
+    public function getStatusStatistics()
+    {
+        // Count total reclamations by status
+        $totalAccepted = reclamation::where('status_reclamations_id', 1)->count(); // '1' for Accepted
+        $totalRejected = reclamation::where('status_reclamations_id', 2)->count(); // '2' for Rejected
+        $totalEnCours = reclamation::where('status_reclamations_id', 3)->count(); // '3' for En cours
+
+        // Prepare an associative array for the counts
+        $statusStatistics = [
+            'totalAccepted' => $totalAccepted,
+            'totalRejected' => $totalRejected,
+            'totalEnCours' => $totalEnCours
+        ];
+
+        // Return the 'reclamationsstats' view with the statistics data
+        return view('reclamations.stats', compact('statusStatistics'));
+    }
+
 
 
 

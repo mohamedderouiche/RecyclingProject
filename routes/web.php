@@ -148,7 +148,7 @@ Route::get('/formations/{id}', [FormationController::class, 'show'])->name('form
 Route::get('/formationss/{id}', [FormationController::class, 'frontdetails'])->name('formations.frontdetails');
 Route::get('/formations/{id}/edit', [FormationController::class, 'edit'])->name('formations.edit');
 Route::put('/formations/{id}', [FormationController::class, 'update'])->name('formations.update');
-Route::delete('/formations/{id}', [FormationController::class, 'destroy'])->name('formations.destroy'); 
+Route::delete('/formations/{id}', [FormationController::class, 'destroy'])->name('formations.destroy');
 Route::get('/formations/{id}/inscription', [InscriptionController::class, 'create'])->name('inscription.form');
 
 // Route pour enregistrer l'inscription
@@ -165,7 +165,7 @@ Route::get('/reclamationsadmin', [ReclamationController::class, 'adminIndex'])->
 
 
 Route::delete('/formations/{id}', [FormationController::class, 'destroy'])->name('formations.destroy');
-       
+
 
 Route::get('/reclamations/create', [ReclamationController::class, 'create'])->name('reclamations.createReclamation');
 Route::get('/reclamations', [ReclamationController::class, 'index'])->name('reclamations.index');
@@ -173,7 +173,7 @@ Route::post('/reclamations', [ReclamationController::class, 'store'])->name('rec
 Route::put('/reclamations/{id}', [ReclamationController::class, 'update'])->name('reclamations.update');
 Route::post('reclamations/{id}/cancel', [ReclamationController::class, 'cancelUserReclamation'])->name('reclamations.cancel');
 Route::put('reclamations/{id}', [ReclamationController::class, 'update'])->name('reclamations.update');
-Route::get('/reclamations/stats', [ReclamationController::class, 'stats'])->name('reclamations.stats');
+Route::get('/reclamations/stats', [ReclamationController::class, 'getStatusStatistics'])->name('reclamations.stats');
 Route::post('/reclamations/{id}/update', [ReclamationController::class, 'updateuserreclamtion'])->name('reclamations.updateuser');
 Route::get('/reclamations/{id}/edit', [ReclamationController::class, 'edit'])->name('reclamations.edit');
 Route::get('/reclamations/{id}/details', [ReclamationController::class, 'frontdetails'])->name('reclamations.details');
