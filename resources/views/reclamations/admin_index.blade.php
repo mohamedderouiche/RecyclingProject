@@ -11,13 +11,13 @@
         </div>
     @endif
 
-    <div class="container">
-        <div class="card">
+    <div class="container  mt-5">
+        <div class="card   mt-5">
             <div class="card-header">
                 <h5>Reclamations</h5>
             </div>
-            <div class="card-body">
-                <table class="table table-striped">
+            <div class="card-body   mr-5">
+                <table class="table-responsive table-striped ">
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -74,30 +74,26 @@
                                     @endif
                                 </td>
                                 <td>
-                              <div class="btn-group" role="group" aria-label="Actions">
-    <!-- Edit Button -->
-    <div class="btn-group" role="group" aria-label="Actions">
-        <!-- Edit Button -->
-        <a class="btn btn-link action-btn" data-toggle="modal" data-target="#editModal{{ $reclamation->id }}" title="Edit">
-            <i class="fas fa-edit text-warning"></i>
-        </a>
+                                    <div class="btn-group" role="group" aria-label="Actions">
+                                        <!-- Edit Button -->
+                                        <a class="btn btn-link action-btn" data-toggle="modal" data-target="#editModal{{ $reclamation->id }}" title="Edit">
+                                            <i class="fas fa-edit text-warning"></i>
+                                        </a>
 
-        <!-- Details Button -->
-        <a href="{{ route('reclamations.show', $reclamation->id) }}" class="btn btn-link action-btn" title="View">
-            <i class="fas fa-eye"></i>
-        </a>
+                                        <!-- Details Button -->
+                                        <a href="{{ route('reclamations.show', $reclamation->id) }}" class="btn btn-link action-btn" title="View">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
 
-        <!-- Delete Form -->
-        <form method="POST" action="{{ route('reclamations.destroy', $reclamation->id) }}" style="display:inline;">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-link action-btn" title="Delete" onclick="return confirm('Are you sure you want to delete this reclamation?')">
-                <i class="fas fa-trash text-danger"></i>
-            </button>
-        </form>
-    </div>
-
-
+                                        <!-- Delete Form -->
+                                        <form method="POST" action="{{ route('reclamations.destroy', $reclamation->id) }}" style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-link action-btn" title="Delete" onclick="return confirm('Are you sure you want to delete this reclamation?')">
+                                                <i class="fas fa-trash text-danger"></i>
+                                            </button>
+                                        </form>
+                                    </div>
 
                                     <!-- Modal for Edit -->
                                     <div class="modal fade" id="editModal{{ $reclamation->id }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel{{ $reclamation->id }}" aria-hidden="true">
@@ -137,11 +133,12 @@
                         @endforeach
                     </tbody>
                 </table>
+                <a href="{{ route('reclamations.stats') }}" class="btn btn-primary">View Reclamation Statistics</a>
             </div>
         </div>
     </div>
-
 </div>
+
 
 @endsection <!-- This ends the content section -->
 <script>
