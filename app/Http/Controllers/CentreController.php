@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\CentreRecyclage;
+use App\Rules\AlphaSpaces;
+use App\Rules\NumericC;
 use Illuminate\Http\Request;
 
 class CentreController extends Controller
@@ -15,7 +17,7 @@ class CentreController extends Controller
     }
     public function centresClient(){
 
-        $data = CentreRecyclage::all(); 
+        $data = CentreRecyclage::all();
         return view('centreClinets', compact('data'));
     }
 
@@ -26,29 +28,35 @@ class CentreController extends Controller
 
     }
 
-    public function uploadCentre(Request $request){
+    public function uploadCentre(Request $request)
+    {
+        // Validate incoming request
+        $request->validate([
+            'nom' => ['required', 'string', 'max:12'],
+            'adresse' => 'required|string|max:100', // Maximum 100 characters
+            'description' => 'nullable|string|min:10', // Minimum 10 characters if provided
+            'horaire_ouverture' => 'required|string|max:100',
+            'contact' => ['required'],
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-        $data= new CentreRecyclage();
-        $image=$request->image;
+        $data = new CentreRecyclage();
+        $image = $request->image;
 
-        $imagename=time().'.'.$image->getClientOriginalExtension();
-        $request->image->move('centreImages',$imagename);
+        $imagename = time() . '.' . $image->getClientOriginalExtension();
+        $request->image->move('centreImages', $imagename);
 
-        $data->image=$imagename;
-        $data->nom=$request->nom;
-        $data->adresse=$request->adresse;
-        $data->description=$request->description;
-        $data->horaire_ouverture=$request->horaire_ouverture;
-        $data->contact=$request->contact;
+        $data->image = $imagename;
+        $data->nom = $request->nom;
+        $data->adresse = $request->adresse;
+        $data->description = $request->description;
+        $data->horaire_ouverture = $request->horaire_ouverture;
+        $data->contact = $request->contact;
 
         $data->save();
 
-        return redirect()->route(('centres.index'));
-
-
-
-
-  }
+        return redirect()->route('centres.index');
+    }
 
   public function delete($id){
 
@@ -64,7 +72,7 @@ public function show($id)
 {
     $centre = CentreRecyclage::findOrFail($id);
 
-    $dechets = $centre->dechets; 
+    $dechets = $centre->dechets;
 
     return view('centres.show', compact('centre', 'dechets'));
 }
@@ -74,30 +82,39 @@ public function show($id)
         return view('centres.updateCentre', compact('centre'));
     }
 
-    public function updatecentre(Request $request, $id)
-{
-    $centre = CentreRecyclage::find($id);
+    public function updateCentre(Request $request, $id)
+    {
+        $request->validate([
+            'nom' => ['required', 'string', 'max:12'],
+            'adresse' => 'required|string|max:100', // Maximum 100 characters
+            'description' => 'nullable|string|min:10', // Minimum 10 characters if provided
+            'horaire_ouverture' => 'required|string|max:100',
+            'contact' => ['required'],
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-    if ($request->hasFile('image')) {
-        $image = $request->file('image');
-        $imagename = time() . '.' . $image->getClientOriginalExtension();
-        $request->image->move('centreImages', $imagename);
-        
-        $centre->image = $imagename;
-    }    
-    $centre->nom = $request->input('nom');
-    $centre->adresse = $request->input('adresse');
-    $centre->description = $request->input('description');
-    $centre->horaire_ouverture = $request->input('horaire_ouverture');
-    $centre->contact = $request->input('contact');
-    
-    $centre->save();
+        $centre = CentreRecyclage::find($id);
 
-    return redirect()->route('centres.index')->with('success', 'Centre updated successfully');
-}
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $request->image->move('centreImages', $imagename);
+            $centre->image = $imagename;
+        }
+
+        $centre->nom = $request->input('nom');
+        $centre->adresse = $request->input('adresse');
+        $centre->description = $request->input('description');
+        $centre->horaire_ouverture = $request->input('horaire_ouverture');
+        $centre->contact = $request->input('contact');
+
+        $centre->save();
+
+        return redirect()->route('centres.index')->with('success', 'Centre updated successfully');
+    }
 
 
 
 
-    
+
 }

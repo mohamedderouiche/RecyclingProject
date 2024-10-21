@@ -17,7 +17,7 @@ class DechetController extends Controller
         $data = Dechet::with('centreRecyclage')->get();
         return view('Dechets.index', compact('data'));
     }
-  
+
 
     public function create(){
         $centres = CentreRecyclage::all();
@@ -31,7 +31,7 @@ class DechetController extends Controller
     {
         // Validate incoming request
         $request->validate([
-            'categorie' =>  ['required', 'string', 'max:255'],
+            'categorie' =>  ['required', 'string', 'min:7'],
             'quantite' => 'required|integer|min:0',
             'centre_recyclage_id' => 'required|exists:centre_recyclages,id',
         ]);
@@ -46,7 +46,7 @@ class DechetController extends Controller
 
         return redirect()->route('dechets.index');
     }
-  
+
   public function delete($id){
 
     $currentDechet=Dechet::find($id);
@@ -61,7 +61,7 @@ class DechetController extends Controller
 public function edit(Request $request)
 {
     $dechet = Dechet::find($request->id);
-    $centres = CentreRecyclage::all(); 
+    $centres = CentreRecyclage::all();
 
     return view('Dechets.updateDechet', compact('dechet', 'centres'));
 }
@@ -69,9 +69,9 @@ public function edit(Request $request)
 public function updateDechet(Request $request, $id)
 {
     $request->validate([
-        'categorie' =>  ['required', 'string', 'max:255'],
+        'categorie' =>  ['required', 'string', 'min:7'],
         'quantite' => 'required|integer|min:0',
-        'centre_recyclage_id' => 'required|exists:centre_recyclages,id', 
+        'centre_recyclage_id' => 'required|exists:centre_recyclages,id',
     ]);
 
     $data = Dechet::find($id);

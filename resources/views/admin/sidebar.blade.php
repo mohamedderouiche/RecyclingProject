@@ -32,12 +32,12 @@
             <span>View Centers</span>
         </a>
     </li>
-    {{-- <li class="nav-item">
-        <a class="nav-link" href="#">
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url ('/dechets') }}">
             <i class="fas fa-fw fa-recycle"></i>
-            <span>View ..</span>
+            <span>View dechets</span>
         </a>
-    </li> --}}
+    </li>
 
     <!-- Nav Item - Article -->
     <li class="nav-item">
@@ -102,7 +102,7 @@
                 <a class="collapse-item" href="{{ url ('/inscriptions')}}">View Inscriptions</a>
             </div>
         </div>
-    </li> --}}
+    </li>
 
     <!-- Nav Item - Reclamation -->
     <li class="nav-item">

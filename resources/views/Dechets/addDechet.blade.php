@@ -50,20 +50,26 @@
                             <form action="{{ route('dechets.upload') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
 
-                             
+
 
                                 <!-- Waste Type -->
                                 <div class="form-group">
                                     <label for="type">categorie de Déchet</label>
-                                    <input type="text" class="form-control" id="categorie" name="categorie" placeholder="Type de déchet" required>
+                                    <input type="text" class="form-control" id="categorie" name="categorie" placeholder="Type de déchet" >
+                                    @error('categorie')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
-                           
+
 
                                 <!-- Quantity -->
                                 <div class="form-group">
                                     <label for="quantite">Quantité</label>
-                                    <input type="number" class="form-control" id="quantite" name="quantite" placeholder="Quantité" required>
+                                    <input type="number" class="form-control" id="quantite" name="quantite" placeholder="Quantité" >
+                                    @error('quantite')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
                                 <!-- Example Field for Centre de Recyclage -->
                                 <div class="form-group">
@@ -74,9 +80,12 @@
                                             <option value="{{ $centre->id }}">{{ $centre->nom }}</option>
                                         @endforeach
                                     </select>
+                                    @error('centre_recyclage_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                                 </div>
 
-                                @if ($errors->any())
+                                {{-- @if ($errors->any())
                                 <div class="alert alert-danger">
                                     <ul>
                                         @foreach ($errors->all() as $error)
@@ -84,9 +93,9 @@
                                         @endforeach
                                     </ul>
                                 </div>
-                            @endif
-                                
-                          
+                            @endif --}}
+
+
 
                                 <!-- Submit Button -->
                                 <button type="submit" class="btn btn-primary btn-block">Upload Déchet</button>

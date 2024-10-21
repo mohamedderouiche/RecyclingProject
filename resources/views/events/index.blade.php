@@ -90,7 +90,7 @@
                             <tr>
                                 <th>Title</th>
                                 <th>Description</th>
-                                {{-- <th>Type Event</th> --}}
+                               <th>Type Event</th>
                                 <th>Image</th>
                                 <th>Actions</th>
                             </tr>
@@ -100,7 +100,7 @@
                                 <tr>
                                     <td>{{ $event->title }}</td>
                                     <td>{{ $event->description }}</td>
-                                    {{-- <td>{{ $event->type_events->title ?? 'N/A' }}</td> --}}
+                                   <td>{{ $event->TypeEvent->title ?? 'N/A' }}</td>
                                     <td>
                                         @if($event->image)
                                             <img src="{{ asset('storage/' . $event->image) }}" alt="Event Image: {{ $event->title }}">
