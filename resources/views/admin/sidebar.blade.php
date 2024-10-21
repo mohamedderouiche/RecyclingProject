@@ -1,11 +1,12 @@
-<ul class="navbar-nav bg-success sidebar sidebar-dark accordion" id="accordionSidebar">
+
+<ul class="navbar-nav bg-success sidebar sidebar-dark accordion" id="accordionSidebar" style="max-height: 100vh; overflow-y: auto; overflow-x: hidden; width: 5 50px;">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url ('') }}">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3"> GreenRecycle</div>
+        <div class="sidebar-brand-text mx-6">GreenRecycle</div>
     </a>
 
     <!-- Divider -->
