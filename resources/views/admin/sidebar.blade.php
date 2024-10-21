@@ -99,10 +99,9 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Formation Programs:</h6>
                 <a class="collapse-item" href="{{ url ('/formations')}}">View Formations</a>
-                <a class="collapse-item" href="{{ url ('/inscriptions')}}">View Inscriptions</a>
             </div>
         </div>
-    </li> --}}
+    </li> 
 
     <!-- Nav Item - Reclamation -->
     <li class="nav-item">

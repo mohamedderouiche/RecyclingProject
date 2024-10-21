@@ -60,34 +60,31 @@ class FormationController extends Controller
             return redirect()->route('login')->with('error', 'You must be logged in to create a formation.');
         }
     
-        // Validate the form input including image
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
+        // Validate input fields
+        $validatedData = $request->validate([
+            'name' => 'required|string|min:3|max:255',
+            'description' => 'required|string|min:5',
             'date_formation' => 'required|date',
-            'duree' => 'required|integer',
+            'duree' => 'required|numeric|min:1|max:5',
             'lieu' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+    
+        // Add authenticated user ID to validated data
+        $validatedData['users_id'] = Auth::id();
     
         // Handle image upload
-        $imagePath = $request->file('image') ? $request->file('image')->store('images', 'public') : null;
+        if ($request->hasFile('image')) {
+            $validatedData['image'] = $request->file('image')->store('images', 'public');
+        }
     
-        // Create the new formation with the image path and associate with the authenticated user
-        formation::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'date_formation' => $request->date_formation,
-            'duree' => $request->duree,
-            'lieu' => $request->lieu,
-            'image' => $imagePath,
-            'users_id' => Auth::id(), // Associate with the authenticated user
-        ]);
+        // Create formation with validated data
+        formation::create($validatedData);
     
         return redirect()->route('formations.index')->with('success', 'Formation created successfully.');
     }
     
-    
+
 
     /**
      * Display the specified resource.

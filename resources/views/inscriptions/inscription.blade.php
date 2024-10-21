@@ -27,29 +27,44 @@
                 @endif
 
                 <form action="{{ route('inscription.store', $formation->id) }}" method="POST">
-                    @csrf
+    @csrf
 
-                    <div class="form-group mb-3">
-                        <label for="nom" class="form-label">Nom</label>
-                        <input type="text" name="nom" class="form-control" id="nom" placeholder="Votre nom" required>
-                    </div>
+    <!-- Nom -->
+    <div class="form-group mb-3">
+        <label for="nom" class="form-label">Nom</label>
+        <input type="text" name="nom" class="form-control" id="nom" placeholder="Votre nom" value="{{ old('nom') }}" >
+        @error('nom')
+            <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
 
-                    <div class="form-group mb-3">
-                        <label for="prenom" class="form-label">Prénom</label>
-                        <input type="text" name="prenom" class="form-control" id="prenom" placeholder="Votre prénom" required>
-                    </div>
+    <!-- Prénom -->
+    <div class="form-group mb-3">
+        <label for="prenom" class="form-label">Prénom</label>
+        <input type="text" name="prenom" class="form-control" id="prenom" placeholder="Votre prénom" value="{{ old('prenom') }}" >
+        @error('prenom')
+            <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
 
-                    <div class="form-group mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" name="email" class="form-control" id="email" placeholder="Votre email" required>
-                    </div>
+    <!-- Email -->
+    <div class="form-group mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="text" name="email" class="form-control" id="email" placeholder="Votre email (ex: exemple@domaine.com)" value="{{ old('email') }}" >
+        @error('email')
+            <span class="text-danger">{{ $message }}</span>
+        @enderror
+    </div>
 
-                    <input type="hidden" name="statut" value="en cours"> <!-- Statut par défaut -->
+    <input type="hidden" name="statut" value="en cours"> <!-- Statut par défaut -->
 
-                    <div class="d-grid my-3">
-                        <button type="submit" class="btn btn-primary">S'inscrire</button>
-                    </div>
-                </form>
+    <div class="d-grid my-3">
+        <button type="submit" class="btn btn-primary">S'inscrire</button>
+    </div>
+</form>
+
+
+
             </div>
         </div>
     </div>
