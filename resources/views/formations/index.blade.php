@@ -20,22 +20,33 @@
             border-radius: 10px;
             overflow: hidden;
         }
+
         .table thead {
             background-color: #10442C;
             color: white;
         }
+
         .table tbody tr:hover {
             background-color: #f2f2f2;
         }
+
         .icon-spacing {
             margin-right: 5px;
         }
+
         .action-btn {
             margin-right: 5px;
         }
+
         .btn-group .btn {
             display: inline-flex;
             align-items: center;
+        }
+
+        /* Centre le contenu du tableau */
+        .table-custom td,
+        .table-custom th {
+            text-align: center; /* Centre le texte dans toutes les cellules */
         }
     </style>
 </head>
@@ -63,57 +74,59 @@
                         </div>
                     @endif
 
-                    <div class="table-responsive">
-                        <table class="table table-striped table-custom">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Description</th>
-                                    <th>Date de Formation</th>
-                                    <th>Durée</th>
-                                    <th>Lieu</th>
-                                    <th>Image</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($formations as $formation)
+                    <div class="table-container">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-custom">
+                                <thead>
                                     <tr>
-                                        <td>
-                                            <a href="{{ route('formations.show', $formation->id) }}">{{ $formation->name }}</a>
-                                        </td>
-                                        <td>{{ $formation->description }}</td>
-                                        <td>{{ $formation->date_formation }}</td>
-                                        <td>{{ $formation->duree }}</td>
-                                        <td>{{ $formation->lieu }}</td>
-                                        <td>
-                                            @if($formation->image)
-                                                <img src="{{ asset('storage/' . $formation->image) }}" alt="Image" width="100">
-                                            @else
-                                                No Image
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <div class="btn-group" role="group" aria-label="Actions">
-                                                <a href="{{ route('formations.show', $formation->id) }}" class="btn btn-info btn-sm action-btn">
-                                                    <i class="fas fa-eye fa-xs icon-spacing"></i>
-                                                </a>
-                                                <a href="{{ route('formations.edit', $formation->id) }}" class="btn btn-warning btn-sm action-btn">
-                                                    <i class="fas fa-edit fa-xs icon-spacing"></i>
-                                                </a>
-                                                <form action="{{ route('formations.destroy', $formation->id) }}" method="POST" style="display:inline;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm action-btn" onclick="return confirm('Are you sure you want to delete this formation?');">
-                                                        <i class="fas fa-trash fa-xs icon-spacing"></i>
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </td>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Date de Formation</th>
+                                        <th>Durée</th>
+                                        <th>Lieu</th>
+                                        <th>Image</th>
+                                        <th>Actions</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach($formations as $formation)
+                                        <tr>
+                                            <td>
+                                                <a href="{{ route('formations.show', $formation->id) }}">{{ $formation->name }}</a>
+                                            </td>
+                                            <td>{{ $formation->description }}</td>
+                                            <td>{{ $formation->date_formation }}</td>
+                                            <td>{{ $formation->duree }}</td>
+                                            <td>{{ $formation->lieu }}</td>
+                                            <td>
+                                                @if($formation->image)
+                                                    <img src="{{ asset('storage/' . $formation->image) }}" alt="Image" width="100">
+                                                @else
+                                                    No Image
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <div class="btn-group" role="group" aria-label="Actions">
+                                                    <a href="{{ route('formations.show', $formation->id) }}" class="btn btn-info btn-sm action-btn">
+                                                        <i class="fas fa-eye fa-xs icon-spacing"></i>
+                                                    </a>
+                                                    <a href="{{ route('formations.edit', $formation->id) }}" class="btn btn-warning btn-sm action-btn">
+                                                        <i class="fas fa-edit fa-xs icon-spacing"></i>
+                                                    </a>
+                                                    <form action="{{ route('formations.destroy', $formation->id) }}" method="POST" style="display:inline;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm action-btn" onclick="return confirm('Are you sure you want to delete this formation?');">
+                                                            <i class="fas fa-trash fa-xs icon-spacing"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

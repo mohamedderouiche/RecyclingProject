@@ -157,6 +157,12 @@ Route::get('/inscriptions', [InscriptionController::class, 'index'])->name('insc
 Route::get('/inscriptions/{id}', [InscriptionController::class, 'show'])->name('inscriptions.show');
 Route::patch('/inscriptions/{id}/status', [InscriptionController::class, 'updateStatus'])->name('inscriptions.updateStatus');
 Route::get('/formations/{id}/inscriptions', [FormationController::class, 'showInscriptions'])->name('formations.inscriptions');
+Route::get('/mes-inscriptions', [InscriptionController::class, 'myInscriptions'])->name('inscriptions.my');
+Route::delete('/inscriptions/{id}', [InscriptionController::class, 'destroy'])->name('inscriptions.destroy');
+Route::get('/formations/calendar', function () {
+    return view('formations.calendar');
+})->name('formations.calendar');
+Route::get('/formations/events', [FormationController::class, 'getEvents'])->name('formations.events');
 
 
 
@@ -177,6 +183,7 @@ Route::get('/reclamations/stats', [ReclamationController::class, 'stats'])->name
 Route::post('/reclamations/{id}/update', [ReclamationController::class, 'updateuserreclamtion'])->name('reclamations.updateuser');
 Route::get('/reclamations/{id}/edit', [ReclamationController::class, 'edit'])->name('reclamations.edit');
 Route::get('/reclamations/{id}/details', [ReclamationController::class, 'frontdetails'])->name('reclamations.details');
+
 // Article
 Route::resource('articles', ArticleController::class);
 Route::get('/article', [ArticleController::class, 'indexarticle'])->name('articles.article');

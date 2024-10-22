@@ -184,4 +184,19 @@ class FormationController extends Controller
 
         return redirect()->route('formations.index')->with('success', 'Formation deleted successfully.');
     }
+
+    public function getEvents()
+{
+    $formations = Formation::all()->map(function ($formation) {
+        return [
+            'title' => $formation->name,
+            'start' => $formation->date_formation,
+            'description' => $formation->description,
+            'id' => $formation->id,
+        ];
+    });
+
+    return response()->json($formations);
+}
+
 }
