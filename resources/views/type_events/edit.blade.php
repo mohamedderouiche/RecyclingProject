@@ -83,15 +83,15 @@
                     <div class="row justify-content-center">
                         <div class="col-md-6">
                             {{-- Display validation errors --}}
-                            @if ($errors->any())
+                            {{-- @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
                                     @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
                                     @endforeach
                                 </ul>
-                            </div>
-                            @endif
+                            </div> 
+                            @endif--}}
 
                             {{-- Form for editing a TypeEvent --}}
                             <form action="{{ route('type_events.update', $typeEvent->id) }}" method="POST" enctype="multipart/form-data">

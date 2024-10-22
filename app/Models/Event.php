@@ -19,8 +19,12 @@ class Event extends Model
     ];
 
     
-    public function typeEvent()
+    // public function typeEvent()
+    // {
+    //     return $this->belongsTo(TypeEvent::class);
+    // }
+    public function TypeEvent()
     {
-        return $this->belongsTo(TypeEvent::class);
+        return $this->belongsTo(TypeEvent::class, 'type_events_id');
     }
 }

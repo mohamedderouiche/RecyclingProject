@@ -41,7 +41,7 @@ pipeline {
             steps {
                 script {
                     // Run the application image as a container
-                    sh 'sudo docker run -d --name recyclingproject-container -p 8000:8000 mohamedaminederouiche05/recyclingproject:latest'
+                    sh 'sudo docker run -d --name recyclingproject-container -p 8001:8000 mohamedaminederouiche05/recyclingproject:latest'
                 }
             }
         }

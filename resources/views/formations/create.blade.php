@@ -117,18 +117,14 @@
         </div>
 
         <div class="form-group">
-    <label for="image" class="btn btn-primary">Choisir une image</label>
+    <label for="image" class="btn btn-sm mb-3" style="background-color: #28a745; color: white; border-color: #28a745;">Choisir une image</label>
     <input type="file" class="form-control-file" name="image" id="image" accept="image/*" style="display: none;" onchange="updateFileName()">
     <span id="file-name" style="margin-left: 10px;">Aucune image choisie</span>
 </div>
 
 <div class="text-center">
-    <button type="submit" class="btn btn-primary btn-sm">Create Formation</button>
+    <button type="submit" class=""btn btn-sm mb-3" style="background-color: #28a745; color: white; border-color: #28a745;">Create Formation</button>
  
-</div>
-<div class="text-center">
-
-<a href="{{ route('formations.index') }}" class="btn btn-secondary btn-sm">Cancel</a>
 </div>
 
     </form>
@@ -139,9 +135,7 @@
 
 </div>
                
-<!-- Footer -->
-@include('admin.footer')
-<!-- End of Footer -->
+
 
 </div>
 <!-- End of Content Wrapper -->

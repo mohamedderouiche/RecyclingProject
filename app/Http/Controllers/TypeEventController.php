@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\TypeEvent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TypeEventController extends Controller
 {
@@ -49,12 +51,34 @@ class TypeEventController extends Controller
     public function store(Request $request)
     {
         // Valider les données
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
-        ]);
+        // $validated = $request->validate([
+        //     'title' => 'required|string|max:255',
+        //     'description' => 'required|string',
+        //     'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
+        // ]);
 
+        $validated = $request->validate([
+            'title' => [
+                'required',
+                'string',
+                'max:255',
+                'min:3', // Longueur minimale de 3 caractères
+                'regex:/^[a-zA-Z0-9\s\-]+$/u' // Seulement lettres, chiffres, espaces et tirets
+            ],
+            'description' => [
+                'required',
+                'string',
+                'min:10' // Longueur minimale de 10 caractères
+            ],
+            'image' => [
+                'nullable',
+                'image',
+                'mimes:jpg,jpeg,png,gif',
+                'max:2048',
+                'dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000' // Limite des dimensions de l'image
+            ],
+
+        ]);
         // Vérifier si un fichier image a été téléchargé
         if ($request->hasFile('image')) {
             $file = $request->file('image');
@@ -116,11 +140,34 @@ class TypeEventController extends Controller
     public function update(Request $request, $id)
     {
          // Valider les données
-         $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
+        //  $validated = $request->validate([
+        //     'title' => 'required|string|max:255',
+        //     'description' => 'required|string',
+        //     'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
+        // ]);
+        $validated = $request->validate([
+            'title' => [
+                'required',
+                'string',
+                'max:255',
+                'min:3', // Longueur minimale de 3 caractères
+                'regex:/^[a-zA-Z0-9\s\-]+$/u' // Seulement lettres, chiffres, espaces et tirets
+            ],
+            'description' => [
+                'required',
+                'string',
+                'min:10' // Longueur minimale de 10 caractères
+            ],
+            'image' => [
+                'nullable',
+                'image',
+                'mimes:jpg,jpeg,png,gif',
+                'max:2048',
+                'dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000' // Limite des dimensions de l'image
+            ],
+
         ]);
+
 
         // Vérifier si un fichier image a été téléchargé
         if ($request->hasFile('image')) {
@@ -159,7 +206,20 @@ class TypeEventController extends Controller
     }
 
 
-  
+    public function userTypeEventStatistics()
+    {
+        // Get statistics for each event type and the total number of events added
+        $statistics = Event::select('type_events_id', 'type_events.title', \DB::raw('COUNT(*) as total'))
+            ->join('type_events', 'events.type_events_id', '=', 'type_events.id') // Join with the type_events table
+            ->groupBy('type_events_id', 'type_events.title') // Group by type event ID and title
+            ->get();
+
+        // Return the view with the statistics data
+        return view('type_events.statistics', compact('statistics'));
+    }
+
+
+
 
 
 

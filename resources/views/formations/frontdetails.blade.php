@@ -36,7 +36,7 @@
                                 <h5 class="text-dark"><i class="fas fa-info-circle text-primary"></i> Description:</h5>
                                 <p class="text-muted">{{ $formation->description }}</p>
                             </div>
-
+                    
                             <!-- Date -->
                             <div class="col-12">
                                 <h5 class="text-dark"><i class="fas fa-calendar-alt text-primary"></i> Date:</h5>
@@ -56,7 +56,7 @@
                             </div>
                         </div>
                     <div  class="mt-4 text-center">
-                        <a href="{{ route('inscription.form', $formation->id) }}" class="btn btn-primary">S'inscrire</a>
+                    <a href="{{ route('inscription.form', $formation->id) }}" class="btn btn-primary">S'inscrire</a>
                     </div>
                         <!-- Google Map -->
                         <div class="mt-4 text-center">

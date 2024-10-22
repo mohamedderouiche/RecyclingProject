@@ -108,7 +108,7 @@
                                         <td>{{ $inscription->nom }}</td>
                                         <td>{{ $inscription->prenom }}</td>
                                         <td>{{ $inscription->email }}</td>
-                                        <td>{{ $inscription->formations_id }}</td>
+                                        <td>{{ $inscription->formation->name }}</td>
                                         <td>{{ \Carbon\Carbon::parse($inscription->date_inscription)->format('d M, Y') }}</td>
                                         <td>
                                             <form action="{{ route('inscriptions.updateStatus', $inscription->id) }}" method="POST">

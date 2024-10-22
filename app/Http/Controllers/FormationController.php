@@ -40,6 +40,14 @@ class FormationController extends Controller
         return view('formations.create');
     }
 
+    public function showInscriptions($id)
+    {
+        $formation = Formation::findOrFail($id);
+        $inscriptions = $formation->inscriptions; // Récupère les inscriptions associées
+
+        return view('formations.inscriptions', compact('formation', 'inscriptions'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
