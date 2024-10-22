@@ -56,9 +56,9 @@
 
                             <h5 class="card-title mt-4">Formation Associée</h5>
                             @if($inscription->formation)
-                            <div class="text-center mb-3">
+                            {{-- <div class="text-center mb-3">
                                 <img src="{{ asset('storage/' . $formation->image) }}" class="img-fluid" alt="Image de la formation" width="400" />
-                            </div>
+                            </div> --}}
                                 <p><strong>Nom de la formation:</strong> {{ $inscription->formation->name }}</p>
                                 <p><strong>Description:</strong> {{ $inscription->formation->description }}</p>
                                 <p><strong>Date de formation:</strong> {{ \Carbon\Carbon::parse($inscription->formation->date_formation)->format('d M, Y') }}</p>
