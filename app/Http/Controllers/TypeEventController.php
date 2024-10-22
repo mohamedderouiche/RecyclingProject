@@ -51,12 +51,34 @@ class TypeEventController extends Controller
     public function store(Request $request)
     {
         // Valider les données
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
-        ]);
+        // $validated = $request->validate([
+        //     'title' => 'required|string|max:255',
+        //     'description' => 'required|string',
+        //     'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
+        // ]);
 
+        $validated = $request->validate([
+            'title' => [
+                'required', 
+                'string', 
+                'max:255', 
+                'min:3', // Longueur minimale de 3 caractères
+                'regex:/^[a-zA-Z0-9\s\-]+$/u' // Seulement lettres, chiffres, espaces et tirets
+            ],
+            'description' => [
+                'required', 
+                'string', 
+                'min:10' // Longueur minimale de 10 caractères
+            ],
+            'image' => [
+                'nullable', 
+                'image', 
+                'mimes:jpg,jpeg,png,gif', 
+                'max:2048', 
+                'dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000' // Limite des dimensions de l'image
+            ],
+           
+        ]);
         // Vérifier si un fichier image a été téléchargé
         if ($request->hasFile('image')) {
             $file = $request->file('image');
@@ -118,11 +140,34 @@ class TypeEventController extends Controller
     public function update(Request $request, $id)
     {
          // Valider les données
-         $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
+        //  $validated = $request->validate([
+        //     'title' => 'required|string|max:255',
+        //     'description' => 'required|string',
+        //     'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
+        // ]);
+        $validated = $request->validate([
+            'title' => [
+                'required', 
+                'string', 
+                'max:255', 
+                'min:3', // Longueur minimale de 3 caractères
+                'regex:/^[a-zA-Z0-9\s\-]+$/u' // Seulement lettres, chiffres, espaces et tirets
+            ],
+            'description' => [
+                'required', 
+                'string', 
+                'min:10' // Longueur minimale de 10 caractères
+            ],
+            'image' => [
+                'nullable', 
+                'image', 
+                'mimes:jpg,jpeg,png,gif', 
+                'max:2048', 
+                'dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000' // Limite des dimensions de l'image
+            ],
+           
         ]);
+        
 
         // Vérifier si un fichier image a été téléchargé
         if ($request->hasFile('image')) {

@@ -35,12 +35,38 @@ class EventController extends Controller
     public function store(Request $request)
     {
         // Validate the request
+        // $validated = $request->validate([
+        //     'title' => 'required|string|max:255',
+        //     'description' => 'required|string',
+        //     'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
+        //     'type_events_id' => 'required|exists:type_events,id',
+        // ]);
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
-            'type_events_id' => 'required|exists:type_events,id',
+            'title' => [
+                'required', 
+                'string', 
+                'max:255', 
+                'min:3', // Longueur minimale de 3 caractères
+                'regex:/^[a-zA-Z0-9\s\-]+$/u' // Seulement lettres, chiffres, espaces et tirets
+            ],
+            'description' => [
+                'required', 
+                'string', 
+                'min:10' // Longueur minimale de 10 caractères
+            ],
+            'image' => [
+                'nullable', 
+                'image', 
+                'mimes:jpg,jpeg,png,gif', 
+                'max:2048', 
+                'dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000' // Limite des dimensions de l'image
+            ],
+            'type_events_id' => [
+                'required', 
+                'exists:type_events,id' // Vérifie que l'ID existe bien dans la table type_events
+            ],
         ]);
+        
          // Vérifier si un fichier image a été téléchargé
          if ($request->hasFile('image')) {
             $file = $request->file('image');
@@ -75,12 +101,38 @@ class EventController extends Controller
     public function update(Request $request, $id)
     {
         // Validate the request
+        // $validated = $request->validate([
+        //     'title' => 'required|string|max:255',
+        //     'description' => 'required|string',
+        //     'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
+        //     'type_events_id' => 'required|exists:type_events,id',
+        // ]);
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
-            'type_events_id' => 'required|exists:type_events,id',
+            'title' => [
+                'required', 
+                'string', 
+                'max:255', 
+                'min:3', // Longueur minimale de 3 caractères
+                'regex:/^[a-zA-Z0-9\s\-]+$/u' // Seulement lettres, chiffres, espaces et tirets
+            ],
+            'description' => [
+                'required', 
+                'string', 
+                'min:10' // Longueur minimale de 10 caractères
+            ],
+            'image' => [
+                'nullable', 
+                'image', 
+                'mimes:jpg,jpeg,png,gif', 
+                'max:2048', 
+                'dimensions:min_width=100,min_height=100,max_width=2000,max_height=2000' // Limite des dimensions de l'image
+            ],
+            'type_events_id' => [
+                'required', 
+                'exists:type_events,id' // Vérifie que l'ID existe bien dans la table type_events
+            ],
         ]);
+        
          // Vérifier si un fichier image a été téléchargé
          if ($request->hasFile('image')) {
             $file = $request->file('image');
