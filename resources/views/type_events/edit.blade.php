@@ -77,75 +77,83 @@
            <div>
 
 
-                <div class="container mt-5">
-                    <h1 class="mb-4 text-center">Edit Type Event</h1>
+            <div class="container mt-5">
+                <h1 class="mb-4 text-center">Edit Type Event</h1>
 
-                    <div class="row justify-content-center">
-                        <div class="col-md-6">
-                            {{-- Display validation errors --}}
-                            {{-- @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div> 
-                            @endif--}}
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <!-- Card for the Edit Type Event Form -->
+                        <div class="card">
+                            <div class="card-body">
 
-                            {{-- Form for editing a TypeEvent --}}
-                            <form action="{{ route('type_events.update', $typeEvent->id) }}" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                @method('PUT')
-
-                                <div class="form-group">
-                                    <label for="title">Title</label>
-                                    <input type="text" id="title" name="title" value="{{ old('title', $typeEvent->title) }}" class="form-control" >
-                                    @error('title')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                {{-- Display validation errors --}}
+                                {{-- @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
                                 </div>
+                                @endif --}}
 
-                                <div class="form-group">
-                                    <label for="description">Description</label>
-                                    <textarea id="description" name="description" class="form-control" >{{ old('description', $typeEvent->description) }}</textarea>
-                                    @error('description')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                                </div>
+                                {{-- Form for editing a TypeEvent --}}
+                                <form action="{{ route('type_events.update', $typeEvent->id) }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT')
 
-                                <!-- Design section for uploading image -->
-                                <div class="form-group">
-                                    <label for="image">Image</label>
-                                    <div class="image-upload-wrapper" onclick="document.getElementById('image').click();">
-                                        <i class="fas fa-cloud-upload-alt image-upload-icon"></i>
-                                        <p>Click to upload a new image</p>
-                                        <input type="file" id="image" name="image" class="form-control-file d-none" accept="image/*" onchange="previewImage(event)" />
-                                        @error('image')
+                                    <div class="form-group">
+                                        <label for="title">Title</label>
+                                        <input type="text" id="title" name="title" value="{{ old('title', $typeEvent->title) }}" class="form-control">
+                                        @error('title')
                                         <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                        <img id="image-preview" class="image-upload-preview d-none" alt="Image Preview">
+                                        @enderror
                                     </div>
-                                    @if ($typeEvent->image)
-                                    <p class="mt-2">Current Image: <img src="{{ asset('storage/' . $typeEvent->image) }}" alt="Event Image" width="100"></p>
-                                    @endif
-                                </div>
 
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary btn-block">Update</button>
-                                </div>
-                            </form>
+                                    <div class="form-group">
+                                        <label for="description">Description</label>
+                                        <textarea id="description" name="description" class="form-control">{{ old('description', $typeEvent->description) }}</textarea>
+                                        @error('description')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
 
-                            <a href="{{ route('type_events.index') }}" class="btn btn-danger btn-block">Back to List</a>
+                                    <!-- Design section for uploading image -->
+                                    <div class="form-group">
+                                        <label for="image">Image</label>
+                                        <div class="image-upload-wrapper" onclick="document.getElementById('image').click();">
+                                            <i class="fas fa-cloud-upload-alt image-upload-icon"></i>
+                                            <p>Click to upload a new image</p>
+                                            <input type="file" id="image" name="image" class="form-control-file d-none" accept="image/*" onchange="previewImage(event)" />
+                                            @error('image')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                            <img id="image-preview" class="image-upload-preview d-none" alt="Image Preview" width="150" height="100" style="object-fit: cover;">
+                                        </div>
+                                        @if ($typeEvent->image)
+                                        <p class="mt-2">Current Image: <img src="{{ asset('storage/' . $typeEvent->image) }}" alt="Event Image" width="100"></p>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary btn-block">Update</button>
+                                    </div>
+                                </form>
+
+                                <a href="{{ route('type_events.index') }}" class="btn btn-danger btn-block">Back to List</a>
+                            </div>
                         </div>
+                        <!-- End of Card -->
                     </div>
                 </div>
+            </div>
+
 
                 @include('admin.footer')
             </div>
         </div>
     </div>
-    
+
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>

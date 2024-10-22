@@ -16,32 +16,32 @@
                     </script>
                 @endif
 
-                @if($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
 
                 <form action="{{ route('inscription.store', $formation->id) }}" method="POST">
                     @csrf
 
                     <div class="form-group mb-3">
                         <label for="nom" class="form-label">Nom</label>
-                        <input type="text" name="nom" class="form-control" id="nom" placeholder="Votre nom" required>
+                        <input type="text" name="nom" class="form-control" id="nom" placeholder="Votre nom" >
+                        @error('nom')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                     </div>
 
                     <div class="form-group mb-3">
                         <label for="prenom" class="form-label">Prénom</label>
-                        <input type="text" name="prenom" class="form-control" id="prenom" placeholder="Votre prénom" required>
+                        <input type="text" name="prenom" class="form-control" id="prenom" placeholder="Votre prénom" >
+                        @error('prenom')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                     </div>
 
                     <div class="form-group mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" name="email" class="form-control" id="email" placeholder="Votre email" required>
+                        <input type="text" name="email" class="form-control" id="email" placeholder="Votre email" >
+                        @error('email')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                     </div>
 
                     <input type="hidden" name="statut" value="en cours"> <!-- Statut par défaut -->

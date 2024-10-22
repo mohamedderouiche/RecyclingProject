@@ -7,11 +7,11 @@ pipeline {
                     // Stop and remove the application container if needed
                     sh 'sudo docker stop recyclingproject-container || true'
                     sh 'sudo docker rm recyclingproject-container || true'
-                    
+
                     // Stop and remove Prometheus container if it exists
                     sh 'sudo docker stop /prometheus-container || true'
                     sh 'sudo docker rm /prometheus-container || true'
-    
+
                     // Stop and remove Grafana container if it exists
                     sh 'sudo docker stop grafana-container || true'
                     sh 'sudo docker rm grafana-container || true'
@@ -65,13 +65,12 @@ pipeline {
 
         stage('SMTP Notification Logs') {
             steps {
-                emailext attachLog: true, 
-                         body: 'Check our logs after running the pipeline', 
-                         compressLog: true, 
-                         subject: 'Jenkins Output Logs from better call us Pipeline', 
+                emailext attachLog: true,
+                         body: 'Check our logs after running the pipeline',
+                         compressLog: true,
+                         subject: 'Jenkins Output Logs from better call us Pipeline',
                          to: 'derouiche568@gmail.com'
             }
         }
     }
 }
-

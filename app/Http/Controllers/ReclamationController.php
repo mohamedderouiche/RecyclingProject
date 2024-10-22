@@ -91,7 +91,7 @@ class ReclamationController extends Controller
     {
         $request->validate([
             'type_reclamation_id' => 'required|exists:type_reclamations,id', // Validation for type reclamation
-            'description' => 'required|string',
+            'description' => 'required|string|min:3|max:255',
             'image' => 'nullable|image',
         ]);
 

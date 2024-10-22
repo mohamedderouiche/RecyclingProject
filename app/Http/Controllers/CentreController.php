@@ -32,7 +32,7 @@ class CentreController extends Controller
     {
         // Validate incoming request
         $request->validate([
-            'nom' => ['required', 'string', 'max:12'],
+            'nom' => ['required', 'string', 'min:5'],
             'adresse' => 'required|string|max:100', // Maximum 100 characters
             'description' => 'nullable|string|min:10', // Minimum 10 characters if provided
             'horaire_ouverture' => 'required|string|max:100',
@@ -85,7 +85,7 @@ public function show($id)
     public function updateCentre(Request $request, $id)
     {
         $request->validate([
-            'nom' => ['required', 'string', 'max:12'],
+            'nom' => ['required', 'string', 'min:5'],
             'adresse' => 'required|string|max:100', // Maximum 100 characters
             'description' => 'nullable|string|min:10', // Minimum 10 characters if provided
             'horaire_ouverture' => 'required|string|max:100',

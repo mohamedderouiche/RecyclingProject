@@ -74,9 +74,10 @@
                     <h1 class="content-title">Article Details</h1>
 
                     <div class="card-body article-content">
-                        <div class="article-image">
-                            <img src="{{ asset('storage/' . $article->image) }}" class="img-fluid rounded" alt="Image of the article" width="400" />
-                        </div>
+                        @if($article->image)
+                        <img src="{{ asset('storage/' . $article->image) }}" alt="Image" width="300" height="250" style="object-fit: cover;">
+                    @endif
+
 
                         <p><strong>Content:</strong> {{ $article->contenu }}</p>
 

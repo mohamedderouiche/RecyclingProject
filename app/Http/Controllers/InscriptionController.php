@@ -28,7 +28,7 @@ class InscriptionController extends Controller
         return view('inscriptions.index', compact('inscriptions'));
     }
 
- 
+
 
     public function store(Request $request, $formationId)
     {
@@ -36,17 +36,18 @@ class InscriptionController extends Controller
         $request->validate([
             'nom' => 'required|string|max:255',
             'prenom' => 'required|string|max:255',
-            'email' => 'required|email|max:255|regex:/^.+@.+$/',
+            'email' => 'required|string|max:255|regex:/^[^@]+@[^@]+\.[^@]+$/',
+                
         ]);
 
         // Créer une nouvelle inscription
         $inscription = new Inscription();
-        $inscription->users_id = auth()->user()->id; 
+        $inscription->users_id = auth()->user()->id;
         $inscription->nom = $request->nom;
         $inscription->prenom = $request->prenom;
         $inscription->email = $request->email;
         $inscription->statut = 'en cours';
-        $inscription->formations_id = $formationId; 
+        $inscription->formations_id = $formationId;
         $inscription->date_inscription = now();
 
 

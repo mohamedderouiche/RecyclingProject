@@ -14,7 +14,7 @@
     <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template-->
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
-    
+
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 </head>
 
@@ -49,7 +49,7 @@
                             <h4>Price: ${{ $product->price }}</h4>
 
                             @if ($product->image && \Storage::disk('public')->exists($product->image))
-                                <img class="card-img-top" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" style="width: 100%; height: auto; object-fit: cover;">
+                                <img class="card-img-top" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" width="50" height="400" style="object-fit: cover;">
                             @else
                                 <p class="text-danger">Image non disponible</p>
                             @endif

@@ -16,11 +16,11 @@
     <link href="{{ asset('admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template-->
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
-    
+
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-    
-   
+
+
 
 </head>
 
@@ -53,7 +53,7 @@
                 <!-- End of Topbar -->
 
            <div>
-   
+
 
 <!-- resources/views/formations/create.blade.php -->
 
@@ -62,42 +62,15 @@
 
 <body>
 
-    @if ($errors->any())
-        <div>
-            <strong>Whoops!</strong> There were some problems with your input.
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+   
     <div class="container">
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+
 
     <div class="container">
     <h1 class="h4 mb-4 text-gray-800">Edit Formation: {{ $formation->name }}</h1>
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+
 
     <form action="{{ route('formations.update', $formation->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -105,27 +78,42 @@
 
         <div class="form-group">
             <label for="name">Name:</label>
-            <input type="text" class="form-control form-control-sm" name="name" id="name" value="{{ old('name', $formation->name) }}" required>
+            <input type="text" class="form-control form-control-sm" name="name" id="name" value="{{ old('name', $formation->name) }}" >
+            @error('name')
+            <span class="text-danger">{{ $message }}</span>
+        @enderror
         </div>
 
         <div class="form-group">
             <label for="description">Description:</label>
-            <textarea class="form-control form-control-sm" name="description" id="description" rows="3" required>{{ old('description', $formation->description) }}</textarea>
+            <textarea class="form-control form-control-sm" name="description" id="description" rows="3" >{{ old('description', $formation->description) }}</textarea>
+            @error('description')
+            <span class="text-danger">{{ $message }}</span>
+        @enderror
         </div>
 
         <div class="form-group">
             <label for="date_formation">Date:</label>
-            <input type="date" class="form-control form-control-sm" name="date_formation" id="date_formation" value="{{ old('date_formation', $formation->date_formation) }}" required>
+            <input type="date" class="form-control form-control-sm" name="date_formation" id="date_formation" value="{{ old('date_formation', $formation->date_formation) }}" >
+            @error('date_formation')
+            <span class="text-danger">{{ $message }}</span>
+        @enderror
         </div>
 
         <div class="form-group">
             <label for="duree">Duration (in hours):</label>
-            <input type="number" class="form-control form-control-sm" name="duree" id="duree" value="{{ old('duree', $formation->duree) }}" required>
+            <input type="number" class="form-control form-control-sm" name="duree" id="duree" value="{{ old('duree', $formation->duree) }}" >
+            @error('duree')
+            <span class="text-danger">{{ $message }}</span>
+        @enderror
         </div>
 
         <div class="form-group">
             <label for="lieu">Location:</label>
-            <input type="text" class="form-control form-control-sm" name="lieu" id="lieu" value="{{ old('lieu', $formation->lieu) }}" required>
+            <input type="text" class="form-control form-control-sm" name="lieu" id="lieu" value="{{ old('lieu', $formation->lieu) }}" >
+            @error('lieu')
+            <span class="text-danger">{{ $message }}</span>
+        @enderror
         </div>
 
         <div class="form-group">
@@ -150,10 +138,10 @@
 </div>
 </body>
 </html>
-               
+
 
 </div>
-               
+
 <!-- Footer -->
 @include('admin.footer')
 <!-- End of Footer -->

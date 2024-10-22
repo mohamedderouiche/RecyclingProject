@@ -31,7 +31,7 @@ class DechetController extends Controller
     {
         // Validate incoming request
         $request->validate([
-            'categorie' =>  ['required', 'string', 'min:7'],
+            'categorie' =>  ['required', 'string', 'min:3'],
             'quantite' => 'required|integer|min:0',
             'centre_recyclage_id' => 'required|exists:centre_recyclages,id',
         ]);
@@ -69,7 +69,7 @@ public function edit(Request $request)
 public function updateDechet(Request $request, $id)
 {
     $request->validate([
-        'categorie' =>  ['required', 'string', 'min:7'],
+        'categorie' =>  ['required', 'string', 'min:3'],
         'quantite' => 'required|integer|min:0',
         'centre_recyclage_id' => 'required|exists:centre_recyclages,id',
     ]);
