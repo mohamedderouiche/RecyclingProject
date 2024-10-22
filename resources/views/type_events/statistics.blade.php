@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>User Type Event Statistics</h1>
+    <h1>Type Event Statistics</h1>
 
     <!-- Card container for the chart -->
     <div class="card mb-4">
