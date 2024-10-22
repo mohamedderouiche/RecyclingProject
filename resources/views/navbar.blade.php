@@ -11,7 +11,7 @@
             <a  href="{{ url ('/article')}}" class="nav-item nav-link">Articles</a>
             <a  href="{{ url ('/categories-list')}}" class="nav-item nav-link">Produit</a>
             <a href="{{ url ('/teams')}}" class="nav-item nav-link">Teams</a>
-            <a href="{{ url ('/events/user')}}" class="nav-item nav-link">Events</a>
+            <a href="{{ url ('/eventsuser')}}" class="nav-item nav-link">Events</a>
             <a href="{{ url ('/Nosformations')}}" class="nav-item nav-link">Trainings</a>
 
 

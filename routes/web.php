@@ -89,7 +89,7 @@ Route::get('/products/front/{product}', [ProductController::class, 'showFront'])
 //Route::get('/events/statistics', [EventController::class, 'userEventStatistics'])->name('events.statistics');;
 Route::get('/type-events/statistics', [EventController::class, 'userTypeEventStatistics'])->middleware('auth')->name('type_events.statistics');
 
-Route::get('/events/user', [EventController::class, 'indexUser'])->name('events.indexUser');
+Route::get('/eventsuser', [EventController::class, 'indexUser'])->name('events.indexUser');
 Route::get('/type-events', [TypeEventController::class, 'index'])->name('type_events.index');
 Route::get('/type-events/card', [TypeEventController::class, 'homeDisplay'])->name('type_events.home');
 // Store the newly created TypeEvent
