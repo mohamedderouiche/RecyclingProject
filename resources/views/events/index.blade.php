@@ -79,6 +79,11 @@
                         </div>
                     @endif
 
+                    {{-- Search input --}}
+                    <div class="mb-3">
+                        <input type="text" id="search" class="form-control" placeholder="Search by title...">
+                    </div>
+
                     {{-- Button to create a new Event --}}
                     <div>
                         <a href="{{ route('events.create') }}" class="btn btn-success mb-3">Create New Event</a>
@@ -158,5 +163,25 @@
     <!-- Page level custom scripts -->
     <script src="admin/js/demo/chart-area-demo.js"></script>
     <script src="admin/js/demo/chart-pie-demo.js"></script>
+
+    <script>
+        // Écouter les frappes dans le champ de recherche
+        document.getElementById('search').addEventListener('input', function() {
+            let query = this.value.toLowerCase(); // Convertir en minuscule pour comparaison
+            let rows = document.querySelectorAll('tbody tr'); // Sélectionner toutes les lignes du tableau
+
+            rows.forEach(function(row) {
+                // Récupérer le texte du titre dans la première colonne
+                let title = row.querySelector('td:first-child').textContent.toLowerCase();
+                
+                // Vérifier si le titre contient la chaîne de recherche
+                if (title.includes(query)) {
+                    row.style.display = ''; // Afficher la ligne si elle correspond
+                } else {
+                    row.style.display = 'none'; // Masquer la ligne si elle ne correspond pas
+                }
+            });
+        });
+    </script>
 </body>
 </html>

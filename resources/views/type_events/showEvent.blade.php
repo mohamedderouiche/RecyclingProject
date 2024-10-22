@@ -77,6 +77,9 @@
         </div>
     @endif
 </div>
+<div class="d-flex justify-content-center mt-2">
+    <a href="{{ url('/type-events') }}" class="btn btn-primary">Return</a>
+</div>
 </div>
   <!-- Footer -->
   @include('admin.footer')
