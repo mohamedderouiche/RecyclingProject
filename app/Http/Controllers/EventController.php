@@ -13,10 +13,11 @@ class EventController extends Controller
     {
         // Retrieve all events with their TypeEvent relationship
         $events = Event::with('TypeEvent')->get();
-
+       
         // Return the view with the events data
         return view('events.index', compact('events'));
     }
+    
 
     public function indexUser()
     {
