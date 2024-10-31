@@ -12,7 +12,21 @@
             <a  href="{{ url ('/categories-list')}}" class="nav-item nav-link">Produit</a>
             <a href="{{ url ('/teams')}}" class="nav-item nav-link">Teams</a>
             <a href="{{ url ('/eventsuser')}}" class="nav-item nav-link">Events</a>
-            <a href="{{ url ('/Nosformations')}}" class="nav-item nav-link">Trainings</a>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Trainings</a>
+                    <div class="dropdown-menu bg-light m-0">
+                        @if(auth()->check())
+                        <a href="{{ url('/Nosformations') }}" class="dropdown-item">Discover Trainings</a>
+                        @else
+                        <a href="{{ url('/login') }}" class="dropdown-item">View Inscriptions</a>
+                    @endif
+                        @if(auth()->check())
+                            <a href="{{ url('/mes-inscriptions') }}" class="dropdown-item">View Inscriptions</a>
+                        @else
+                            <a href="{{ url('/login') }}" class="dropdown-item">Discover Trainings</a>
+                        @endif
+                    </div>
+                </div>
 
 
             <div class="nav-item dropdown">

@@ -160,7 +160,8 @@ Route::get('/inscriptions', [InscriptionController::class, 'index'])->name('insc
 Route::get('/inscriptions/{id}', [InscriptionController::class, 'show'])->name('inscriptions.show');
 Route::patch('/inscriptions/{id}/status', [InscriptionController::class, 'updateStatus'])->name('inscriptions.updateStatus');
 Route::get('/formations/{id}/inscriptions', [FormationController::class, 'showInscriptions'])->name('formations.inscriptions');
-
+Route::get('/mes-inscriptions', [InscriptionController::class, 'myInscriptions'])->name('inscriptions.my');
+Route::delete('/inscriptions/{id}', [InscriptionController::class, 'destroy'])->name('inscriptions.destroy');
 
 
 // reclamation

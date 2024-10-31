@@ -69,12 +69,15 @@
                             </div>
                             <h4 class="mb-3">{{ $event->title }}</h4>
                             <p class="mb-4">{{ $event->description }}</p>
-                           
+
                         </div>
                     </div>
                 </div>
             @endforeach
         </div> <!-- End of row -->
+
+<br>
+        <a href="{{ url('/eventsuser') }}" class="btn btn-danger btn-block">Return</a>
     </div>
 
     <!-- Footer Start -->

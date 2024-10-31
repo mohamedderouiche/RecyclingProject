@@ -33,3 +33,4 @@ EXPOSE 8001
 
 # Command to run your application and listen on all network interfaces
 CMD php artisan serve --host=0.0.0.0 --port=8000
+    

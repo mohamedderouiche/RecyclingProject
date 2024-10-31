@@ -20,13 +20,25 @@ class InscriptionController extends Controller
             return view('inscriptions.inscription', compact('formation'));
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        // Eager load the 'formation' relationship to avoid null errors
-        $inscriptions = Inscription::with('formation')->get();
+        $search = $request->input('search');
 
-        return view('inscriptions.index', compact('inscriptions'));
+        // Eager load the 'formation' relationship and apply search
+        $inscriptions = Inscription::with('formation')
+            ->when($search, function ($query) use ($search) {
+                $query->where('nom', 'like', "%{$search}%")
+                      ->orWhere('prenom', 'like', "%{$search}%")
+                      ->orWhere('email', 'like', "%{$search}%")
+                      ->orWhereHas('formation', function ($query) use ($search) {
+                          $query->where('name', 'like', "%{$search}%");
+                      });
+            })
+            ->paginate(2    );
+
+        return view('inscriptions.index', compact('inscriptions', 'search'));
     }
+
 
 
 
@@ -36,8 +48,7 @@ class InscriptionController extends Controller
         $request->validate([
             'nom' => 'required|string|max:255',
             'prenom' => 'required|string|max:255',
-            'email' => 'required|string|max:255|regex:/^[^@]+@[^@]+\.[^@]+$/',
-                
+            'email' => 'required|email|max:255|regex:/^.+@.+$/',
         ]);
 
         // Créer une nouvelle inscription
@@ -85,6 +96,24 @@ class InscriptionController extends Controller
     // Return the view with the inscription and formation data
     return view('inscriptions.details', compact('inscription'));
 }
+
+public function myInscriptions()
+{
+    $userId = auth()->user()->id;
+    $inscriptions = Inscription::with('formation')
+                                ->where('users_id', $userId)
+                                ->get();
+
+    return view('inscriptions.my_inscriptions', compact('inscriptions'));
+}
+
+
+public function destroy($id)
+    {
+        $inscription = Inscription::findOrFail($id);
+        $inscription->delete();
+        return redirect()->back()->with('success', 'Inscription supprimée avec succès.');
+    }
 
 
 }

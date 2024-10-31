@@ -31,6 +31,10 @@
         .table tbody tr:hover {
             background-color: #f2f2f2;
         }
+        .table td, .table th {
+            text-align: center; /* Centre le texte par défaut */
+            vertical-align: middle; /* Centre verticalement le contenu des cellules */
+        }
         .icon-spacing {
             margin-right: 5px;
         }
@@ -81,59 +85,71 @@
 
                 <!-- Content -->
                 <div class="container">
-                    <h1 class="my-4">Liste des Inscriptions</h1>
+    <h1 class="my-4">Liste des Inscriptions</h1>
 
-                    @if (session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
-                    <div class="table-responsive">
-                        <table class="table table-striped table-custom">
-                            <thead>
-                                <tr>
-                                    <th>Nom</th>
-                                    <th>Prénom</th>
-                                    <th>Email</th>
-                                    <th>Formation</th>
-                                    <th>Date d'Inscription</th>
-                                    <th>Statut</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($inscriptions as $inscription)
-                                    <tr>
-                                        <td>{{ $inscription->nom }}</td>
-                                        <td>{{ $inscription->prenom }}</td>
-                                        <td>{{ $inscription->email }}</td>
-                                        <td>{{ $inscription->formation->name }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($inscription->date_inscription)->format('d M, Y') }}</td>
-                                        <td>
-                                            <form action="{{ route('inscriptions.updateStatus', $inscription->id) }}" method="POST">
-                                                @csrf
-                                                @method('PATCH')
-                                                <select name="statut" class="form-select-status" onchange="this.form.submit()">
-                                                    <option value="en cours" {{ $inscription->statut == 'en cours' ? 'selected' : '' }}>En cours</option>
-                                                    <option value="acceptée" {{ $inscription->statut == 'acceptée' ? 'selected' : '' }}>Acceptée</option>
-                                                    <option value="refusée" {{ $inscription->statut == 'refusée' ? 'selected' : '' }}>Refusée</option>
-                                                </select>
-                                            </form>
-                                        </td>
-                                        <td>
-                                            <div class="btn-group" role="group" aria-label="Actions">
-                                                <a href="{{ route('inscriptions.show', $inscription->id) }}" class="btn btn-info btn-sm action-btn">
-                                                    <i class="fas fa-eye fa-xs icon-spacing"></i> 
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+    <!-- Formulaire de recherche -->
+    <form method="GET" action="{{ route('inscriptions.index') }}" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="search" value="{{ request('search') }}" class="form-control" placeholder="Rechercher par nom, prénom, email ou formation">
+            <button class="btn btn-primary" type="submit">Rechercher</button>
+        </div>
+    </form>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-custom">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Email</th>
+                    <th>Formation</th>
+                    <th>Date d'Inscription</th>
+                    <th>Statut</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($inscriptions as $inscription)
+                    <tr>
+                        <td>{{ $inscription->nom }}</td>
+                        <td>{{ $inscription->prenom }}</td>
+                        <td>{{ $inscription->email }}</td>
+                        <td>{{ $inscription->formation->name }}</td>
+                        <td>{{ \Carbon\Carbon::parse($inscription->date_inscription)->format('d M, Y') }}</td>
+                        <td>
+                            <form action="{{ route('inscriptions.updateStatus', $inscription->id) }}" method="POST">
+                                @csrf
+                                @method('PATCH')
+                                <select name="statut" class="form-select-status" onchange="this.form.submit()">
+                                    <option value="en cours" {{ $inscription->statut == 'en cours' ? 'selected' : '' }}>En cours</option>
+                                    <option value="acceptée" {{ $inscription->statut == 'acceptée' ? 'selected' : '' }}>Acceptée</option>
+                                    <option value="refusée" {{ $inscription->statut == 'refusée' ? 'selected' : '' }}>Refusée</option>
+                                </select>
+                            </form>
+                        </td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Actions">
+                                <a href="{{ route('inscriptions.show', $inscription->id) }}" class="btn btn-info btn-sm action-btn">
+                                    <i class="fas fa-eye fa-xs icon-spacing"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pagination -->
+    {{ $inscriptions->links('vendor.pagination.bootstrap-4') }}
+</div>
+
                 <!-- End Content -->
 
             </div>
